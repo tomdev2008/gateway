@@ -1,0 +1,50 @@
+product:
+  servers:
+    - http://192.168.102.205:8083/product
+  services:
+    - showProductDetailByProductIds:/product/showProductDetailByProductIds
+    - queryStorageBySkuId:/product/queryStorageBySkuId
+    - queryProductBasicInfo:/product/queryProductBasicInfo
+    - queryProductShopCartBySkuIds:/product/queryProductShopCartBySkuIds
+    - batchUpdateStorageBySkuId:/product/batchUpdateStorageBySkuId
+    - queryProductOrderByGoodsIds:/product/queryProductOrderByGoodsIds
+    - queryStorageBySkuIds:/product/queryStorageBySkuIds
+    - queryCategoryByIds:/product/queryCategoryByIds
+    - batchQueryProductBasicInfo:/product/batchQueryProductBasicInfo
+    - batchQueryGoodsById:/product/batchQueryGoodsById
+    - queryAddCostProducts:/product/queryAddCostProducts
+
+users:
+  servers:
+    - http://192.168.102.205:8081/users
+  services:
+    - selectAddressList:/AddressRest/selectAddressList
+    - getYohoCoinNum:/YohoCoinLogRest/getYohoCoinNum
+    - getVipDetailInfo:/UserVipRest/getVipDetailInfo
+    - selectRedenvelopesCount:/RedEnvelopesRest/selectRedenvelopesCount
+    - getAreaByCode:/AreaRest/getAreaByCode
+    - getDefaultAddress:/AddressRest/getDefaultAddress
+    - getAddress:/AddressRest/getAddress
+    - getYohoCoin:/YohoCoinLogRest/getYohoCoin
+    - updateYohoCurrency:/YohoCurrencyRest/updateYohoCurrency
+
+promotion:
+   servers:
+     - http://192.168.102.205:8085/promotion
+   services:
+     - queryParmListByIds:/promotion/queryParmListByIds
+     - cancelOrderCouponUse:/coupon/cancelOrderCouponUse
+     - queryCouponProdLimit:/promotion/queryCouponProdLimit
+     - queryCheckedCoupon:/coupon/queryCheckedCoupon
+     - queryProdBuyLimitList:/promotion/queryProdBuyLimitList
+     - useCoupon:/coupon/useCoupon
+     - queryPromotionInfoList:/promotion/queryPromotionInfoList
+     - queryCouponList:/coupon/queryCouponList
+
+sns:
+  servers:
+    - http://192.168.102.205:8082/sns
+  services:
+    - addCommentRecordList:/commentRecord/addCommentRecordList
+    - queryCheckedCoupon:/coupon/queryCheckedCoupon
+    - commentRecordList:/commentRecord/commentRecordList

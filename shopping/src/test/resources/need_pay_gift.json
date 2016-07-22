@@ -1,0 +1,22 @@
+{
+  "type": "condition_combine",
+  "aggregator": "all",
+  "operator": "==",
+  "value": "true",
+  "conditions": {
+    "1": {
+      "type": "condition_product",
+      "aggregator": "all",
+      "operatobj": "num",
+      "operator": ">=",
+      "value": "1",
+      "conditions": [
+        {
+          "type": "condition_product_brand",
+          "operator": "==",
+          "value": "246"
+        }
+      ]
+    }
+  }
+}

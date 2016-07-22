@@ -1,0 +1,22 @@
+{
+  "type": "condition_combine",
+  "aggregator": "all",
+  "operator": "==",
+  "value": "true",
+  "conditions": {
+    "1": {
+      "type": "condition_product",
+      "aggregator": "all",
+      "operatobj": "amount",
+      "operator": ">=",
+      "value": "1699",
+      "conditions": [
+        {
+          "type": "condition_promotion_flag",
+          "operator": "==",
+          "value": "102"
+        }
+      ]
+    }
+  }
+}

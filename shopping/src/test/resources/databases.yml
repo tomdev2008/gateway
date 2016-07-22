@@ -1,0 +1,54 @@
+datasources:
+   yh_orders:
+      servers:
+        - 192.168.102.219:3306
+        - 192.168.102.219:3306
+      username: yh_test
+      password: 9nm0icOwt6bMHjMusIfMLw==
+
+   yhb_operations:
+      servers:
+        - 192.168.102.219:3306
+        - 192.168.102.219:3306
+      username: yh_test
+      password: 9nm0icOwt6bMHjMusIfMLw==
+      daos:
+        - com.yoho.yhorder.dal.IGateDAO
+
+   yhb_promotion:
+      servers:
+        - 192.168.102.219:3306
+        - 192.168.102.219:3306
+      username: yh_test
+      password: 9nm0icOwt6bMHjMusIfMLw==
+      daos:
+        - com.yoho.yhorder.dal.IPromotionDAO
+
+   yoho_pay:
+     servers:
+        - 192.168.102.219:3306
+        - 192.168.102.219:3306
+     username: yh_test
+     password: 9nm0icOwt6bMHjMusIfMLw==
+     daos:
+        - com.yoho.yhorder.dal.PaymentDataMapper
+
+   yh_unions:
+      servers:
+         - 192.168.102.219:3306
+         - 192.168.102.219:3306
+      username: yh_test
+      password: 9nm0icOwt6bMHjMusIfMLw==
+      daos:
+        - com.yoho.yhorder.dal.IUnionUsersDAO
+
+   yoho_passport:
+      servers:
+         - 192.168.102.219:3306
+         - 192.168.102.219:3306
+      username: yh_test
+      password: 9nm0icOwt6bMHjMusIfMLw==
+      daos:
+        - com.yoho.yhorder.dal.IUserBlacklistDAO
+
+readOnlyInSlave: true

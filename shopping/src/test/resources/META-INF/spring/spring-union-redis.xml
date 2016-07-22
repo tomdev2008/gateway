@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 联盟的redis配置 -->
+    <bean id="union-jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:timeout="150"
+          p:poolConfig-ref="jedisPoolConfig"   p:hostName="${redis.union.address:192.168.100.112}" p:port="${redis.union.port:6379}" p:password="${redis.union.auth}"
+          p:database="${redis.union.database:9}" />
+
+    <bean id="union-redisTemplate"
+          class="com.yoho.core.redis.YHRedisTemplate"
+          p:connectionFactory-ref="union-jedisConnectionFactory"
+          p:keySerializer-ref="stringRedisSerializer"
+          p:valueSerializer-ref="stringRedisSerializer"
+          p:hashKeySerializer-ref="stringRedisSerializer"
+          p:hashValueSerializer-ref="stringRedisSerializer"/>
+</beans>
