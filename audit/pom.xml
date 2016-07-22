@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>yohobuy-order</artifactId>
+        <groupId>com.yoho.dsf.yhorder</groupId>
+        <version>1.1.3-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>yohobuy-order-audit</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.yoho.dsf.yhorder</groupId>
+            <artifactId>yohobuy-order-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yoho.core</groupId>
+            <artifactId>yoho-core-rest-client-simple</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yoho.core</groupId>
+            <artifactId>yoho-core-rest-server</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>
