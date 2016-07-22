@@ -1,0 +1,314 @@
+200001001:
+  message: "request params can not be empty"
+  gwError: 400:请求参数不能为空
+
+200001002:
+  message: "product sku can not be empty"
+  gwError: 400:加入商品不能为空
+
+200001003:
+  message: "shopping key can not be empty"
+  gwError: 400:shopping key can not be empty
+
+200001004:
+  message: "this product can not be purchased more"
+  gwError: 500:此商品不能购买更多!!!
+
+200001005:
+  message: "shopping cart only add up to 50 paragraph Goods"
+  gwError: 500:购物车中最多加入50款商品
+
+200001006:
+  message: "no user information."
+  gwError: 500:没有用户信息.
+
+200001007:
+  message: "shopping cart is empty"
+  gwError: 200:没有购物车信息.
+
+200001008:
+  message: "product storage num is not enough"
+  gwError: 500:你选择的商品库存不足.
+
+200001009:
+  message: "the current version does not support your electronic ticket purchase, please try again after the update version."
+  gwError: 500:你当前的版本不支持电子票的购买，请更新版本后再试.
+
+200001010:
+  message: "without this product."
+  gwError: 500:没有这个产品.
+
+200001011:
+  message: "the current version does not support the sale of goods purchase, please update to the latest version."
+  gwError: 500:当前版本不支持预售商品购买,请更新最新版本.
+
+200001012:
+  message: "the last product,can not remove"
+  gwError: 500:最后一件商品了.
+
+200001013:
+  message: "product_sku_list is null."
+  gwError: 400:product_sku_list is null.
+
+200001014:
+  message: "packet is error."
+  gwError: 501:数据包错误.
+
+200001015:
+  message: "swap data is error."
+  gwError: 400:替换商品数据不正确.
+
+200001016:
+  message: "uid can not be null."
+  gwError: 400:UID不能为空
+
+200001017:
+  message: "goods does not belong to this promotion."
+  gwError: 500:商品不属于本次活动
+
+200001018:
+  message: "the number of the coupon does not meet the requirements."
+  gwError: 500:未达到该优惠券要求的商品数量
+
+200001019:
+  message: "the amount of the coupon does not meet the requirements"
+  gwError: 500:未达到该优惠券要求的商品金额
+
+200001020:
+  message: "the order is free,you can use coupon next time"
+  gwError: 500:订单已免邮，免邮券下次再用吧
+
+200001021:
+  message: "there can not use the coupon goods"
+  gwError: 500:没有可以使用优惠券的商品
+
+200001022:
+  message: "the coupon code can not be null"
+  gwError: 400:没有选中优惠券.
+
+200001023:
+  message: "shopping cart is null when query"
+  gwError: 500:请选择要移除的商品.
+
+200001024:
+  message: "shopping cart is null when increase"
+  gwError: 500:增加商品异常.
+
+200001025:
+  message: "shopping cart is null when decrease"
+  gwError: 500:减少商品异常.
+
+200001026:
+  message: "shopping cart is null when remove"
+  gwError: 500:请选择要移除的商品.
+
+200001027:
+  message: "shopping cart is null when swap"
+  gwError: 500:减少商品异常.
+
+200001028:
+  message: "shopping cart is null when payment"
+  gwError: 500:请选择要移除的商品.
+
+200001029:
+  message: "shopping cart is null when count"
+  gwError: 500:获取总数错误.
+
+200001030:
+  message: "shopping cart is null when selected"
+  gwError: 500:选择商品异常.
+
+200001031:
+  message: "shopping cart is null when compute"
+  gwError: 500:请选择要移除的商品.
+
+200001032:
+  message: "shopping cart is null when usecoupon"
+  gwError: 500:请选择要移除的商品.
+
+200001033:
+  message: "shopping cart is null when submit"
+  gwError: 500:请选择要移除的商品.
+
+200001034:
+  message: "shopping cart is null when addfavorite"
+  gwError: 500:请选择要移除的商品.
+
+200001040:
+  message: "order has been created."
+  gwError: 500:订单已经创建.
+
+200001041:
+  message: "Get order code failed!"
+  gwError: 500:获取订单号失败！
+
+200001042:
+   message: "promotion  not exist"
+   gwError: 500:促销活动不存在.
+
+200001043:
+   message: "submit erp order  missing goods list"
+   gwError: 500:缺少提交ERP订单商品.
+
+200001044:
+   message: "submit erp order  missing fields"
+   gwError: 500:提交ERP缺少字段.
+
+200001045:
+   message: "submit erp order  missing fields"
+   gwError: 500:提交ERP订单商品缺少字段.
+
+200001046:
+   message: "submit erp order  missing fields"
+   gwError: 500:配送信息缺少字段.
+
+200001047:
+    message: "submit erp order promotion error"
+    gwError: 500:提交ERP促销数据错误.
+
+200001048:
+    message: "create order failed, please try again later."
+    gwError: 500:创建订单失败,请稍后再试.
+
+200001049:
+    message: "local order missing field"
+    gwError: 500:缺少字段.
+
+
+200001050:
+     message: "yoho coin beyond currency amounts."
+     gwError: 500:超出YOHO币使用数量.
+
+200001051:
+     message: "sku buy number over buy limit."
+     gwError: 500:商品购买数量超过了限购数量
+
+200001052:
+     message: "call erp order status interface exception."
+     gwError: 500:创建订单失败,请稍后再试.
+
+200001053:
+     message: "submit order,address id is null."
+     gwError: 400:配货地址不能为空.
+
+200001054:
+     message: "submit order,payment type or payment type is null."
+     gwError: 400:请选择支付方式.
+
+200001055:
+     message: "submit order,payment type or payment type is null."
+     gwError: 400:请选择支付方式.
+
+200001056:
+     message: "call erp order status interface.response not 200."
+     gwError: 500:创建订单失败,请稍后再试.
+
+200001057:
+     message: "add favorite error"
+
+200001058:
+     message: "call erp order create interface.response not 200."
+     gwError: 500:{0}.
+
+200001059:
+     message: "create order ,sku list can not be empty."
+     gwError: 500:订单商品不能为空.
+
+200001060:
+    message: "coupons and promotion code can not be used at the same time."
+    gwError: 400:优惠券和优惠码不可叠加使用.
+
+200001061:
+    message: "promotin code not meeting promoiton condition"
+    gwError: 500:对不起，您的购物车商品不满足优惠码使用条件！
+
+200001062:
+  message: "promotion code not exist"
+  gwError: 500:优惠码不存在！
+
+200001063:
+    message: "user or client ip in blacklist"
+    gwError: 500:由于您的帐号在我公司的商城上存在不良消费记录，短期内将暂时无法购买，请您谅解。
+
+200001064:
+    message: "order is pay by cash, the last order amount can not be more than ￥5000"
+    gwError: 500:货到付款，订单金额不能超过5000元.
+
+200001065:
+    message: "shopping key length overlimit 32"
+    gwError: 500:参数shopping_key长度超过32个字符.
+
+200001066:
+  message: "product storage num is not enough"
+  gwError: 500:你选择的商品 {0} 库存不足.
+
+200001067:
+  message: "shopping cart version not support"
+  gwError: 500:加入失败！版本过低，请更新。
+
+200001068:
+  message: "illegal parameter"
+  gwError: 500:非法参数.
+
+200001069:
+  message: "request yoho coin amount more than last order amount"
+  gwError: 500:您最多使用{0}个YOHO币
+
+200001070:
+  message: "user is in backlist"
+  gwError: 500:您的账户短时间内存在安全隐患，请联系客服
+
+200001071:
+  message: "order must be paid online"
+  gwError: 500:{0}
+
+200001072:
+  message: "order amount is zero,it is impossible"
+  gwError: 500:订单异常.商品金额为0
+
+200001073:
+  message: "order amount over limit ￥20000"
+  gwError: 500:订单金额不能超过20000元
+
+200001074:
+  message: "jit supplier is error"
+  gwError: 500:jit商品供应商错误
+
+200001075:
+  message: "this cartType is not be supported now"
+  gwError: 500:购物车类型不支持 
+200021001:
+  message: "the mobile is invalid"
+  gwError: 400:手机号码格式错误 
+200021002:
+  message: "the product attribute is not supported"
+  gwError: 400:所购商品非电子商品 
+200021003:
+  message: "the ticket sysconfig is null"
+  gwError: 500:电子票sys配置项为空
+200021004:
+  message: "has buy the ticket "
+  gwError: 500:每人每场只可买4张票，不要贪心哦！
+200021005:
+  message: "the ticket sizeName's format is not right"
+  gwError: 500:电子票sizezname属性不对。
+
+200021006:
+  message: "submit order fail"
+  gwError: 500:下单失败.
+
+200021007:
+  message: "order amount error"
+  gwError: 500:订单金额异常.
+
+200021008:
+  message: "repeatable order submit"
+  gwError: 500:您多次提交过快，请稍后再试.
+
+200021009:
+  message: "version is old,must upgrade version"
+  gwError: 500:版本过低，请更新.
+
+200009999:
+    message: "nonknown exception"
+    gwError: 500:系统错误.

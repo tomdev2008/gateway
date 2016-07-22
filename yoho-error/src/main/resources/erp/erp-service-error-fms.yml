@@ -1,0 +1,28 @@
+﻿# fms code 范围 3000xxxx
+30001000:
+  message: "succeed"
+  gwError: 200:成功
+30001001:
+  message: "fail"
+  gwError: 500:失败
+30001002:
+  message: "outInStorageBo is null"
+  gwError: 402:无有效的出入库记录
+30001003:
+  message: "requisitionForm is null"
+  gwError: 402:无有效的到货记录
+30001004:
+  message: "clauseSettlementBo is null"
+  gwError: 402:无有效的结算条款
+30001005:
+  message: "agreementClauseBo is null"
+  gwError: 402:无有效的合同条款
+30001006:
+  message: "baseProduct is null"
+  gwError: 402:无有效的基础产品库
+30001007:
+  message: "sellType is not sale by proxy"
+  gwError: 400:销售类型不是代销
+30001008:
+  message: "purchaseDiscount is null"
+  gwError: 400:固定折扣时获取折扣值为空

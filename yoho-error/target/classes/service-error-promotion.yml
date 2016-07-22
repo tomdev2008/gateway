@@ -1,0 +1,157 @@
+700001000:
+  message: "params error,please confirm."
+  gwError: 300:参数错误.请确认.
+700001001:
+  message: "sorry,params error."
+  gwError: 300:很抱歉！参数错误.
+
+700001002:
+  message: "coupon not valid coupon code."
+  gwError: 301:该券不是有效的优惠券号码
+
+700001003:
+  message: "sorry!coupon is closed,Cannot be used"
+  gwError: 310:很抱歉！该优惠券处于关闭状态，无法使用
+
+700001004:
+  message: "sorry!coupon code not exist"
+  gwError: 303:很抱歉！该券号不存在
+
+700001005:
+  message: "sorry!coupon info not exist"
+  gwError: 304:很抱歉！优惠券信息不存在
+
+700001006:
+  message: "sorry!coupon has been invalid,Cannot be used"
+  gwError: 311:很抱歉！该优惠券已经作废，无法使用
+
+700001007:
+  message: "sorry!coupon can not be use,please connect customer services"
+  gwError: 302:很抱歉！该券无法使用，请联系客服解决
+
+700001008:
+  message: "sorry!You vip level can not use this coupon"
+  gwError: 306:很抱歉！您的用户身份类型不可使用该券
+
+700001009:
+  message: "sorry!This coupon has arrived the max use number"
+  gwError: 312:很抱歉！该券已经达到最大使用量
+
+700001010:
+  message: "sorry!You have already used this coupon,cannot use again"
+  gwError: 313:很抱歉！您已经使用过该优惠券.不能重复使用
+
+700001011:
+  message: "sorry!This coupon has not arrvie use time or has passed time"
+  gwError: 315:很抱歉！该优惠券未到使用时间或者已过期
+
+700001012:
+  message: "sorry!You acquire coupon number has arrived the max num,cannot acquire again"
+  gwError: 314:很抱歉！您领用该券的数量已经达到最大限额，不能再领用
+
+700001013:
+  message: "sorry!You does not have this coupon,please use yourslef coupon to pay"
+  gwError: 317:很抱歉！您没有该券信息，请使用自己的优惠券进行支付
+700001014:
+  message: "coupon has acquired before"
+  gwError: 401:优惠券已经领取
+700001015:
+  message: "coupon not exist"
+  gwError: 402:优惠券不存在
+700001016:
+  message: "send coupon fail"
+  gwError: 404:发放优惠券失败
+700001017:
+  message: "You come later,no surplus"
+  gwError: 403:你来晚了，已被领完~
+700001018:
+  message: "params config info not exist,please confirm"
+  gwError: 403:参数配置信息不存在，请核实
+700001019:
+  message: "send YOHO coin fail"
+  gwError: 201:发放YOHO币失败
+700001020:
+  message: "User birthday info not exist"
+  gwError: 201:用户生日信息不存在
+700001021:
+  message: "sorry!You VIP level no right acquire this coupon"
+  gwError: 402:很抱歉！您的用户等级不可领用该券
+700001022:
+  message: "sorry!BirthDay coupon can only acquire once every year"
+  gwError: 403:很抱歉！生日券一年只能领一次哦
+700001023:
+  message: "promotion code not exist!"
+  gwError: 500:优惠码不存在！
+700001024:
+  message: "promotion code has invalid"
+  gwError: 500:优惠码已失效！
+700001025:
+  message: "sorry,promotion code has passed time"
+  gwError: 500:对不起，优惠码已过期！
+700001026:
+  message: "sorry,promotion code has arrived the max times"
+  gwError: 500:该优惠码超过使用次数！
+700001027:
+  message: "sorry,promotion code do not conform to the conditions of use"
+  gwError: 500:对不起，不符合此优惠码使用条件！
+700001028:
+  message: "sorry,promotion code cannot be used temporarily!"
+  gwError: 500:对不起,此优惠码暂不可用!
+  
+700001030:
+  message: "you have not receive this limit code"
+  gwError: 501:对不起,您未领取该限购码！
+700001031:
+  message: "the status of this limit code is not audited"
+  gwError: 502:限购码状态不是审核状态！
+700001032:
+  message: "this limit code has expired"
+  gwError: 503:对不起，限购码已过期！
+700001033:
+  message: "this limit code can not use"
+  gwError: 504:对不起，限购码暂不可用！
+700001034:
+  message: "this limit code has exceed the max use times"
+  gwError: 505:该限购码超过使用次数！
+700001035:
+  message: "unsuited the using conditions of limit code"
+  gwError: 506:对不起，不符合此限购码使用条件！
+700001036:
+  message: "this limit code unsuited this product"
+  gwError: 507:对不起，此限购码不符合该商品！
+700001037:
+  message: "you have receive the limit code of this limit product"
+  gwError: 508:对不起,您已经领取过这个限购商品的限购码！
+700001038:
+  message: "this limit code batch not exist"
+  gwError: 509:对不起,限购码批次不存在！
+700001039:
+  message: "this limitproduct type is drawline not share"
+  gwError: 500:对不起,此限售商品为排队获取限购码，而不是分享获取限购码！
+700001040:
+  message: "selected product sku unsuited the limit code sku"
+  gwError: 500:对不起,所选尺码与限购码指定尺码不一致！
+700001041:
+  message: "activity not exist"
+  gwError: 500:活动不存在！
+700001042:
+  message: "activity coupon configuration not exist"
+  gwError: 501:未查询到优惠券信息！
+700001043:
+  message: "only new user can acquire this coupon"
+  gwError: 500:新用户才可领取
+700001044:
+  message: "activity user has acquired this coupon"
+  gwError: 201:已领取
+700001045:
+  message: "sorry!You vip level can not acquire this coupon"
+  gwError: 400:很抱歉！您的用户身份不可领用该券！
+700001046:
+  message: "activity status error"
+  gwError: 400:活动状态不正确！
+700001047:
+  message: "have not exists share history"
+  gwError: 401:没有分享记录！
+700001048:
+  message: "request param invalid"
+  gwError: 300:参数不正确

@@ -1,0 +1,13 @@
+﻿# webService code 范围 9000xxxx
+90001000:
+  message: "succeed"
+  gwError: 200:成功
+90001001:
+  message: "fail"
+  gwError: 500:失败
+90001002:
+  message: "fail"
+  gwError: 400:参数无效
+90001003:
+  message: "fail"
+  gwError: 503:服务不可用

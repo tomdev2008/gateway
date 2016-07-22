@@ -1,0 +1,14 @@
+﻿200:
+  message: "成功"
+
+400:
+  message: "不接受此平台"
+
+998:
+  message: 操作失败
+
+999:
+  message: Service {0} is not available!
+  
+1000:
+  message: "ID不能为空或者小于等于0"

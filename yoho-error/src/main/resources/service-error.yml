@@ -1,0 +1,8 @@
+﻿100200300:
+  message: "user %s not find"
+
+100200301:
+  message: "user is not validate"
+
+600001001:
+  message: "param is null"

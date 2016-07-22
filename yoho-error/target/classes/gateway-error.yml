@@ -1,0 +1,154 @@
+﻿200:
+  message: "成功"
+
+500:
+  message: "不接受此平台"
+
+501:
+  message: "Open ID Is Null."
+  
+502:
+  message: "Source Type Is Null or is error."
+  
+503:
+  message: "登录失败"
+  
+412:
+  message: "%s"
+
+
+
+
+
+201:
+  message: "未绑定"
+  
+421:
+  message: "账号不能为空."
+
+422:
+  message: "密码不能为空."
+  
+423:
+  message: "密码不符合规则."
+
+425:
+  message: "发送失败"
+
+400:
+  message: "请输入手机号"
+  
+402:
+  message: "手机号码格式错误"
+  
+401:
+  message: "不存在的第三方"
+  
+403:
+  message: "绑定失败，该帐号已经注册过，请更换"
+  
+411:
+  message: "更新手机号失败"
+  
+420:
+  message: "更新密码失败"
+  
+413:
+  message: "请输入密码"
+  
+424:
+  message: "绑定失败"
+  
+414:
+  message: "注册失败"
+
+
+10001:
+  message: "账户必须是手机号或者邮箱"
+  
+10012:
+  message: "用户名或者密码错误"
+  
+10010:
+  message: "用户名或者密码错误"
+
+404:
+  message: "该手机号已经绑定过账号，请更换手机号码！"
+
+
+450:
+  message: "请使用第三方登录"
+
+451:
+  message: "请选择登录方式"
+
+452:
+  message: "要修改的地址ID不正确."
+
+453:
+  message: "用户ID不正确."
+
+454:
+  message: "收货人姓名不正确."
+
+455:
+  message: "请填写详细地址."
+
+456:
+  message: "省市必须选择."
+
+457:
+  message: "手机或者电话必须填写一个."
+
+458:
+  message: "添加失败."
+
+459:
+  message: "要修改的地址ID或者用户ID为空."
+
+460:
+  message: "删除失败."
+
+461:
+  message: "id 不存在！"
+
+462:
+  message: "设置失败！"
+
+463:
+  message: "请输入验证码！"
+
+464:
+  message: "修改手机号失败！"
+
+465:
+  message: "手机号码错误"
+
+601:
+  message: "获取SSO用户信息错误."
+  
+602:
+  message: "SSO用户登录信息为空."
+
+603:
+  message: "用户UID、邮件、手机号不能为空."
+  
+604:
+  message: "获取SSO用户信息错误."
+  
+605:
+  message: "SSO更新错误"
+
+
+
+
+
+
+
+
+
+998:
+  message: 操作失败
+
+999:
+  message: Service {0} is not available!

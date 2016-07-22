@@ -1,0 +1,134 @@
+﻿# order code 范围 5000xxxx
+50001000:
+  message: "succeed"
+  gwError: 200:成功
+50001001:
+  message: "fail"
+  gwError: 500:失败
+50001002:
+  message: "order of cash on delivery can't update delivery status"
+  gwError: 400:货到付款订单不能确认收货
+50001003:
+  message: "order can't cancel or had canceled"
+  gwError: 400:该订单不能取消或者已经取消
+50001004:
+  message: "can't find this order status"
+  gwError: 513:找不到该状态码
+50001005:
+  message: "can't find this order"
+  gwError: 513:没有这个订单
+50001006:
+  message: "can't find order code or status"
+  gwError: 513:订单号或状态为空
+50001007:
+  message: "orderBo parameters invalid"
+  gwError: 400:订单数据无效
+50001008:
+  message: "get parent order failed"
+  gwError: 400:获取父订单信息失败
+50001009:
+  message: "no parent order"
+  gwError: 400:没有这个父订单
+50001010:
+  message: "order compare amount with last order amount failed"
+  gwError: 400:订单支付金额和应付金额对比时出错
+50001011:
+  message: "order update parent payment failed"
+  gwError: 400:更新父订单支付数据失败
+50001012:
+  message: "update subOrders payinfo by parentOrderCode failed"
+  gwError: 400:根据父订单号修改子订单的支付信息失败  
+50001013:
+  message: "orderCode is not valid"
+  gwError: 400:orderCode不合法！ 
+50001014:
+  message: "order is null or orderType is not valid"
+  gwError: 400:order不存在或orderType不合法！
+
+50001120:
+  message: "param invalid"
+  gwError: 400:缺少字段或字段不合法
+50001130:
+  message: "server error"
+  gwError: 510:Server异常
+50001140:
+  message: "call server error"
+  gwError: 600:服务异常
+50001150:
+  message: "data error"
+  gwError: 700:数据错误
+50001201:
+  message: "validate success"
+  gwError: 202:验证成功 
+50001211:
+  message: "change source order not operate"
+  gwError: 211:换货订单不处理
+50001212:
+  message: "last order amount invalid"
+  gwError: 411:实付订单金额无效
+50001213:
+  message: "order param invalid"
+  gwError: 412:订单参数无效
+50001214:
+  message: "orderCode invalid"
+  gwError: 420:订单号不正确，不存在此订单
+50001215:
+  message: "set payment state faild"
+  gwError: 511设置支付状态失败
+50001216:
+  message: "order already exists"
+  gwError: 711:此订单已存在
+50001217:
+  message: "order not exists"
+  gwError: 712:此订单不存在
+50001218:
+  message: "parent order already exists"
+  gwError: 713:父订单已存在
+50001219:
+  message: "parent order not exists"
+  gwError: 714:父订单不存在
+50001220:
+  message: "channels order already exists"
+  gwError: 715:此渠道订单已存在
+50001221:
+  message: "channels order not exists"
+  gwError: 716:此渠道订单不存在
+50001222:
+  message: "child order goods invalid"
+  gwError: 717:子订单商品和父订单商品数据不一致
+50001223:
+  message: "insert order coupons error"
+  gwError: 718:插入订单优惠券信息失败
+50001224:
+  message: "insert order splitInfo error"
+  gwError: 719:插入订单拆单信息失败
+50001225:
+  message: "insert parent orders error"
+  gwError: 720:插入父订单错误
+50001226:
+  message: "insert orders error"
+  gwError: 721:订单入库错误
+50001227:
+  message: "insert orders goods promo error"
+  gwError: 718:插入订单促销信息错误
+50001228:
+  message: "this order has existed,and it is parent"
+  gwError: 722:该订单号已作为父订单号在订单表中存在
+50001229:
+  message: "insert order goods error"
+  gwError: 723:插入订单商品失败
+50001230:
+  message: "create order faild"
+  gwError: 511:创建订单失败
+50001231:
+  message: "order goods is null"
+  gwError: 421:订单商品不能为空
+50001232:
+  message: "insert UserReceivables error, invalidate bo"
+  gwError: 724:到款数据不完整,保存失败
+50001233:
+  message: "insert UserReceivables error, invalidate bo"
+  gwError: 725:到款拆分数据不完整,保存失败
+50001234:
+  message: "insert UserPayment error"
+  gwError: 726:取消订单,插入退款失败 

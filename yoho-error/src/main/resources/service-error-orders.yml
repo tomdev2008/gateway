@@ -1,0 +1,463 @@
+﻿400000001:
+  message: "request error"
+  gwError: 400:{0}
+
+400000002:
+  message: "service error"
+  gwError: 500:{0}
+
+400001000:
+  message: "parameter is wrong"
+  gwError: 400:参数传递错误
+
+400001001:
+  message: "order is empty"
+  gwError: 400:订单不存在
+
+400001002:
+  message: "order code is empty"
+  gwError: 400:订单号不存在
+
+400001003:
+  message: "uid is empty"
+  gwError: 401:uid不存在
+
+400001004:
+  message: "delete order fail"
+  gwError: 500:删除失败
+  
+400001005:
+  message: "orders goods is empty"
+  gwError: 402:订单商品不存在
+
+400001006:
+  message: "order has paid"
+  gwError: 406:该订单已经付款无法取消，请申请退货或者联系在线客服.
+
+400001007:
+  message: "submit order status fail"
+  gwError: 406:提交订单状态失败
+
+400001008:
+  message: "payment is empty"
+  gwError: 406:支付方式不存在
+
+400001009:
+  message: "no delivery order"
+  gwError: 500:没有已发货的订单
+
+400001010:
+  message: "no logistics order"
+  gwError: 500:没有物流订单
+
+400001011:
+  message: "not find logistics company"
+  gwError: 200:没有找到物流公司
+
+400001012:
+  message: "logistics information"
+  gwError: 200:物流信息
+
+400001013:
+  message: "no change order id"
+  gwError: 412:请选择要设置物流单号的换货申请
+
+400001014:
+  message: "no express company"
+  gwError: 412:请选择物流公司
+400001015:
+  message: "no express num"
+  gwError: 412:请填写快递单号
+400001016:
+  message: "no login"
+  gwError: 412:请先登录
+400001017:
+  message: "order delete"
+  gwError: 500:该订单已被删除
+400001018:
+  message: "no confirm"
+  gwError: 500:订单未确认收货，无法进行换货
+400001019:
+  message: "order expire"
+  gwError: 500:您的订单已经超过了换货有效期，无法进行换货
+400001020:
+  message: "save express fail"
+  gwError: 413:设置快递单号失败
+400001021:
+  message: "save express success"
+  gwError: 200:设置快递单号成功
+
+400001022:
+  message: "change request ID error"
+  gwError: 401:请选择要查看的换货详情
+
+400001023:
+  message: "change source  order not exists"
+  gwError: 403:您要查看的换货申请不存在
+
+400001024:
+  message: "change source order not exists"
+  gwError: 404:您要查看的换货信息原始订单不存在
+
+400001025:
+  message: "order no sign"
+  gwError: 403:订单未妥投，无法进行换货.
+
+400001026:
+  message: "order has expire "
+  gwError: 404:已经超过换货的最后期限，无法换货
+400001027:
+  message: "   no goods "
+  gwError: 405:请选择要换的商品
+400001028:
+  message: "  no receive name"
+  gwError: 406:请填写收货人姓名
+400001029:
+  message: "   no area"
+  gwError: 407:请选择省市区
+400001030:
+  message: "   no address "
+  gwError: 403:请填写收货详细地址
+400001031:
+  message: "  phone wrong "
+  gwError: 403:请填写正确的手机号
+400001032:
+  message: " order no "
+  gwError: 403:请选择换货商品寄回方式
+
+400001033:
+  message: " order no change reason "
+  gwError: 403:请选择换货原因
+
+400001034:
+  message: " order no full info "
+  gwError: 403:请填写完整换货信息
+
+400001035:
+  message: " order no repeat"
+  gwError: 403:请不要重复提交
+400001036:
+  message: " order num wrong "
+  gwError: 401:您申请的换货商品中的换货数量大于可进行换货的商品的数量
+400001037:
+  message: " order no exists"
+  gwError: 403:您要查看的换货信息订单不存在
+400001038:
+  message: " send to erp error"
+  gwError: 403:很抱歉，系统服务忙，请稍后试试
+400001039:
+   message: " CREATE LOCAL error"
+   gwError: 430:很抱歉，换货申请失败，请稍后试试
+
+400001043:
+   message: "cancel orders oupons fail"
+   gwError: 500:返回优惠券失败
+
+400001045:
+  message: "orders productId is empty"
+  gwError: 402:订单产品编号不存在
+
+400001048:
+  message: "storage not enough"
+  gwError: 400:所选择的商品库存不足
+
+
+400001049:
+  message: "order not delivery"
+  gwError: 400:该订单尚未发货
+
+400001050:
+  message: "pay is confirming,try later"
+  gwError: 400:支付结果确认中，请稍后再试
+
+400001051:
+  message: "order express not validate"
+  gwError: 400:快递单号格式错误
+
+# 收货地址
+400001052:
+  message: "delivery address is Empty"
+  gwError: 400:收货地址不存在
+
+400001053:
+  message: "the order does not exist"
+  gwError: 401:该订单不存在
+
+400001054:
+  message: "the order has been removed"
+  gwError: 402:该订单已被删除
+
+400001055:
+  message: "the order has been delivered"
+  gwError: 403:您的订单已经打印完毕，准备出库中，无法修改地址
+
+400001056:
+  message: "the region does not exist"
+  gwError: 404:不存在该地区
+
+400001057:
+  message: "delivery address can modify only 1 times"
+  gwError: 405:收货地址仅且只能修改1次
+
+400001058:
+  message: "delivery address does not support SF distribution area"
+  gwError: 406:收货地址不支持顺丰速运可配送的地区
+  
+400001059:
+  message: "the order is not payable"
+  gwError: 500:该订单当前不可支付
+
+400001060:
+  message: "the order has been cancelled"
+  gwError: 407:该订单已经取消
+
+400001061:
+  message: "the address does not support SF express transport"
+  gwError: 408:该地址暂不支持顺丰快递运输
+
+400001070:
+  message: "the order result confirming"
+  gwError: 407:支付结果确认中
+
+# 退货
+400002001:
+  message: "user ID error"
+  gwError: 400:用户ID错误
+
+400002002:
+  message: "refund request ID error"
+  gwError: 401:退货申请ID错误
+
+400002003:
+  message: "refund request you want to view does not exist"
+  gwError: 403:您要查看的退货申请不存在
+
+400002004:
+  message: "without a refund goods"
+  gwError: 500:没有退货商品
+
+400002005:
+  message: "select to set refund request of logistics number"
+  gwError: 412:请选择要设置物流单号的退货申请
+
+400002006:
+  message: "select a logistics company"
+  gwError: 412:请选择物流公司
+
+400002007:
+  message: "fill out the express order"
+  gwError: 412:请填写快递单号
+
+400002008:
+  message: "please log in first"
+  gwError: 412:请先登录
+
+400002009:
+  message: "refund request was not found"
+  gwError: 412:没有找到该退货申请
+
+400002010:
+  message: "failed to set express order"
+  gwError: 413:设置快递单号失败
+
+400002011:
+  message: "set refund express data fail"
+  gwError: 406:提交退货物流数据失败
+
+400002012:
+  message: "without refund request goods"
+  gwError: 412:没有退货申请商品
+
+400002013:
+  message: "invalid user ID"
+  gwError: 400:用户ID无效
+
+400002014:
+  message: "order number error"
+  gwError: 500:订单号错误
+
+400002015:
+  message: "the order does not exist"
+  gwError: 500:该订单不存在
+
+400002016:
+  message: "the order has been deleted"
+  gwError: 500:该订单已被删除
+
+400002017:
+  message: "the order not confirmed receipt and cannot be returned"
+  gwError: 500:该订单未确认收货，无法进行退货
+
+400002018:
+  message: "your order has exceeded the return period"
+  gwError: 500:您的订单已经超过了退货有效期
+
+400002019:
+  message: "order number error"
+  gwError: 400:订单号错误
+
+400002020:
+  message: "user ID error"
+  gwError: 402:用户ID错误
+
+400002021:
+  message: "please select the goods to return"
+  gwError: 403:请选择要退货的商品
+
+400002022:
+  message: "please select refund set"
+  gwError: 404:请选择退款设置
+
+400002023:
+  message: "please select a method of refund"
+  gwError: 440:请选择退款方式
+
+400002024:
+  message: "please set up your bank card information"
+  gwError: 406:请设置银行卡信息
+
+400002025:
+  message: "please set up alipay account"
+  gwError: 407:请设置支付宝账号
+
+400002026:
+  message: "you want to return the order does not exist"
+  gwError: 407:您要退货的订单不存在
+
+400002027:
+  message: "the order has been deleted"
+  gwError: 430:该订单已删除
+
+400002028:
+  message: "please select a return goods"
+  gwError: 411:请选择退货商品
+
+400002029:
+  message: "please select the reason for return"
+  gwError: 408:请选择退货原因
+
+400002030:
+  message: "please upload a real shot pictures"
+  gwError: 409:请上传实拍图片
+
+400002031:
+  message: "please fill out the return instructions"
+  gwError: 409:请填写退货说明
+
+400002032:
+  message: "return amount exceeds"
+  gwError: 410:退货数量已经超过
+
+400002033:
+  message: "please do not submit duplicate"
+  gwError: 401:请不要重复提交
+
+400002034:
+  message: "failed to create local credit order"
+  gwError: 420:创建本地退货单失败
+
+400002035:
+  message: "failed to create local credit order"
+  gwError: 421:创建本地退货单失败
+
+400002036:
+  message: "refund submit fail"
+  gwError: 406:提交退货申请失败
+  
+400002037:
+  message: "query refund result null"
+  gwError: 406:查询退货申请数据为空
+
+400002038:
+  message: "cancel refund status illegal"
+  gwError: 406:取消退货申请的状态字非法
+  
+400002039:
+  message: "cancel change status illegal"
+  gwError: 406:取消换货申请的状态字非法
+  
+400002040:
+  message: "cancel change goods not exists"
+  gwError: 406:取消换货申请的商品为空
+
+#物流
+400003001:
+  message: "parameter passing incorrect"
+  gwError: 500:参数传递不正确
+
+400003002:
+  message: "no exchange or refund information"
+  gwError: 500:没有退换货信息
+
+400003003:
+  message: "not find the logistics company"
+  gwError: 200:没有找到物流公司
+
+400003004:
+  message: "no Logistics Information"
+  gwError: 500:没有物流信息
+
+# 动态参数
+400004001:
+  message: "submit call erp"
+  gwError: 400:{0}
+
+400004002:
+  message: "set express call erp"
+  gwError: 500:{0}
+
+400004003:
+  message: "return order data is missing a required field"
+  gwError: 400:{0}
+
+400004004:
+  message: "submit call erp result"
+  gwError: 400:{0}
+
+400005001:
+  message: "split order fail"
+  gwError: 500:拆分订单异常
+
+400006001:
+  message: "invoice is not eletronic"
+  gwError: 500:不是电子发票
+
+400006002:
+  message: "invoice header is blank"
+  gwError: 500:没有发票抬头
+
+400006003:
+  message: "invoice goodsitems is empty"
+  gwError: 500:没有货品
+
+400006004:
+  message: "invoice orderstatus is null"
+  gwError: 500:没有订单状态
+
+400006005:
+  message: "invoice query skns marketprice null"
+  gwError: 500:查询skn市场价为空
+
+400006006:
+  message: "invoice actual amount is zero"
+  gwError: 500:不能开具金额为0的发票
+
+400007001:
+  message: "ticket was sold out"
+  gwError: 500:门票已售罄
+
+400007002:
+  message: "the ticket colorName's format is not right"
+  gwError: 500:电子票colorName属性不对。
+
+400007003:
+  message: "ticket seat was sold out"
+  gwError: 500:门票座位已售罄
+
+400007004:
+  message: "yohood ticket type is empty"
+  gwError: 500:yohood门票类型为空
+
+400007005:
+  message: "yohood ticket is empty"
+  gwError: 500:yohood门票为空

@@ -1,0 +1,95 @@
+500001001:
+  message: type is incorrect
+  gwError: 412:类型不正确
+
+500001002:
+  message: id is incorrect
+  gwError: 412:ID不正确
+
+500001003:
+  message: product does not exist
+  gwError: 412:该产品不存在
+
+500001004:
+  message: favorite product exists
+  gwError: 413:您已经收藏了该商品
+
+500001005:
+  message: add success
+  gwError: 200:收藏成功
+
+500001006:
+  message: add fail
+  gwError: 404:收藏失败
+
+500001007:
+  message: cancel success
+  gwError: 200:取消收藏成功
+
+500001008:
+  message: cancel fail
+  gwError: 404:取消收藏失败
+  
+500001009:
+  message: uid is incorrect
+  gwError: 412:用户ID不正确
+  
+500001010:
+  message: favorite brand not exists
+  gwError: 412:该品牌不存在
+  
+500001011:
+  message: favorite brand exists
+  gwError: 413:您已经收藏了该品牌
+  
+500001012:
+  message: product_skn Is Null.
+  gwError: 404:商品SKN不能为空
+  
+500001013:
+  message: promotion_id Is Null.
+  gwError: 404:促销ID不能为空
+  
+500001014:
+  message: Not Product Data.
+  gwError: 404:商品不存在
+  
+500001015:
+  message: activity not contain the product
+  gwError: 500:商品不属于本次活动
+
+500001016:
+  message: Number of favorited is over the limit
+  gwError: 415:您收藏的商品已经超过限制，不能再收藏啦，先去清理一下吧~
+  
+500001017:
+  message: server is busy
+  gwError: 500:服务忙,请稍后再试
+  
+500001018:
+  message: you have addRemind
+  gwError: 413:您已经添加提醒
+
+500001019:
+  message: "platform must be not null"
+  gwError: 400:请传入平台参数
+
+500001020:
+  message: "Activity type illegal"
+  gwError: 400:请传正确的活动类型
+
+500001021:
+  message: "Activity id illegal"
+  gwError: 400:请传入活动ID
+
+500001022:
+  message: "Activity not exist"
+  gwError: 400:活动不存在
+
+500001023:
+  message: "Activity not start"
+  gwError: 400:活动未开始
+
+500001024:
+  message: "Activity is end"
+  gwError: 400:活动已结束

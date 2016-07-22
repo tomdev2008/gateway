@@ -1,0 +1,24 @@
+
+800000000:
+  message: "app is null"
+  gwError: 500:app is null
+  
+800000001:
+  message: "udid is null"
+  gwError: 501:udid is null
+  
+800000002:
+  message: "callbackurl is null"
+  gwError: 502:callbackurl is null
+  
+800000003:
+  message: "app udid is exists"
+  gwError: 503:app udid is exists
+  
+800000004:
+  message: "app udid is not exists"
+  gwError: 504:app udid is not exists
+  
+800000005:
+  message: "app udid is actived"
+  gwError: 505:app udid is actived

@@ -1,0 +1,40 @@
+﻿# pop code 范围 6000xxxx
+60001000:
+  message: "succeed"
+  gwError: 200:成功
+60001001:
+  message: "fail"
+  gwError: 500:失败
+60001002:
+  message: "invalid factory code"
+  gwError: 401:厂家编号无效
+60001003:
+  message: "empty jit sku"
+  gwError: 402:无有效的JIT商品
+60001004:
+  message: "empty purchase"
+  gwError: 401:未查询到采购单
+60001005:
+  message: "empty purchase goods"
+  gwError: 402:未查询到采购单商品
+60001006:
+  message: "empty brandid"
+  gwError: 401:未查询到对应的品牌ID
+60001007:
+  message: "invalid brandname"
+  gwError: 402:无效的品牌名称
+60001008:
+  message: "no out storage record between the time"
+  gwError: 407:在传入时间段内无出入库记录
+60001009:
+  message: "no requisition form for the vendor"
+  gwError: 407:在传入时间段内无出入库记录
+60001010:
+  message: "no pro requisition form by condition"
+  gwError: 408:没有传入的采购单记录
+60001011:
+  message: "input factory code don't associate with sku"
+  gwError: 409:传入的厂家编号无效
+60001012:
+  message: "no pro requisition form goods"
+  gwError: 409:请购单下无商品记录

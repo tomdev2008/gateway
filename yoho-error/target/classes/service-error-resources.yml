@@ -1,0 +1,91 @@
+300000001:
+  message: "request error"
+  gwError: 400:请求错误
+
+300000002:
+  message: "service error"
+  gwError: 500:服务错误
+
+300001001:
+  message: "content code is empty"
+  gwError: 400:content code is empty
+
+300001002:
+  message: "client type is empty"
+  gwError: 400:client type is empty
+
+300001003:
+  message: "gender is empty"
+  gwError: 400:gender is empty
+
+300001004:
+  message: "page must be greater than 0"
+  gwError: 400:page must be greater than 0
+
+300001005:
+  message: "limit must be greater than 0"
+  gwError: 400:limit must be greater than 0
+
+300002001:
+  message: "uid is empty"
+  gwError: 400:uid is empty
+
+300002002:
+  message: "udid is empty"
+  gwError: 400:udid is empty
+
+300002003:
+  message: "app version is empty"
+  gwError: 400:app version is empty
+
+300002004:
+  message: "screen size empty"
+  gwError: 400:screen size is empty
+
+300002005:
+  message: "no cache clear info"
+  gwError: 300002005:没有缓存清除信息
+
+300003001:
+  message: "Client Type IS Null"
+  gwError: 500:Client Type IS Null
+
+300003002:
+  message: "App Client Type ADS IS NULL"
+  gwError: 500:App {0} ADS IS NULL
+
+300003003:
+  message: "node is null"
+  gwError: 404:node is null
+
+300004001:
+  message: "userProfile is null"
+  gwError: 500:userProfile is null
+
+300004002:
+  message: "userBase is null"
+  gwError: 500:userBase is null
+
+300004005:
+  message: "uid is null"
+  gwError: 400:UID 不能为空
+
+300004006:
+  message: "ticket code is null"
+  gwError: 400:票号不能为空
+
+300004007:
+  message: "No such ticket code"
+  gwError: 400:票号没有找到
+
+300004008:
+  message: "Ticket number and the user does not match"
+  gwError: 400:票号与用户不匹配
+
+300004009:
+  message: "Passkit generate error"
+  gwError: 500:Passkit 生成出错
+
+300004010:
+  message: "tag id error"
+  gwError: 400:标签 ID 错误

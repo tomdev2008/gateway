@@ -1,0 +1,22 @@
+﻿# stock code 范围 7000xxxx
+70001000:
+  message: "succeed"
+  gwError: 200:成功
+70001001:
+  message: "fail"
+  gwError: 500:失败
+70001002:
+  message: "order code is empty"
+  gwError: 501:订单号不能为空
+70001003:
+  message: "channel code is empty"
+  gwError: 501:渠道号不能为空
+70001004:
+  message: "channel code not in map."
+  gwError: 501:渠道号不在渠道列表中
+70001005:
+  message: "shift log Not Product SKU."
+  gwError: 501:货位转移中没有此SKU
+70001006:
+  message: "stock change, sku or skc or skn is null."
+  gwError: 501:库存变更,SKU、SKN、SKC不能为空

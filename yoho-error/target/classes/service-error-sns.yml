@@ -1,0 +1,121 @@
+999999999:
+  message: this is message
+800001000:
+  message: "udid is empty"
+  gwError: 400:udid is empty
+
+700003001:
+  message: "article.getArticle: id is null"
+  gwError: 500:Missing Parameter id
+
+700003002:
+  message: "article.getArticle: data is null"
+  gwError: 400:文章分享
+
+700003003:
+  message: "uid is null"
+  gwError: 400:用户ID无效
+
+700003004:
+  message: "articleId is null"
+  gwError: 400:文章ID无效
+
+700003005:
+  message: "add favorite fail"
+  gwError: 500:收藏资讯失败
+  
+700003006:
+  message: "delete favorite fail"
+  gwError: 500:取消收藏失败
+
+700003007:
+  message: "article.getArticleBaseInfo: id is null"
+  gwError: 400:文章ID无效
+
+700003008:
+  message: "article.getArticleBaseInfo: data is null"
+  gwError: 400:文章分享
+
+700003009:
+  message: "articleComments.getList: articleId is null"
+  gwError: 404:资讯ID不能为空!
+
+700003010:
+  message: "articleComments.getList: data is null"
+  gwError: 400:无评论数据!
+
+700003011:
+  message: "articleComments.add: uid is null"
+  gwError: 400:用户ID无效
+
+700003012:
+  message: "articleComments.add: articleId is null"
+  gwError: 400:文章ID无效
+
+700003013:
+  message: "articleComments.add: article is null"
+  gwError: 400:该文章不存在或者已删除
+
+700003014:
+  message: "articleComments.add: user is null"
+  gwError: 404:该用户不存在
+  
+700003015:
+  message: "articlePraise: articleId is null"
+  gwError: 404:点赞失败
+  
+700003016:
+  message: "articlePraise: udid is null"
+  gwError: 404:点赞失败
+  
+700003017:
+  message: "articlePraise: get praise fail"
+  gwError: 500:获取点赞数失败
+
+700003018:
+  message: "shareBrand.detail: id is null"
+  gwError: 400:Missing parameter id or wrong type
+
+700003019:
+  message: "shareBrand.detail: brandRelation is null"
+  gwError: 500:Not found the brand relation
+
+700003020:
+  message: "shareBrand.detail: brand is null"
+  gwError: 500:Not found the brand
+  
+700003021:
+  message: "plustar.list: brand type is null"
+  gwError: 500:Missing Parameter brand_type
+  
+700003022:
+  message: "article author uid is null"
+  gwError: 400:请传uid
+
+700003023:
+  message: "article author uid param error"
+  gwError: 400:作者Id参数错误
+
+700003024:
+  message: "article author not exists"
+  gwError: 500:作者不存在
+  
+700003025:
+  message: "article content param article_id null"
+  gwError: 400:参数article_id为空
+  
+700003026:
+  message: "article content param article_id not exists"
+  gwError: 400:参数article_id错误
+  
+700003027:
+  message: "article content not exists"
+  gwError: 500:文章内容不存在
+
+700003029:
+  message: "article tag is empty"
+  gwError: 400:标签不能为空
+
+700003030:
+  message: "articlePraise: set praise fail"
+  gwError: 500:点赞失败

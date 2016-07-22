@@ -1,0 +1,651 @@
+999999999:
+  message: this is message
+
+100200300:
+  message: "user %s not find"
+
+100200301:
+  message: "user is not validate"
+
+100000000:
+  message: "成功"
+
+100000001:
+  message: "未绑定"
+  gwError: 200:未绑定
+
+111111111:
+  message: "other error"
+  gwError: 500:系统异常
+
+100001001:
+  message: "Open ID Is Null."
+  gwError: 400:Open Id 错误
+
+100001002:
+  message: "Source Type Is Null or is error."
+  gwError: 502:Source Type Is Null or is error.
+
+100001003:
+  message: "login error"
+  gwError: 502:登录失败
+
+100001004:
+  message: "Register parameter is null"
+
+100001005:
+  message: "Password is invalid"
+
+100001006:
+  message: "Register failed"
+  gwError: 422:注册失败
+
+100001007:
+  message: "third_login"
+  gwError: 400:请使用第三方登录
+
+100001008:
+  message: "login_method"
+  gwError: 400:请选择登录方式
+
+100001009:
+  message: "bind_success"
+  gwError: 200:绑定成功
+
+100001010:
+  message: "Address List."
+
+100001011:
+  message: "address_id_error"
+
+100001012:
+  message: "user_id_error"
+
+100001013:
+  message: "addresseename_error"
+
+100001014:
+  message: "address_null"
+
+100001015:
+  message: "province_must"
+
+100001016:
+  message: "mobile_phone_one"
+
+100001017:
+  message: "add_success"
+
+100001018:
+  message: "add_false"
+
+100001019:
+  message: "id_uid_null"
+
+100001020:
+  message: "del_success"
+
+100001021:
+  message: "del_false"
+
+100001022:
+  message: "provinces list."
+
+100001023:
+  message: "id_is_null"
+  gwError: 401:id不能为空
+
+100001024:
+  message: "set_success"
+
+100001025:
+  message: "set_false"
+
+100001026:
+  message: "mobile_number_error"
+  gwError: 401:手机号码错误
+
+100003000:
+  message: "password is null"
+  gwError: 422:密码不能为空.
+
+100003001:
+  message: "uid为空"
+  gwError: 400:请先登录
+
+100003002:
+  message: "not user profile"
+  gwError: 421:账号不能为空.  
+
+100003003:
+  message: "password_not_rule"
+  gwError: 423:密码不符合规则.
+
+100003004:
+  message: "mobile is null"
+  gwError: 400:请输入手机号
+
+100003005:
+  message: "mobile is error"
+  gwError: 402:手机号码格式错误
+
+100003006:
+  message: "send_error"
+  gwError: 404:发送失败
+
+100003007:
+  message: "Type is null||send_success"
+
+100003008:
+  message: "Product Id is null"
+
+100003009:
+  message: "Consult list is null"
+
+100003010:
+  message: "Consult content is null"
+
+100003011:
+  message: "Consult product not exist"
+
+100003012:
+  message: "User is not exist"
+
+100003013:
+  message: "thread is not exist"
+  gwError: 401:不存在的第三方
+
+100003014:
+  message: "mobile is register"
+  gwError: 506:绑定失败，该帐号已经注册过，请更换
+
+100003015:
+  message: "update mobile error"
+  gwError: 411:更新手机号失败
+
+100003016:
+  message: "update password error"
+
+100003017:
+  message: "please input password"
+
+100003018:
+  message: "BIND ERROR"
+
+100003019:
+  message: "REGISTER ERROR"
+
+100003020:
+  message: "Request object UserCoupon is null"
+100003021:
+  message: "profile must be mobile or email"
+  gwError: 10001:账户必须是邮箱或手机号
+
+100003022:
+  message: "password error"
+
+100003023:
+  message: "user not exists"
+  gwError: 404:用户不存在
+
+100003024:
+  message: "MOBILE_IS_EXISTS"
+  gwError: 600:该手机号已经存在
+
+100003025:
+  message: "MOBILE_CHECK_IS_SUCCRSS"
+
+100003026:
+  message: "code_is_null"
+  gwError: 403:请输入验证码！
+
+100003027:
+  message: "phone_update_success"
+
+100003028:
+  message: "phone_update_false"
+
+100003029:
+  message: "get user sso info error"
+  gwError: 500:获取SSO用户信息错误.
+
+100003030:
+  message: "sso login info null"
+  gwError: 500:SSO用户登录信息为空.
+
+100003031:
+  message: "nickname is null"
+
+100003032:
+  message: "consult insert failed"
+
+100003033:
+  message: "UID mail mobile must not null"
+
+100003034:
+  message: "get sso info error"
+
+100003035:
+  message: "sso update error"
+
+100003036:
+  message: "Insert user coupons failed"
+
+100003037:
+  message: "Update user base failed"
+  gwError: 500:更新用户信息失败
+
+100003038:
+  message: "check mobile success"
+  gwError: 200:手机号验证通过
+
+100003039:
+  message: "uid is null"
+  gwError: 500:uid is null  
+
+100003040:
+  message: "uid is null"
+  gwError: 500:用户uid不能为空
+
+100003041:
+  message: "product is empty"
+  gwError: 500:没有收藏的产品
+
+100003042:
+  message: "brand is empty"
+  gwError: 500:没有收藏的品牌
+
+100003043:
+  message: "mobile is bind"
+  gwError: 505:该手机号已经绑定了其他账号，请更换手机号码
+
+100003044:
+  message: "password is error"
+  gwError: 10010:用户名或密码错误
+
+100003045:
+  message: "SSO_LOGIN_CODE_50101"
+  gwError: 10010:用户名或密码错误
+
+100003046:
+  message: "VALID_CODE_TIMEOUT_CODE"
+  gwError: 405:输入次数太多，请重新发送！
+
+100003047:
+  message: "VALID_ERROR"
+  gwError: 404:验证错误
+
+100003048:
+  message: "session key is null"
+  gwError: 400:session key is null
+
+100003049:
+  message: "code is empty"
+  gwError: 400:code is empty
+
+100003050:
+  message: "CODE_IS_INVALID"
+  gwError: 400:CODE_IS_INVALID
+
+100003051:
+  message: "NEW_PWD_IS_NULL"
+  gwError: 400:NEW_PWD_IS_NULL  
+
+100003052:
+  message: "NEW_PWD_IS_NOT_RULE"
+  gwError: 400:NEW_PWD_IS_NOT_RULE  
+
+100003053:
+  message: "EMAIL_IS_EXISTS"
+  gwError: 400:邮箱已经存在
+
+100003054:
+  message: "Question Id is null"
+  gwError: 400:Question Id is null
+
+100003055:
+  message: "Feedback Id is null"
+  gwError: 401:Feedback Id is null
+
+100003056:
+  message: "Answer is null"
+  gwError: 402:Answer is null
+
+100003057:
+  message: "Email Subscriber fail"
+  gwError: 403:Subscriber No
+
+100004001:
+  message: "change type is null"
+
+100004002:
+  message: "change num is null"
+
+100004003:
+  message: "change param is null"
+
+100004004:
+  message: "order code is null"
+
+100004005:
+  message: "currency is null"
+
+100004006:
+  message: "loginName or password error"
+  gwError: 406:登录名或密码错误
+
+100004007:
+  message: "yohocoin is not enough"
+  gwError: 500:yoho币不足
+
+100004008:
+  message: "yoho coin was fully refund for order"
+  gwError: 500:订单使用的yoho币已经全部退还
+
+100004009:
+  message: "order was not use yoho coin"
+  gwError: 500:订单没有使用yoho币
+
+100004010:
+  message: "red envelopes is not enough"
+  gwError: 500:红包不足
+
+100005001:
+  message: "uid and udid is null"
+  gwError: 400:用户信息不正确
+
+100005002:
+  message: "product_skn is null"
+  gwError: 400:产品SKN错误
+
+100005003:
+  message: "middle_sort_id is null"
+  gwError: 400:产品分类错误
+
+100005004:
+  message: "uid is null"
+  gwError: 400:请先登录
+
+100005005:
+  message: "uid is null"
+  gwError: 400:用户ID错误
+
+100005006:
+  message: "uid is null"
+  gwError: 500:请先登录
+
+100005007:
+  message: "VERIFY_CODE_ERROR"
+  gwError: 404:您输入的验证码有误，请重新输入！
+
+100005008:
+  message: "TOKEN_IS_ERROR"
+  gwError: 402:token is error
+
+100005009:
+  message: "not check mobile"
+  gwError: 403:请先验证手机号！
+
+100005010:
+  message: "email null"
+  gwError: 401:邮箱错误
+
+100005011:
+  message: "email error"
+  gwError: 402:邮箱格式错误
+
+100006001:
+  message: "save suggest: param is null"
+  gwError: 400:建议不能为空
+
+100006002:
+  message: "save suggest: content is null"
+  gwError: 400:内容不能为空
+
+100006003:
+  message: "save suggest: failed"
+  gwError: 500:添加失败
+
+100006004:
+  message: "suggest reliable: udid or suggestId is null"
+  gwError: 400:Udid Or Suggest_id Or Sort Is Null
+
+100006005:
+  message: "suggest reliable: isReliable invalidated"
+  gwError: 400:isReliable invalidated
+
+100006006:
+  message: "suggest reliable: set already"
+  gwError: 500:您已经操作过
+
+100006007:
+  message: "suggest reliable: add failed"
+  gwError: 500:操作失败
+
+100008001:
+  message: "param error"
+  gwError: 300:参数错误
+
+100008002:
+  message: "wechat have activitied"
+  gwError: 201:该微信号已参与过活动
+
+100008003:
+  message: "not activity"
+  gwError: 301:没有该项活动
+
+100008004:
+  message: "have share activity"
+  gwError: 201:已经记录过该次分享
+
+100008005:
+  message: "record error"
+  gwError: 500:记录失败
+
+100007001:
+  message: "helpcontent: id is null"
+  gwError: 400:请选择要查看的帮助
+
+100007002:
+  message: "helpcontent: not exists"
+  gwError: 500:内容不存在
+
+100007003:
+  message: "helpcontent: category_id is null"
+  gwError: 400:帮助分类不能为空
+
+100008006:
+  message: "activity not exists"
+  gwError: 500:活动不存在
+
+100009001:
+  message: "UserContacts.modify: uid is null"
+  gwError: 500:请登录
+
+100009002:
+  message: "UserContacts.modify: code_address is null"
+  gwError: 404:请选择所在区域
+
+100009003:
+  message: "UserContacts.get: uid is null"
+  gwError: 500:请登录
+
+100010001:
+  message: "UserHabits.modify: uid is null"
+  gwError: 500:请登录
+
+100010002:
+  message: "UserHabits.get: uid is null"
+  gwError: 500:请登录
+
+100011001:
+  message: "LikeBrand.modify: uid is null"
+  gwError: 500:请登录
+
+100011002:
+  message: "LikeBrand.get: uid is null"
+  gwError: 500:请登录
+  
+100012001:
+  message: "help id error"
+  gwError: 500:帮助id传递错误
+  
+100012002:
+  message: "help content empty"
+  gwError: 500:没有帮助内容
+  
+100013001:
+  message: "user hash signed"
+  gwError: 500:用户已经签到过
+
+100013002:
+  message: "user sign config not exists"
+  gwError: 500:签到配置不存在
+  
+100013003:
+  message: "user sign param push_flag error"
+  gwError: 500:参数pushFlag错误
+
+
+100014001:
+  message: "param is empty"
+  gwError: 400:参数缺失
+
+100014002:
+  message: "param uid is empty"
+  gwError: 400:请传uid
+
+100014003:
+  message: "param title is empty"
+  gwError: 400:投诉表情不能为空
+
+100014004:
+  message: "param title is too long"
+  gwError: 400:投诉标题太长了
+
+100014005:
+  message: "param custorm is too long"
+  gwError: 400:投诉对象太长了
+  
+100014006:
+  message: "param ordercode is empty"
+  gwError: 400:订单号不能为空
+
+100014007:
+  message: "param content is empty"
+  gwError: 400:投诉内容不能为空
+
+100014008:
+  message: "param content is too long"
+  gwError: 400:投诉内容太长 
+
+
+100015001:
+  message: "gift code is empty"
+  gwError: 600:兑换码输入不完整
+  
+100015002:
+  message: "captcha code is empty"
+  gwError: 601:请输入验证码
+
+100015003:
+  message: "gift exchange fail"
+  gwError: 602:礼品卡充值失败  
+
+100015004:
+  message: "gift card not find"
+  gwError: 400:未找到有效的礼品卡信息    
+
+100015005:
+  message: "gift card is error"
+  gwError: 503:礼品卡数据错误
+
+100015006:
+  message: "add log failure"
+  gwError: 411:添加日志失败
+
+100016001:
+  message: "input params error"
+  gwError: 400:输入参数有误
+
+100016002:
+  message: "today already signed"
+  gwError: 400:今天已签到
+
+100016003:
+  message: "sign fail"
+  gwError: 400:签到失败
+
+100016004:
+  message: "user star intimacy get rank fail"
+  gwError: 500:获取个人排名失败
+
+100016005:
+  message: "user star intimacy get forward fail"
+  gwError: 500:获取转发信息失败
+
+100016006:
+  message: "user star intimacy set intimacy fail"
+  gwError: 500:设置用户亲密度失败
+
+100016007:
+  message: "user star intimacy set ischecked fail"
+  gwError: 500:设置签到信息失败
+
+100016008:
+  message: "user star intimacy set checkeddays fail"
+  gwError: 500:设置连续签到信息失败
+
+100016009:
+  message: "user star intimacy get top fail"
+  gwError: 500:获取排名列表失败
+  
+100001028:
+  message: "UID_NOT_MATCH_MOBILE"
+  gwError: 601:uid 与手机号码不符
+  
+100001029:
+  message: "address mobile is invalid"
+  gwError: 401:手机号码不合法
+
+100001030:
+  message: "uid is related"
+  gwError: 602:账号已经关联手机号码 
+  
+700003028:
+  message: "Not found the brand relation"
+  gwError: 500:Not found the brand relation
+  
+100018001:
+  message: "num is invalid"
+  gwError: 402:有货币数量不合法
+  
+100018002:
+  message: "type is invalid"
+  gwError: 403:type不合法
+
+  
+100018004:
+  message: "orderCode is invalid"
+  gwError: 406:orderCode不能为空
+  
+100018005:
+  message: "yohocoin is not enough"
+  gwError: 407:有货币数量不足
+  
+100018006:
+  message: "call mars method is eror"
+  gwError: 501:调用mars方法失败 
+
+100018008:
+  message: "ssoId is null"
+  gwError: 408:sso_id不能为空 
+  
+100018009:
+  message: "mobile and email is null"
+  gwError: 405:mobile与email不能都为空 
+
+100018010:
+  message: "password is invalid"
+  gwError: 403:password不合法
+

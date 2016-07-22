@@ -1,0 +1,19 @@
+999999999:
+  message: this is message
+
+
+800001001:
+  message: "openid is blank"
+  gwError: 405:openid不能为空
+
+800001002:
+  message: "unionid is not exist"
+  gwError: 403:没有关联的unionid
+
+800001003:
+  message: "can not get token"
+  gwError: 403:获取不到token
+
+800001004:
+  message: "invoke api fail"
+  gwError: 403:调用外部接口失败

@@ -1,0 +1,98 @@
+999999999:
+  message: this is message
+
+900001001:
+  message: "postsPraise:postsId is null"
+  gwError: 400:点赞失败,postsId为空
+
+900001002:
+  message: "postsPraise:uid is null"
+  gwError: 405:点赞失败,uid为空
+
+900001003:
+  message: "postsPraise fail,already praised"
+  gwError: 500:点赞失败,已赞过
+
+900001004:
+  message: "get posts info fail"
+  gwError: 500:帖子不存在
+
+900001005:
+  message: "postsId is null"
+  gwError: 400:帖子id为空
+
+900001006:
+  message: "posts is null"
+  gwError: 500:帖子详情信息为空
+
+900001007:
+  message: "cidform is null"
+  gwError: 400:评论人id为空
+
+900001008:
+  message: "uid is null"
+  gwError: 400:用户id为空
+
+900001009:
+  message: "uid is null"
+  gwError: 400:用户id为空
+
+900001010:
+  message: "user info is null"
+  gwError: 400:用户信息为空
+
+900001011:
+  message: "user info is null"
+  gwError: 400:消息id为空
+
+900001012:
+  message: "ssouid is null"
+  gwError: 500:找不到uid对应的ssouid
+
+900001013:
+  message: "inbox type is null"
+  gwError: 400:消息类型为空或类型不匹配
+
+900002002:
+  message: "uid is null"
+  gwError: 401:用户ID不能为空
+
+900002003:
+  message: "user is not exist"
+  gwError: 501:用户不存在
+
+900002004:
+  message: "forum is not exist"
+  gwError: 502:版块信息不存在
+
+900002005:
+  message: "posts is not exist"
+  gwError: 402:文章信息为空
+
+90000206:
+  message: "forum code is null"
+  gwError: 403:请选择版块
+
+90000207:
+  message: "posts authorId is null"
+  gwError: 405:作者不能为空
+
+90000208:
+  message: "posts content is null"
+  gwError: 406:请输入内容
+  
+900003001:
+  message: "post comment is null"
+  gwError: 401:请输入内容
+  
+900003002:
+  message: "post comment id is null"
+  gwError: 402:回复id不能为空
+
+900002009:
+  message: "forum inf get fail,not exist"
+  gwError: 500:获取版块信息失败
+
+900002010:
+  message: "advert code is null"
+  gwError: 500:广告位code为空

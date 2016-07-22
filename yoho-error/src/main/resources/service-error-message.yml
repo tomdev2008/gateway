@@ -1,0 +1,79 @@
+600001001:
+  message: "Request parameter is null"
+  gwError: 500:sms parameter is null
+
+600001002:
+  message: "IP request over 1000 times in an hour"
+  gwError: 500:IP request over 1000 times in an hour
+
+600001003:
+  message: "Mobile request over 100 times in a minuter"
+  gwError: 500:Mobile request over 100 times in a minuter
+
+600001004:
+  message: "Redis error, please check and send message continue."
+  gwError: 500:Redis error
+
+600001005:
+  message: "SMS template id is null"
+  gwError: 500:null template
+
+600001006:
+  message: "SMS template not exist"
+  gwError: 500:template error
+
+600001007:
+  message: "SMS template has no fit user"
+  gwError: 500:template user error
+
+600001008:
+  message: "SMS template fit user not exist"
+  gwError: 500:template user error
+
+600001009:
+  message: "Send message failed"
+  gwError: 500:Send message failed
+
+600001010:
+  message: "uid is null"
+  gwError: 500:uid is null
+  
+600001011:
+  message: "mobile is in black list"
+  gwError: 500:mobile is in black list
+  
+600001012:
+  message: "IP is in black list"
+  gwError: 500:IP is in black list
+  
+600001013:
+  message: "send message num is out of limit"
+  gwError: 500:send message num is out of limit
+ 
+600001014:
+  message: "SMS template project is null"
+  gwError: 201:项目参数不能为空！
+
+600001015:
+  message: "SMS template message is null"
+  gwError: 204:消息不能为空！
+
+600001016:
+  message: "SMS template token is null"
+  gwError: 207:token不能为空！
+
+600001017:
+  message: "SMS template token is error"
+  gwError: 208:签名错误
+
+600002001:
+  message: "param task_key can not be empty"
+  gwError: 400:请传入task_key
+  
+600002002:
+  message: "recycle_task_define not exist"
+  gwError: 500:recycle_task_define不存在
+  
+600002003:
+  message: "param user_id can not be empty"
+  gwError: 400:请传入user_id

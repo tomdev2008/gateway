@@ -1,0 +1,7 @@
+﻿# wms code 范围 8000xxxx
+80001000:
+  message: "succeed"
+  gwError: 200:成功
+80001001:
+  message: "fail"
+  gwError: 500:失败

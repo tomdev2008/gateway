@@ -1,0 +1,7 @@
+﻿# job code 范围 4000xxxx
+40001000:
+  message: "succeed"
+  gwError: 200:成功
+40001001:
+  message: "fail"
+  gwError: 500:失败

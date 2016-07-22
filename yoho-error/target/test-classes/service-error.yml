@@ -1,0 +1,246 @@
+﻿100200300:
+  message: "user {0} not find"
+  gwError: 401:消息发送失败
+
+100200301:
+  message: "user is not validate"
+
+100000000:
+  message: "成功"
+
+100000001:
+  message: "未绑定"
+
+111111111:
+  message: "other error"
+
+100001001:
+  message: "Open ID Is Null."
+
+100001002:
+  message: "Source Type Is Null or is error."
+
+100001003:
+  message: "login error"
+  
+100001004:
+  message: "Register parameter is null"
+  
+100001005:
+  message: "Password is invalid"
+
+100001006:
+  message: "Register failed"
+  
+100001007:
+  message: "third_login"
+  
+100001008:
+  message: "login_method"
+  
+100001009:
+  message: "bind_success"
+
+100001010:
+  message: "Address List."
+
+100001011:
+  message: "address_id_error"
+
+100001012:
+  message: "user_id_error"
+
+100001013:
+  message: "addresseename_error"
+
+100001014:
+  message: "address_null"
+
+100001015:
+  message: "province_must"
+
+100001016:
+  message: "mobile_phone_one"
+  
+100001017:
+  message: "add_success"
+  
+100001018:
+  message: "add_false"
+  
+100001019:
+  message: "id_uid_null"
+  
+100001020:
+  message: "del_success"
+  
+100001021:
+  message: "del_false"
+  
+100001022:
+  message: "provinces list."
+
+100001023:
+  message: "id_is_null"
+  
+100001024:
+  message: "set_success"
+  
+100001025:
+  message: "set_false"
+
+100001026:
+  message: "mobile_number_error"
+
+100003000:
+  message: "password is null"
+
+100003001:
+  message: "uid为空"
+
+100003002:
+  message: "not user profile"
+
+100003003:
+  message: "password_not_rule"
+
+100003004:
+  message: "mobile is null"
+
+100003005:
+  message: "mobile is error"
+
+100003006:
+  message: "send_error"
+
+100003007:
+  message: "Type is null||send_success"
+
+100003008:
+  message: "Product Id is null"
+
+100003009:
+  message: "Consult list is null"
+
+100003010:
+  message: "Consult content is null"
+
+100003011:
+  message: "Consult product not exist"
+
+100003012:
+  message: "User is not exist"
+  
+100003013:
+  message: "thread is not exist"
+  
+100003014:
+  message: "mobile is register"
+  
+100003015:
+  message: "update mobile error"
+  
+100003016:
+  message: "update password error"
+  
+100003017:
+  message: "please input password"
+
+100003018:
+  message: "BIND ERROR"
+  
+100003019:
+  message: "REGISTER ERROR"
+
+100003020:
+  message: "Request object UserCoupon is null"
+100003021:
+  message: "profile must be mobile or email"
+  
+100003022:
+  message: "password error"
+  
+100003023:
+  message: "user not exists"
+  
+100003024:
+  message: "MOBILE_IS_EXISTS"
+  
+100003025:
+  message: "MOBILE_CHECK_IS_SUCCRSS"
+
+100003026:
+  message: "code_is_null"
+
+100003027:
+  message: "phone_update_success"
+
+100003028:
+  message: "phone_update_false"
+
+100003029:
+  message: "get user sso info error"
+  
+100003030:
+  message: "sso login info null"
+
+100003031:
+  message: "nickname is null"
+
+100003032:
+  message: "consult insert failed"
+
+100003033:
+  message: "UID mail mobile must not null"
+
+100003034:
+  message: "get sso info error"
+
+100003035:
+  message: "sso update error"
+
+100003036:
+  message: "Insert user coupons failed"
+
+
+
+300000001:
+  message: "request error"
+  gwError: 22222:消息不能为空
+
+300000002:
+  message: "service error"
+
+300001001:
+  message: "content code is empty"
+
+300001002:
+  message: "client type is empty"
+
+300001003:
+  message: "gender is empty"
+
+300001004:
+  message: "page must be greater than 0"
+
+300001005:
+  message: "limit must be greater than 0"
+
+300002001:
+  message: "uid is empty"
+
+300002002:
+  message: "udid is empty"
+
+300002003:
+  message: "app version is empty"
+
+300002004:
+  message: "screen size empty"
+
+300002005:
+  message: "no cache clear info"
+
+
+600001001:
+  message: "param is null"

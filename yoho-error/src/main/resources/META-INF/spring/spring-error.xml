@@ -1,0 +1,63 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- gateway 错误码 -->
+    <bean id="gatewayErrorMap" class="org.springframework.beans.factory.config.YamlMapFactoryBean">
+        <property name="resources">
+            <list>
+                <value>classpath:gateway-error.yml</value>
+                <value>classpath:erp/erp-gateway-error.yml</value>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- 服务内部 错误码 -->
+    <bean id="serviceErrorMap" class="org.springframework.beans.factory.config.YamlMapFactoryBean">
+        <property name="resources">
+            <list>
+                <value>classpath:service-error.yml</value>
+                <value>classpath:service-error-common.yml</value>
+                <value>classpath:service-error-product.yml</value>
+                <value>classpath:service-error-resources.yml</value>
+                <value>classpath:service-error-orders.yml</value>
+                <value>classpath:service-error-sns.yml</value>
+                <value>classpath:service-error-user.yml</value>
+                <value>classpath:service-error-message.yml</value>
+                <value>classpath:service-error-promotion.yml</value>
+                <value>classpath:service-error-shopping.yml</value>
+                <value>classpath:service-error-union.yml</value>
+                <value>classpath:service-error-shops.yml</value>
+                <value>classpath:service-error-social.yml</value>
+                <value>classpath:service-error-wechat.yml</value>
+                
+                <!-- ERP BEGIN  -->
+                <value>classpath:erp/erp-service-error.yml</value>
+                <value>classpath:erp/erp-service-error-bms.yml</value>
+                <value>classpath:erp/erp-service-error-dashboard.yml</value>
+                <value>classpath:erp/erp-service-error-fms.yml</value>
+                <value>classpath:erp/erp-service-error-webService.yml</value>
+                <value>classpath:erp/erp-service-error-job.yml</value>
+                <value>classpath:erp/erp-service-error-order.yml</value>
+                <value>classpath:erp/erp-service-error-pop.yml</value>
+                <value>classpath:erp/erp-service-error-stock.yml</value>
+                <value>classpath:erp/erp-service-error-wms.yml</value>
+                <!-- ERP END  -->
+                
+            </list>
+        </property>
+    </bean>
+    
+    
+   <bean id="configLoader" class="com.yoho.error.internel.ConfigLoader" init-method="init">
+       <property name="gatewayErrorMap" ref="gatewayErrorMap"/>
+       <property name="serviceErrorMap" ref="serviceErrorMap" />
+   </bean>
+    
+    
+</beans>

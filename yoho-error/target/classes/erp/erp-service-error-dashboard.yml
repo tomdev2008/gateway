@@ -1,0 +1,12 @@
+﻿# dashboard code 范围 200000xxxx
+20001000:
+  message: "succeed"
+  gwError: 200:成功
+
+20001001:
+  message: "fail"
+  gwError: 500:"失败"
+  
+20001002:
+  message: "service id is null or 0"
+  gwError: 1000:"id is null or 0"

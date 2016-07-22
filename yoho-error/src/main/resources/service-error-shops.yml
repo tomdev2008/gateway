@@ -1,0 +1,75 @@
+100017001:
+  message: "shops account is null"
+  gwError: 421:账号不能为空.  
+
+100017002:
+  message: "shops password is null"
+  gwError: 422:密码不能为空.
+
+100017003:
+  message: "login error"
+  gwError: 502:用户名或密码错误
+
+100017004:
+  message: "shops pid is null"
+  gwError: 423:商家端管理员ID不能为空
+
+100017005:
+  message: "call erp fail"
+  gwError: 400:调用erp服务失败 
+
+100017006:
+  message: "password not rule"
+  gwError: 424:密码不符合规则.
+
+100017007:
+  message: "update password fail"
+  gwError: 503:修改密码失败.
+
+100017008:
+  message: "app version is null"
+  gwError: 504:app版本为空
+
+100017009:
+  message: "client type is null"
+  gwError: 505:客户端类型为空
+
+100017010:
+  message: "app url is null"
+  gwError: 506:url地址为空
+
+100017011:
+  message: "old password is error"
+  gwError: 425:密码错误
+
+100017012:
+  message: "account is error"
+  gwError: 507:账号不存在
+  
+100017013:
+  message: "new password is not consistent"
+  gwError: 426:新密码不一致
+
+100017014:
+  message: "shops id is error"
+  gwError: 427:店铺id错误
+
+100017015:
+  message: "shops inbox id is error"
+  gwError: 428:站内信id错误
+
+100017016:
+  message: "shops inbox type is error"
+  gwError: 428:站内信type错误
+
+100017017:
+  message: "new password is simple"
+  gwError: 429:密码过于简单
+
+100017018:
+  message: "shops id is null"
+  gwError: 430:店铺id不能为空
+
+100017019:
+  message: "call erp acount fail"
+  gwError: 431:调用ERP服务失败
