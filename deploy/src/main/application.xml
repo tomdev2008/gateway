@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<application>
+    <display-name>yohobuy-order</display-name>
+    <description>yohobuy-order</description>
+    <module>
+        <web>
+            <web-uri>yohobuy-order.war</web-uri>
+            <context-root>petstore</context-root>
+        </web>
+    </module>
+</application>

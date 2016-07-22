@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: yohobuy-order-deploy
+Implementation-Version: 1.1.3-SNAPSHOT
+Built-By: yoho
+Specification-Title: yohobuy-order-deploy
+Implementation-Vendor-Id: com.yoho.dsf.yhorder
+Build-Jdk: 1.8.0_60
+Specification-Version: 1.1.3-SNAPSHOT
+Implementation-URL: http://maven.apache.org/yohobuy-order-deploy
+Created-By: Maven Integration for Eclipse
+
