@@ -1,0 +1,86 @@
+datasources:
+  yh_orders:
+    servers:
+      - ${jdbc.mysql.yhorders.master}
+      - ${jdbc.mysql.yhorders.slave}
+    username: ${jdbc.mysql.yhorders.username}
+    password: ${jdbc.mysql.yhorders.password}
+
+  yhb_operations:
+    servers:
+      - ${jdbc.mysql.yhboperations.master}
+      - ${jdbc.mysql.yhboperations.slave}
+    username: ${jdbc.mysql.yhboperations.username}
+    password: ${jdbc.mysql.yhboperations.password}
+    daos:
+      - com.yoho.yhorder.dal.IGateDAO
+
+  yhb_promotion:
+    servers:
+      - ${jdbc.mysql.yhbpromotion.master}
+      - ${jdbc.mysql.yhbpromotion.slave}
+    username: ${jdbc.mysql.yhbpromotion.username}
+    password: ${jdbc.mysql.yhbpromotion.password}
+    daos:
+      - com.yoho.yhorder.dal.IPromotionDAO
+
+  yoho_pay:
+    servers:
+      - ${jdbc.mysql.pay.master}
+      - ${jdbc.mysql.pay.slave}
+    username: ${jdbc.mysql.pay.username}
+    password: ${jdbc.mysql.pay.password}
+    daos:
+      - com.yoho.yhorder.dal.PaymentDataMapper
+      - com.yoho.yhorder.dal.IPaymentDAO
+
+  yh_unions:
+    servers:
+      - ${jdbc.mysql.unions.master}
+      - ${jdbc.mysql.unions.slave}
+    username: ${jdbc.mysql.unions.username}
+    password: ${jdbc.mysql.unions.password}
+    daos:
+      - com.yoho.yhorder.dal.IUnionUsersDAO
+      - com.yoho.yhorder.dal.IReturnedGoodsListDAO
+
+  yoho_passport:
+    servers:
+      - ${jdbc.mysql.yohopassport.master}
+      - ${jdbc.mysql.yohopassport.slave}
+    username: ${jdbc.mysql.yohopassport.username}
+    password: ${jdbc.mysql.yohopassport.password}
+    daos:
+      - com.yoho.yhorder.dal.IUserBlacklistDAO
+
+  yoho_pushcenter:
+    servers:
+      - ${jdbc.mysql.yohopushcenter.master}
+      - ${jdbc.mysql.yohopushcenter.slave}
+    username: ${jdbc.mysql.yohopushcenter.username}
+    password: ${jdbc.mysql.yohopushcenter.password}
+    daos:
+      - com.yoho.yhorder.dal.IYHPushCenterTempalteDAO
+
+  yh_setting:
+    servers:
+      - ${jdbc.mysql.yhsetting.master}
+      - ${jdbc.mysql.yhsetting.slave}
+    username: ${jdbc.mysql.yhsetting.username}
+    password: ${jdbc.mysql.yhsetting.password}
+    daos:
+      - com.yoho.yhorder.dal.ISysConfigMapper
+
+  yohood:
+    servers:
+      - ${jdbc.mysql.yohood.master}
+      - ${jdbc.mysql.yohood.slave}
+    username: ${jdbc.mysql.yohood.username}
+    password: ${jdbc.mysql.yohood.password}
+    daos:
+      - com.yoho.yhorder.dal.YohoodTicketsMapper
+      - com.yoho.yhorder.dal.YohoodTicketInfoMapper
+      - com.yoho.yhorder.dal.YohoodProductMapper
+      - com.yoho.yhorder.dal.IYohoodSeatDAO
+
+readOnlyInSlave: ${readOnlyInSlave}

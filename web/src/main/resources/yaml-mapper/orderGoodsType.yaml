@@ -1,0 +1,29 @@
+#order goods type configs
+
+1:
+  en: ordinary
+  cn: 正常
+
+2:
+  en: gift
+  cn: 赠品
+
+3:
+  en: price_gift
+  cn: 加价购
+
+4:
+  en: outlet
+  cn: outlet
+
+5:
+  en: free
+  cn: 免单
+
+6:
+  en: advance
+  cn: 预售
+
+7:
+  en: ticket
+  cn: 电子

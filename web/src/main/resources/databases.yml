@@ -1,0 +1,87 @@
+datasources:
+  yh_orders:
+    servers:
+      - 192.168.102.219:3306
+      - 192.168.102.219:3306
+    username: yh_test
+    password: 9nm0icOwt6bMHjMusIfMLw==
+    daos:
+      - com.yoho.yhorder.dal.IOrdersMetaDAO
+
+  yhb_operations:
+    servers:
+      - 192.168.102.219:3306
+      - 192.168.102.219:3306
+    username: yh_test
+    password: 9nm0icOwt6bMHjMusIfMLw==
+    daos:
+      - com.yoho.yhorder.dal.IGateDAO
+
+  yhb_promotion:
+    servers:
+      - 192.168.102.219:3306
+      - 192.168.102.219:3306
+    username: yh_test
+    password: 9nm0icOwt6bMHjMusIfMLw==
+    daos:
+      - com.yoho.yhorder.dal.IPromotionDAO
+
+  yoho_pay:
+    servers:
+      - 192.168.102.219:3306
+      - 192.168.102.219:3306
+    username: yh_test
+    password: 9nm0icOwt6bMHjMusIfMLw==
+    daos:
+      - com.yoho.yhorder.dal.PaymentDataMapper
+      - com.yoho.yhorder.dal.IPaymentDAO
+
+  yh_unions:
+    servers:
+      - 192.168.102.219:3306
+      - 192.168.102.219:3306
+    username: yh_test
+    password: 9nm0icOwt6bMHjMusIfMLw==
+    daos:
+      - com.yoho.yhorder.dal.IUnionUsersDAO
+      - com.yoho.yhorder.dal.IReturnedGoodsListDAO
+
+  yoho_passport:
+    servers:
+      - 192.168.102.219:3306
+      - 192.168.102.219:3306
+    username: yh_test
+    password: 9nm0icOwt6bMHjMusIfMLw==
+    daos:
+      - com.yoho.yhorder.dal.IUserBlacklistDAO
+
+  yoho_pushcenter:
+    servers:
+      - 192.168.102.219:3306
+      - 192.168.102.219:3306
+    username: yh_test
+    password: 9nm0icOwt6bMHjMusIfMLw==
+    daos:
+      - com.yoho.yhorder.dal.IYHPushCenterTempalteDAO
+
+  yh_setting:
+    servers:
+      - 192.168.102.219:3306
+      - 192.168.102.219:3306
+    username: yh_test
+    password: 9nm0icOwt6bMHjMusIfMLw==
+    daos:
+      - com.yoho.yhorder.dal.ISysConfigMapper
+  yohood:
+    servers:
+      - 192.168.102.219:3306
+      - 192.168.102.219:3306
+    username: yh_test
+    password: 9nm0icOwt6bMHjMusIfMLw==
+    daos:
+      - com.yoho.yhorder.dal.YohoodTicketsMapper
+      - com.yoho.yhorder.dal.YohoodTicketInfoMapper
+      - com.yoho.yhorder.dal.YohoodProductMapper
+      - com.yoho.yhorder.dal.IYohoodSeatDAO
+
+readOnlyInSlave: true

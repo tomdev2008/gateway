@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 从高到地低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
+<!-- 日志输出规则  根据当前ROOT 级别，日志输出时，级别高于root默认的级别时  会输出 -->
+<!-- 以下  每个配置的 filter 是过滤掉输出文件里面，会出现高级别文件，依然出现低级别的日志信息，通过filter 过滤只记录本级别的日志-->
+
+
+<!-- 属性描述 scan：性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。   
+    debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <!-- DEBUG级别日志 appender -->
+    <appender name="TRACE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/trace.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/trace.%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%X{X-B3-TraceId:-}|%X{X-B3-SpanId:-}|%X{X-Span-Export:-}|%thread|%msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- DEBUG、INFO、WARN、ERROR级别日志 appender -->
+    <appender name="DEBUG_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/debug-log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/debug.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}] %d{yyyy-MM-dd HH:mm:ss.SSS}  %-5level [%thread] %logger{35} - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- WARN、ERROR级别日志 appender -->
+    <appender name="WARN_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/warn-log.log</file>
+        <!-- 过滤器，过滤掉 TRACE 和 DEBUG 和 INFO 级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/warn.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- HTTP请求超时 appender -->
+    <appender name="REQUEST_TIMEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/request-timeout.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/request-timeout.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 数据库超时日志 appender -->
+    <appender name="DATABASE_TIMEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/database-timeout.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/database-timeout.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 数据库请求统计 appender -->
+    <appender name="DATABASE_STAT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/database-stat.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/database-stat.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 服务请求统计 appender -->
+    <appender name="REQUEST_STAT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/request-stat.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/request-stat.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- DEBUG级别日志 appender -->
+    <appender name="ORDER_SUBMIT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/order-submit.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/order-submit.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- DEBUG级别日志 appender -->
+    <appender name="CART_QUERY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/cart-query.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/cart-query.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- DEBUG级别日志 appender -->
+    <appender name="CALC_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/calc-log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/calc-log.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ORDER_CLOSE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/order-close.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/order-close.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="MQ_CONSUMER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/mq-consumer.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/mq-consumer.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+	<appender name="MQ_PRODUCER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/mq-producer.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/mq-producer.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="PAY_CONFIRM" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/pay-confirm.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/pay-confirm.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="COLLECT_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/collect-log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/collect-log.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 外部服务调用日志 -->
+    <appender name="EXTERNAL_CALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/external-call.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/external-call.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- 购物车add payment compute接口日志 -->
+    <appender name="ADD_PAYMENT_COMPUTE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/add-payment-compute.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/add-payment-compute.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 大数据采集支付日志 -->
+    <appender name="PAYMENT_BD" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/payment-bd.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/payment-bd.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 联盟推送日志 -->
+    <appender name="UNION_PUSH" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/union-push.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/union-push.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 订单稽核日志 -->
+    <appender name="ORDER_AUDIT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/order-audit.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/order-audit.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="ORDER_EVENT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/order-event.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/order-event.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ORDER_SPLIT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/order-split.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/order-split.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ORDER-COMPENSATE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/order-compensate.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/order-compensate.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 电子票日志 -->
+    <appender name="TICKET" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/shopping-ticket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${yoho.logs.basedir}/${yohobuy.order.env.namespace}/archived/shopping-ticket.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>${yoho.logs.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>${yoho.logs.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 数据库操作日志 -->
+    <logger name="java.sql.PreparedStatement" value="${yoho.logs.level}" />
+    <logger name="java.sql.Connection" value="${yoho.logs.level}" />
+    <logger name="java.sql.Statement" value="${yoho.logs.level}" />
+    <logger name="com.ibatis" value="${yoho.logs.level}" />
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" value="${yoho.logs.level}" />
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="${yoho.logs.level}"/>
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" value="${yoho.logs.level}" />
+    <logger name="org.springframework" level="${yoho.logs.level}"/>
+    <logger name="org.apache.zookeeper.ClientCnxn" level="WARN"/>
+    <!-- root级别   DEBUG -->
+    <root level="${yoho.logs.level}">
+        <!-- 文件输出 -->
+        <appender-ref ref="DEBUG_LOG" />
+        <appender-ref ref="WARN_LOG" />
+    </root>
+
+    <!-- http请求处理超时日志 -->
+    <logger name="com.yoho.core.common.monitor.ThreadProfile" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="REQUEST_TIMEOUT"/>
+    </logger>
+
+    <!-- 数据库处理超时日志 -->
+    <logger name="com.yoho.core.dal.datasource.intercepor.DaoInterceptor" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="DATABASE_TIMEOUT"/>
+    </logger>
+
+    <!--数据库操作统计-->
+    <logger name="com.yoho.core.dal.datasource.DatabaseOperationProfile" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="DATABASE_STAT"/>
+    </logger>
+
+    <!-- 服务请求统计 -->
+    <logger name="com.yoho.core.common.monitor" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="REQUEST_STAT"/>
+    </logger>
+
+    <!-- 订单提交日志 -->
+    <logger name="orderSubmitLog"  additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="ORDER_SUBMIT" />
+    </logger>
+
+    <!-- 订单提交日志 -->
+    <logger name="cartQueryLog"  additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="CART_QUERY" />
+    </logger>
+
+    <!-- 订单取消日志 -->
+    <logger name="orderCloseLog" level="INFO" additivity="false">
+        <appender-ref ref="ORDER_CLOSE" />
+    </logger>
+
+    <!-- MQ消费日志 -->
+    <logger name="mqConsumerLog" level="INFO" additivity="false">
+        <appender-ref ref="MQ_CONSUMER" />
+    </logger>
+
+    <!-- MQ生辰日志 -->
+    <logger name="mqProducerLog" level="INFO" additivity="false">
+        <appender-ref ref="MQ_PRODUCER" />
+    </logger>
+
+    <!-- 订单提交日志 -->
+    <logger name="calculateLog"  additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="CALC_LOG" />
+    </logger>
+
+    <logger name="payConfirmLog" level="INFO" additivity="false">
+        <appender-ref ref="PAY_CONFIRM" />
+    </logger>
+
+    <!-- 大数据采集日志 -->
+    <logger name="collectLog" level="INFO" additivity="false">
+        <appender-ref ref="COLLECT_LOG" />
+    </logger>
+
+    <!-- 外部服务调用日志 -->
+    <logger name="externalCallLog" level="INFO" additivity="false">
+        <appender-ref ref="EXTERNAL_CALL" />
+    </logger>
+
+    <!-- 购物车add payment compute接口日志 -->
+    <logger name="addPaymentComputeLog" level="INFO" additivity="false">
+        <appender-ref ref="ADD_PAYMENT_COMPUTE" />
+    </logger>
+
+    <logger name="paymentDBLog" level="INFO" additivity="false">
+        <appender-ref ref="PAYMENT_BD" />
+    </logger>
+
+    <logger name="unionPushLog" level="INFO" additivity="false">
+        <appender-ref ref="UNION_PUSH" />
+    </logger>
+
+    <logger name="orderAuditLog" level="INFO" additivity="false">
+        <appender-ref ref="ORDER_AUDIT" />
+    </logger>
+
+    <logger name="orderEventLog" level="INFO" additivity="false">
+        <appender-ref ref="ORDER_EVENT" />
+    </logger>
+
+    <logger name="orderSplitLog" level="INFO" additivity="false">
+        <appender-ref ref="ORDER_SPLIT" />
+    </logger>
+
+    <logger name="orderCompensateLog" level="INFO" additivity="false">
+        <appender-ref ref="ORDER-COMPENSATE" />
+    </logger>
+
+    <logger name="ticketLog" level="INFO" additivity="false">
+        <appender-ref ref="TICKET" />
+    </logger>
+
+    <logger name="TRACE" additivity="false">
+        <level value="TRACE"/>
+        <appender-ref ref="TRACE_LOG"/>
+    </logger>
+
+
+    <logger name="com.yoho.yhorder.invoice.webservice.impl.CXFClient" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG_LOG" />
+    </logger>
+
+    <logger name="com.yoho.yhorder.invoice.service.impl.InvoiceServiceImpl" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG_LOG" />
+    </logger>
+
+    <logger name="com.ibatis" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG_LOG" />
+    </logger>
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG_LOG" />
+    </logger>
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG_LOG" />
+    </logger>
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG_LOG" />
+    </logger>
+    <logger name="java.sql.Connection" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG_LOG" />
+    </logger>
+    <logger name="java.sql.Statement" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG_LOG" />
+    </logger>
+    <logger name="java.sql.PreparedStatement" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG_LOG" />
+    </logger>
+</configuration>  

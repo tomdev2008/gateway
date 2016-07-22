@@ -1,0 +1,127 @@
+#order express company info configs
+
+# ems
+2:
+  caption: ems
+  url: http://www.ems.com.cn/
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_ems_logo.png
+  is_support: 2
+
+# zhai ji song
+5:
+  caption: 宅急送
+  url: http://www.zjs.com.cn
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_zjs_logo.png
+  is_support: 2
+
+# xing chen ji bian
+17:
+  caption: 星辰急便
+  url:
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_xcjb_logo.png
+  is_support: 2
+
+# shun feng
+23:
+  caption: 顺丰
+  url: http://www.sf-express.com
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_sf_logo.png
+  is_support: 1
+
+# yuan tong
+29:
+  caption: 圆通
+  url: http://www.yto.net.cn
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_yto_logo.png
+  is_support: 2
+
+# tong he tian xia
+30:
+  caption: 通和天下
+  url:
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_thtx_logo.png
+  is_support: 2
+
+# lian bang kuai di
+31:
+  caption: 联邦快递
+  url:
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_thtx_logo.png
+  is_support: 2
+
+# you su kuai di
+32:
+  caption: 优速快递
+  url:
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_thtx_logo.png
+  is_support: 2
+
+# shen tong
+36:
+  caption: 申通
+  url: http://www.sto.cn
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_sto_logo.png
+  is_support: 2
+
+# hui tong kuai yun
+37:
+  caption: 汇通快运
+  url:
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_ht_logo.png
+  is_support: 2
+
+# yun da
+39:
+  caption: 韵达
+  url: http://www.yundaex.com
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_yunda_logo.png
+  is_support: 2
+
+# fan bang kuai di
+43:
+  caption: 凡邦快递
+  url:
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_fb_logo.png
+  is_support: 2
+
+# jing dong kuai di
+46:
+  caption: 京东快递
+  url:
+  logo: http://static.yohobuy.com/images/v3/express/order_carrier_jd_logo.png
+  is_support: 2
+
+# zhong tong kuai di
+47:
+  caption: 中通
+  url: http://www.zto.cn/
+  logo: 
+  is_support: 2
+
+# tian tian kuai di
+49:
+  caption: 天天快递
+  url: http://www.ttkdex.com/
+  logo: 
+  is_support: 2
+
+# quan feng kuai di
+51:
+  caption: 全峰
+  url: www.qfkd.com.cn
+  logo: 
+  is_support: 2
+
+# su er
+53:
+  caption: 速尔
+  url: http://www.sure56.com
+  logo: 
+  is_support: 2
+
+# qi ta
+100:
+  caption: 其他
+  url: 
+  logo: 
+  is_support: 2

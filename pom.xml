@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.yoho</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.1.3-SNAPSHOT</version>
+    </parent>
+    <groupId>com.yoho.dsf.yhorder</groupId>
+    <artifactId>yohobuy-order</artifactId>
+    <version>1.1.3-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>yohobuy-order</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project-name>yohobuy-order</project-name>
+        <project-version>1.1.3</project-version>
+        <cxf.version>3.0.3</cxf.version>
+        <xstream.version>1.4.8</xstream.version>
+        <xerces.version>2.11.0</xerces.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.yoho.dsf.yhorder</groupId>
+                <artifactId>yohobuy-order-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yoho.dsf.yhorder</groupId>
+                <artifactId>yohobuy-order-dal</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yoho.dsf.yhorder</groupId>
+                <artifactId>yohobuy-order-order</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yoho.dsf.yhorder</groupId>
+                <artifactId>yohobuy-order-shopping</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yoho.dsf.yhorder</groupId>
+                <artifactId>yohobuy-order-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yoho.dsf.yhorder</groupId>
+                <artifactId>yohobuy-order-invoice</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yoho.dsf.yhorder</groupId>
+                <artifactId>yohobuy-order-audit</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-core</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-frontend-jaxws</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>${xstream.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xerces</groupId>
+                <artifactId>xercesImpl</artifactId>
+                <version>${xerces.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yoho.core</groupId>
+                <artifactId>yoho-core-message</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <modules>
+        <module>order</module>
+        <module>dal</module>
+        <module>common</module>
+        <module>shopping</module>
+        <module>invoice</module>
+        <module>audit</module>
+         <module>web</module>
+          <module>deploy</module>
+    </modules>
+</project>

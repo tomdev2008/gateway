@@ -1,0 +1,28 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/rabbit
+           http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <bean id="messageConverter" class="org.springframework.amqp.support.converter.SimpleMessageConverter"/>
+
+
+    <rabbit:connection-factory id="wechat-connectionFactory" addresses="${rabbit_common:127.0.0.1:5672}"
+                               username="${rabbit_common_user:yoho}" password="${rabbit_common_password:yoho}" virtual-host="${rabbit_vhost:yoho}" />
+
+    <rabbit:template id="wechatTemplate" connection-factory="wechat-connectionFactory"
+                     message-converter="messageConverter"/>
+
+    <rabbit:admin id="wechatAdmin" connection-factory="wechat-connectionFactory"/>
+
+
+    <!--发送消息 -->
+    <bean id="wechatProducerTemplate" class="com.yoho.yhorder.common.message.WechatProducerTemplate">
+        <property name="amqpTemplate" ref="wechatTemplate"/>
+    </bean>
+
+</beans>

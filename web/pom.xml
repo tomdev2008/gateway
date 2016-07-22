@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.yoho.dsf.yhorder</groupId>
+        <artifactId>yohobuy-order</artifactId>
+        <version>1.1.3-SNAPSHOT</version>
+    </parent>
+    <artifactId>yohobuy-order-web</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yoho.dsf.yhorder</groupId>
+            <artifactId>yohobuy-order-order</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yoho.dsf.yhorder</groupId>
+            <artifactId>yohobuy-order-shopping</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yoho.dsf.yhorder</groupId>
+            <artifactId>yohobuy-order-audit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yoho.core</groupId>
+            <artifactId>yoho-core-trace</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yoho.dsf.yhorder</groupId>
+            <artifactId>yohobuy-order-order</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yoho.dsf.yhorder</groupId>
+            <artifactId>yohobuy-order-invoice</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>yohobuy-order</finalName>
+        <plugins>
+            <plugin>
+                <groupId>com.yoho.tools</groupId>
+                <artifactId>maven-autoconfig-plugin</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <configuration>
+                    <exploding>true</exploding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>autoconfig</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <group>
+		<!--yohobuy.resources-autoconfig-env-->
+
+        <property name="yohobuy.order.env.namespace" defaultValue="order" description="namespace"/>
+        <property name="yohobuy.order.env.serverport" defaultValue="4" description="port"/>
+        <property name="yohobuy.order.env.webapphome" defaultValue="/home/master/yohobuy-order/deploy" description="install path"/>
+
+        <property name="jdbc.mysql.readonlyinslave" defaultValue="false" description="读操作是否只在从库"/>
+        <property name="java.logs.home" defaultValue="/Data/logs" description="日志打印路径"/>
+        <property name="erp.order.create.url" defaultValue="http://portal.admin.yohobuy.com/api/orderform/create" description="erp"/>
+        <property name="erp.order.status.url" defaultValue="http://portal.admin.yohobuy.com/api/orders/status" description="erp"/>
+
+
+        <property name="erp.order.close.sync.type" defaultValue="RPC" description="erp"/>
+        <property name="erp.order.change.sync.type" defaultValue="RPC" description="erp"/>
+        <property name="erp.order.refund.sync.type" defaultValue="RPC" description="erp"/>
+        <property name="erp.order.express.sync.type" defaultValue="RPC" description="erp"/>
+        <property name="order.codpay.lock.duration" defaultValue="1440" description="order codpay lock"/>
+		<property name="erp.order.autoCancel.switch.key" defaultValue="N" description="order autoCancel"/>
+
+        <!-- external degrade service switch key -->
+        <property name="degrade.buylimit.query.enable" defaultValue="true" description="query buy limit"/>
+        <property name="degrade.vip.query.enable" defaultValue="true" description="query vip level"/>
+        <property name="degrade.yohocoin.query.enable" defaultValue="true" description="query yoho coin"/>
+        <property name="degrade.redenvelopes.query.enable" defaultValue="true" description="query redenvelopes"/>
+        <property name="degrade.coupons.queryNotUseCoupons.enable" defaultValue="true" description="query coupons"/>
+        <property name="degrade.product.query.enable" defaultValue="true" description="query product info in shopping cart"/>
+        <property name="degrade.address.query.enable" defaultValue="false" description="query address in order submit"/>
+
+
+    </group>
+    <script>
+        <generate template="META-INF/autoconf/databases.yml" destfile="WEB-INF/classes/databases.yml"/>
+        <generate template="META-INF/autoconf/logback.xml" destfile="WEB-INF/classes/logback.xml"/>
+
+        <generate template="META-INF/autoconf/config.properties" destfile="WEB-INF/classes/config.properties" charset="utf-8" />
+        <generate template="META-INF/autoconf/acp_sdk.properties" destfile="WEB-INF/classes/acp_sdk.properties"/>
+    </script>
+</config>
