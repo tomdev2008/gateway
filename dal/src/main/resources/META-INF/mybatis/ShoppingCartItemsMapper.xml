@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IShoppingCartItemsDAO">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.ShoppingCartItems">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="shopping_cart_id" property="shoppingCartId"
+                jdbcType="INTEGER"/>
+        <result column="sku_id" property="skuId" jdbcType="INTEGER"/>
+        <result column="num" property="num" jdbcType="INTEGER"/>
+        <result column="promotion_id" property="promotionId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="product_skn" property="productSkn" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="INTEGER"/>
+        <result column="selected" property="selected" jdbcType="VARCHAR"/>
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="shopping_key" property="shoppingKey" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id, shopping_cart_id, sku_id, num, promotion_id, status, product_skn,
+		create_time,shopping_key
+	</sql>
+    <!--不再使用-->
+    <update id="changeCart" parameterType="com.yoho.yhorder.dal.model.ShoppingCartItems">
+		update shopping_cart_items set shopping_cart_id=#{toCartId},uid=#{uid} where shopping_cart_id=#{srcCartId}
+	</update>
+
+    <select id="selectByCartId" resultMap="BaseResultMap">
+		select * from shopping_cart_items where shopping_cart_id=#{shoppingCartId} and status=1 and uid=#{uid}
+	</select>
+
+
+    <select id="countShoppingCartGoods" resultType="java.lang.Integer">
+		select count(0) as number from shopping_cart_items where uid=#{uid} and  shopping_cart_id = #{shoppingCartId} and status = 1
+	</select>
+
+    <select id="sumShoppingCartGoodsByProductSku" resultType="java.lang.Integer">
+		select IFNULL(sum(num),0) as buy_number from shopping_cart_items where shopping_cart_id = #{shoppingCartId} and
+		sku_id =#{productSku} and promotion_id = #{promotionId} and status = 1 and uid=#{uid}
+	</select>
+
+    <select id="sumShoppingCartGoods" resultType="java.lang.Integer">
+		select IFNULL(sum(num),0) as number from shopping_cart_items
+		where shopping_cart_id = #{shoppingCartId}
+		and status = 1  and uid=#{uid}
+	</select>
+
+    <insert id="insertShoppingCartGoods">
+		insert into shopping_cart_items (uid,shopping_cart_id,shopping_key,sku_id,product_skn,num,promotion_id,selected,status,create_time) values
+		(#{uid},#{shoppingCartId},#{shoppingKey},#{productSku},#{productSkn},#{buyNumber},#{promotionId},#{selected},#{status},UNIX_TIMESTAMP())
+	</insert>
+
+    <update id="updateShoppingCartGoodsNumber">
+        update shopping_cart_items set num = if( num + #{buyNumber} >50 , 50 , num + #{buyNumber})
+        where sku_id = #{productSku}
+        and uid=#{uid}
+        and shopping_cart_id = #{shoppingCartId}
+        <if test="promotionId != null">
+            and promotion_id = #{promotionId}
+        </if>
+        and status = 1
+    </update>
+
+    <select id="selectShoppingCartGoods" resultMap="BaseResultMap">
+        select id,shopping_cart_id,sku_id,num,promotion_id,status,product_skn,selected,uid
+        from shopping_cart_items
+        where shopping_cart_id = #{shoppingCartId}
+        and uid=#{uid}
+        <if test="selected != null">
+            and selected = #{selected}
+        </if>
+        and status = 1
+    </select>
+
+    <select id="countShoppingCartGoodsByProductSku" resultType="java.lang.Integer">
+		select count(0) as number from shopping_cart_items
+		where shopping_cart_id = #{shoppingCartId}
+		and uid=#{uid}
+		and sku_id = #{productSku} and status = 1
+		and promotion_id = #{promotionId}
+	</select>
+
+    <update id="updateShoppingCartGoodsWithOld">
+		update shopping_cart_items set sku_id = #{newProductSku},num =if(#{buyNumber} >50 , 50 , #{buyNumber})
+		where shopping_cart_id = #{shoppingCartId}
+		and uid=#{uid}
+		and sku_id = #{oldProductSku}
+		and status = 1
+		and promotion_id=0
+	</update>
+
+    <update id="decreaseShoppingCartGoodsNumber">
+        update shopping_cart_items
+        SET num = CASE WHEN num >= #{buyNumber} THEN num - #{buyNumber} ELSE 0 END
+        where sku_id = #{productSku}
+        and shopping_cart_id = #{shoppingCartId}
+        and uid=#{uid}
+        and status = 1
+        <if test="promotionId != null">
+            and promotion_id = #{promotionId}
+        </if>
+        and num > 0
+    </update>
+
+    <update id="batchUpdateShoppingCartGoodsSelectedStatus">
+        update shopping_cart_items
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="selected = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.selected!=null">
+                        when (sku_id=#{item.skuId}
+                        <if test="item.promotionId != null">
+                            and promotion_id = #{item.promotionId}
+                        </if>
+                        and uid=#{uid}
+                        and shopping_cart_id = #{item.shoppingCartId})
+                        then #{item.selected}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where status = 1 and uid=#{uid} and
+        <foreach collection="list" separator="or" item="item" index="index">
+            ( sku_id=#{item.skuId}
+            <if test="item.promotionId != null">
+                and promotion_id = #{item.promotionId}
+            </if>
+            and shopping_cart_id = #{item.shoppingCartId} )
+        </foreach>
+
+
+    </update>
+
+    <insert id="batchInsertShoppingCartItems" parameterType="java.util.List">
+        insert into shopping_cart_items
+        (uid,shopping_cart_id,shopping_key,sku_id,product_skn,num,promotion_id,selected,status,create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.uid},#{item.shoppingCartId},#{item.shoppingKey},#{item.skuId},#{item.productSkn},#{item.num},#{item.promotionId},#{item.selected},#{item.status},UNIX_TIMESTAMP())
+        </foreach>
+    </insert>
+
+    <select id="selectItemsBySkuAndPromotionId" resultMap="BaseResultMap">
+        select id,shopping_cart_id,sku_id,num,promotion_id,status,product_skn,selected,uid
+        from shopping_cart_items
+        where status = 1
+        and uid=#{uid}
+        and (
+        <foreach collection="list" item="item" index="index" separator="or">
+            (shopping_cart_id = #{item.shoppingCartId}
+            and sku_id = #{item.skuId}
+            <if test="item.promotionId != null">
+                and promotion_id = #{item.promotionId}
+            </if>)
+        </foreach>
+        )
+    </select>
+
+
+    <update id="updateNumInBatch">
+        update shopping_cart_items
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="num =  case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when (sku_id=#{item.skuId}
+                    <if test="item.promotionId != null">
+                        and promotion_id = #{item.promotionId}
+                    </if>
+                    and shopping_cart_id = #{item.shoppingCartId}
+                    and uid=#{uid}
+                    and num >= #{item.num})
+                    then num - #{item.num}
+                </foreach>
+            </trim>
+        </trim>
+        where num > 0 and status = 1 and
+        <foreach collection="list" separator="or" item="item" index="index">
+            ( sku_id=#{item.skuId}
+            and uid=#{uid}
+            <if test="item.promotionId != null">
+                and promotion_id = #{item.promotionId}
+            </if>
+            and shopping_cart_id = #{item.shoppingCartId} )
+        </foreach>
+    </update>
+
+    <!--不再使用!!!!!!!-->
+    <!--设置shoppingCartId的购物车列表item的uid为uid -->
+    <update id="updateCartGoodsUserIdById">
+		update  shopping_cart_items  set uid = #{uid}
+		where shopping_cart_id = #{shoppingCartId} and uid = 0
+	</update>
+
+
+    <!-- 删除shoping_cart_items表数据 -->
+    <delete id="deleteItemsBySkuAndPromotionId">
+        delete from shopping_cart_items where
+        uid=#{uid} and (
+        <foreach collection="list" separator="or" item="item" index="index">
+            (shopping_cart_id = #{item.shoppingCartId}
+            <if test="item.skuId != null">
+                and sku_id = #{item.skuId}
+            </if>
+            <if test="item.promotionId != null">
+                and promotion_id = #{item.promotionId}
+            </if>
+            )
+        </foreach>
+        )
+    </delete>
+
+
+    <!--  换货时删除原SKU-->
+    <delete id="deleteShoppingCartGoodsByProductSku">
+        delete from shopping_cart_items where sku_id = #{productSku}
+        and shopping_cart_id = #{shoppingCartId}
+        <if test="promotionId != null">
+            and promotion_id = #{promotionId}
+        </if>
+        and uid=#{uid}
+    </delete>
+
+
+    <!-- 提交时 删除购物车items -->
+    <delete id="deleteShoppingCartGoodsByCartID">
+		delete from  shopping_cart_items where  uid = #{uid}
+		and id  in (${deleteIds})
+	</delete>
+
+
+    <!-- 优惠相关删除 -->
+    <delete id="deleteCartGoodsBySKU">
+		delete from  shopping_cart_items   where  uid = #{uid} and shopping_cart_id=#{shopping_cart_id}   and  sku_id=#{sku_id}
+		and promotion_id =#{promotionId}
+	</delete>
+
+
+    <!-- 删除多余赠品 -->
+    <delete id="deleteCartGoodsByPromotionID">
+		delete from  shopping_cart_items
+		where
+		status=1
+		and shopping_cart_id=#{shopping_cart_id}
+		and uid=#{uid}
+		and promotion_id=#{promotion_id}
+		and selected='Y'
+		limit #{row_num}
+	</delete>
+
+    <!-- 根据item ids删除 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.Map">
+		delete from  shopping_cart_items
+		where  id in (${query})
+	</delete>
+
+    <delete id="deleteShoppingCartItemsByCartId">
+        delete from  shopping_cart_items
+		where  shopping_cart_id=#{shoppingCartId}  and uid=#{uid}
+    </delete>
+
+</mapper>

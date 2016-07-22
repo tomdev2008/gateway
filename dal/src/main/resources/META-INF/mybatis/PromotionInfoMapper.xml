@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IPromotionDAO" >
+
+
+
+    <!-- 查询一个promotion的信息-->
+    <select id="selectActivePromotions"  resultType="java.util.Map">
+        <![CDATA[
+		SELECT
+              *
+          FROM
+            promotion_info p,
+            promotion_params pp
+          WHERE
+              p.id = pp.promotion_id
+           and p.status=1
+           and  p.is_del = 'N'
+           AND start_time <= UNIX_TIMESTAMP()
+           AND  end_time >= UNIX_TIMESTAMP()
+           ORDER BY p.priority DESC
+    ]]>
+    </select>
+
+</mapper>

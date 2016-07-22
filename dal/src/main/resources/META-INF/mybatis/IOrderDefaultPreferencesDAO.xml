@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrderDefaultPreferencesDAO">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.OrderDefaultPreferences">
+        <id column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="order_default_preferences" property="orderDefaultPreferences" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    uid, order_default_preferences, update_time, create_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from order_default_preferences
+        where uid = #{uid,jdbcType=INTEGER}
+    </select>
+    <insert id="insertDefaultPreferences">
+      insert into order_default_preferences (uid,order_default_preferences,create_time) values (#{uid},#{orderDefaultPreferences},UNIX_TIMESTAMP()) ON DUPLICATE KEY UPDATE order_default_preferences=#{orderDefaultPreferences},update_time=UNIX_TIMESTAMP();
+    </insert>
+</mapper>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IApplyGoodsImagesDao" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.ApplyGoodsImages" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="apply_id" property="applyId" jdbcType="INTEGER" />
+    <result column="apply_goods_id" property="applyGoodsId" jdbcType="INTEGER" />
+    <result column="image_type" property="imageType" jdbcType="TINYINT" />
+    <result column="image_path" property="imagePath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, apply_id, apply_goods_id, image_type, image_path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from apply_goods_images
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apply_goods_images
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.ApplyGoodsImages" >
+    insert into apply_goods_images (id, apply_id, apply_goods_id, 
+      image_type, image_path)
+    values (#{id,jdbcType=INTEGER}, #{applyId,jdbcType=INTEGER}, #{applyGoodsId,jdbcType=INTEGER}, 
+      #{imageType,jdbcType=TINYINT}, #{imagePath,jdbcType=VARCHAR})
+  </insert>
+
+
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into apply_goods_images ( apply_id, apply_goods_id,
+    image_type, image_path)
+    values
+     <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.applyId,jdbcType=INTEGER}, #{item.applyGoodsId,jdbcType=INTEGER},
+       #{item.imageType,jdbcType=TINYINT}, #{item.imagePath,jdbcType=VARCHAR})
+     </foreach>
+
+  </insert>
+
+
+  <insert id="insertImages" parameterType="com.yoho.yhorder.dal.model.ApplyGoodsImages" >
+    insert into apply_goods_images
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="applyGoodsId != null" >
+        apply_goods_id,
+      </if>
+      <if test="imageType != null" >
+        image_type,
+      </if>
+      <if test="imagePath != null" >
+        image_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="applyGoodsId != null" >
+        #{applyGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="imageType != null" >
+        #{imageType,jdbcType=TINYINT},
+      </if>
+      <if test="imagePath != null" >
+        #{imagePath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.ApplyGoodsImages" >
+    update apply_goods_images
+    <set >
+      <if test="applyId != null" >
+        apply_id = #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="applyGoodsId != null" >
+        apply_goods_id = #{applyGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="imageType != null" >
+        image_type = #{imageType,jdbcType=TINYINT},
+      </if>
+      <if test="imagePath != null" >
+        image_path = #{imagePath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.ApplyGoodsImages" >
+    update apply_goods_images
+    set apply_id = #{applyId,jdbcType=INTEGER},
+      apply_goods_id = #{applyGoodsId,jdbcType=INTEGER},
+      image_type = #{imageType,jdbcType=TINYINT},
+      image_path = #{imagePath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectImages" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from apply_goods_images
+    where apply_id = #{applyId,jdbcType=INTEGER} and apply_goods_id = #{applyGoodsId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectImagesBatch" resultMap="BaseResultMap" parameterType="java.util.List">
+    select
+    <include refid="Base_Column_List" />
+    from apply_goods_images
+    <if test="list != null and list.size()>0">
+      where
+      <foreach item="item" collection="list" index="index" separator="or" open="(" close=")">
+        ( apply_id = #{item.applyId}
+        and apply_goods_id= #{item.applyGoodsId})
+      </foreach>
+    </if>
+
+  </select>
+
+
+</mapper>

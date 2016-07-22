@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrderPayDAO">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.OrderPay">
+        <id column="order_code" property="orderCode" jdbcType="BIGINT"/>
+    </resultMap>
+    <insert id="insert">
+    insert into order_pay(order_code,uid,payment,create_time) values (#{orderCode},#{uid},#{paymentId},UNIX_TIMESTAMP())
+    ON DUPLICATE KEY UPDATE update_time =UNIX_TIMESTAMP()
+   </insert>
+
+    <select id="selectCountByOrderCode" resultType="java.lang.Integer">
+        select COUNT(1) from order_pay where order_code = #{orderCode}
+    </select>
+
+    <select id="selectByOrderCodes" resultMap="BaseResultMap" parameterType="java.util.List">
+        select order_code from order_pay where
+        <foreach collection="orderCodes" item="orderCode" open="" close="" separator="OR">
+            order_code = #{orderCode}
+        </foreach>
+    </select>
+</mapper>

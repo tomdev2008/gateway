@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IUserBlacklistDAO">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.UserBlacklist">
+        <id column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="ip" property="ip" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <select id="selectByUid" resultMap="BaseResultMap">
+        select uid,status,ip
+        from user_blacklist
+        where status > 0
+        and uid = #{uid}
+        LIMIT 1
+    </select>
+
+    <select id="selectByUidAndIP" resultMap="BaseResultMap">
+        select uid,status,ip
+        from user_blacklist
+        where status > 0
+        and ( uid = #{uid}
+        <if test="ip > 0">
+            or ip = #{ip}
+        </if>
+        )
+    </select>
+</mapper>

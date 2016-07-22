@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrdersMapper">
+    <resultMap id="BaseResultMap" type="com.yoho.service.model.order.response.Orders">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="order_code" property="orderCode" jdbcType="BIGINT"/>
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="express_number" property="expressNumber" jdbcType="VARCHAR"/>
+        <result column="order_type" property="orderType" jdbcType="TINYINT"/>
+        <result column="is_invoice" property="isInvoice" jdbcType="CHAR"/>
+        <result column="invoices_type" property="invoicesType" jdbcType="VARCHAR"/>
+        <result column="invoices_payable" property="invoicesPayable" jdbcType="VARCHAR"/>
+        <result column="yoho_coin_num" property="yohoCoinNum" jdbcType="SMALLINT"/>
+        <result column="payment_type" property="paymentType" jdbcType="TINYINT"/>
+        <result column="payment" property="payment" jdbcType="TINYINT"/>
+        <result column="bank_code" property="bankCode" jdbcType="VARCHAR"/>
+        <result column="payment_status" property="paymentStatus" jdbcType="CHAR"/>
+        <result column="shipping_type_id" property="shippingTypeId" jdbcType="TINYINT"/>
+        <result column="shipping_cost" property="shippingCost" jdbcType="DECIMAL"/>
+        <result column="express_id" property="expressId" jdbcType="TINYINT"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="area_code" property="areaCode" jdbcType="INTEGER"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="zip_code" property="zipCode" jdbcType="INTEGER"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="receiving_time" property="receivingTime" jdbcType="INTEGER"/>
+        <result column="receipt_time" property="receiptTime" jdbcType="VARCHAR"/>
+        <result column="exception_status" property="exceptionStatus" jdbcType="TINYINT"/>
+        <result column="is_lock" property="isLock" jdbcType="CHAR"/>
+        <result column="is_arrive" property="isArrive" jdbcType="CHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="is_cancel" property="isCancel" jdbcType="CHAR"/>
+        <result column="cancel_type" property="cancelType" jdbcType="TINYINT"/>
+        <result column="exchange_status" property="exchangeStatus" jdbcType="TINYINT"/>
+        <result column="refund_status" property="refundStatus" jdbcType="TINYINT"/>
+        <result column="arrive_time" property="arriveTime" jdbcType="INTEGER"/>
+        <result column="shipment_time" property="shipmentTime" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="INTEGER"/>
+        <result column="amount" property="amount" jdbcType="DECIMAL"/>
+        <result column="is_print_price" property="isPrintPrice" jdbcType="CHAR"/>
+        <result column="is_pre_contact" property="isPreContact" jdbcType="CHAR"/>
+        <result column="is_need_rapid" property="isNeedRapid" jdbcType="CHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="INTEGER"/>
+        <result column="attribute" property="attribute" jdbcType="TINYINT"/>
+        <result column="is_payed" property="isPayed" jdbcType="CHAR"/>
+        <result column="activities_id" property="activitiesId" jdbcType="SMALLINT"/>
+        <result column="parent_order_code" property="parentOrderCode" jdbcType="BIGINT"/>
+        <result column="orders_status" property="ordersStatus" jdbcType="TINYINT"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="user_level" property="userLevel" jdbcType="TINYINT"/>
+        <result column="is_jit" property="isJit" jdbcType="CHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="district" property="district" jdbcType="VARCHAR"/>
+        <result column="is_multi_package" property="isMultiPackage" jdbcType="CHAR"/>
+        <result column="is_advance" property="isAdvance" jdbcType="CHAR"/>
+        <result column="deliver_yoho_coin" property="deliverYohoCoin" jdbcType="INTEGER"/>
+        <result column="is_jit_already_split" property="isJitAlreadySplit" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, order_code, uid, express_number, order_type, is_invoice, invoices_type, invoices_payable, 
+    yoho_coin_num, payment_type, payment, bank_code, payment_status, shipping_type_id, 
+    shipping_cost, express_id, user_name, phone, mobile, area_code, address, zip_code, 
+    remark, receiving_time, receipt_time, exception_status, is_lock, is_arrive, status, 
+    is_cancel, cancel_type, exchange_status, refund_status, arrive_time, shipment_time, 
+    create_time, amount, is_print_price, is_pre_contact, is_need_rapid, update_time, 
+    attribute, is_payed, activities_id, parent_order_code, orders_status,province, user_level,
+    is_jit, email, city, district, is_multi_package, is_advance, deliver_yoho_coin, is_jit_already_split
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByPrimaryKeys" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id,jdbcType=INTEGER}
+        </foreach>
+    </select>
+
+
+    <select id="selectByOrderCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where order_code = #{orderCode}
+        and uid > 0
+    </select>
+
+    <select id="selectByUidAndOrderCode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where uid = #{uid,jdbcType=INTEGER} and order_code = #{orderCode,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectCountByUidAndStatusAndPaymentStatusAndIsCancel" resultType="java.lang.Integer">
+        select
+        count(1)
+        from orders
+        where orders_status = 1
+        and uid=#{uid,jdbcType=INTEGER}
+        and is_jit_already_split = 'N'
+        <if test="isCancel != null">
+            and is_cancel=#{isCancel,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status in
+            <foreach item="item" index="index" collection="status" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="paymentStatus != null">
+            and payment_status=#{paymentStatus,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <select id="selectByUidAndStatusAndPaymentStatusAndIsCancel" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where orders_status = 1
+        and uid=#{uid,jdbcType=INTEGER}
+        and is_jit_already_split = 'N'
+        <if test="isCancel != null">
+            and is_cancel=#{isCancel,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status in
+            <foreach item="item" index="index" collection="status" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="paymentStatus != null">
+            and payment_status=#{paymentStatus,jdbcType=VARCHAR}
+        </if>
+        order by id desc
+        limit #{start} , #{limit}
+    </select>
+
+    <select id="selectCountByUidAndPaymentStatusAndPaymentTypeAndIsCancel" resultType="java.lang.Integer">
+        select
+        count(1)
+        from orders
+        where orders_status = 1
+            and uid=#{uid,jdbcType=INTEGER}
+            and payment_status=#{paymentStatus,jdbcType=VARCHAR}
+            and payment_type=#{paymentType,jdbcType=TINYINT}
+            and is_cancel=#{isCancel,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectCountByUidAndStatus" resultType="java.lang.Integer">
+        select
+        count(1)
+        from orders
+        where
+        uid=#{uid,jdbcType=INTEGER}
+        <if test="status != null">
+            and status in
+            <foreach item="item" index="index" collection="status" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+
+    <select id="selectByCodeAndUid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders where order_code=#{orderCode} and uid=#{uid}
+        and orders_status =1
+    </select>
+
+    <select id="selectByCodeAndUidNoStatus" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders where order_code=#{orderCode} and uid=#{uid}
+    </select>
+
+    <insert id="insert" parameterType="com.yoho.service.model.order.response.Orders" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into orders (id, order_code, uid, 
+      express_number, order_type, is_invoice, 
+      invoices_type, invoices_payable, yoho_coin_num, 
+      payment_type, payment, bank_code, 
+      payment_status, shipping_type_id, shipping_cost, 
+      express_id, user_name, phone, 
+      mobile, area_code, address, 
+      zip_code, remark, receiving_time, 
+      receipt_time, exception_status, is_lock, 
+      is_arrive, status, is_cancel, 
+      cancel_type, exchange_status, refund_status, 
+      arrive_time, shipment_time, create_time, 
+      amount, is_print_price, is_pre_contact, 
+      is_need_rapid, update_time, attribute, 
+      is_payed, activities_id, parent_order_code, 
+      orders_status)
+    values (#{id,jdbcType=INTEGER}, #{orderCode,jdbcType=BIGINT}, #{uid,jdbcType=INTEGER}, 
+      #{expressNumber,jdbcType=VARCHAR}, #{orderType,jdbcType=TINYINT}, #{isInvoice,jdbcType=CHAR}, 
+      #{invoicesType,jdbcType=VARCHAR}, #{invoicesPayable,jdbcType=VARCHAR}, #{yohoCoinNum,jdbcType=SMALLINT}, 
+      #{paymentType,jdbcType=TINYINT}, #{payment,jdbcType=TINYINT}, #{bankCode,jdbcType=VARCHAR}, 
+      #{paymentStatus,jdbcType=CHAR}, #{shippingTypeId,jdbcType=TINYINT}, #{shippingCost,jdbcType=DECIMAL}, 
+      #{expressId,jdbcType=TINYINT}, #{userName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{areaCode,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{zipCode,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{receivingTime,jdbcType=INTEGER}, 
+      #{receiptTime,jdbcType=VARCHAR}, #{exceptionStatus,jdbcType=TINYINT}, #{isLock,jdbcType=CHAR}, 
+      #{isArrive,jdbcType=CHAR}, #{status,jdbcType=TINYINT}, #{isCancel,jdbcType=CHAR}, 
+      #{cancelType,jdbcType=TINYINT}, #{exchangeStatus,jdbcType=TINYINT}, #{refundStatus,jdbcType=TINYINT}, 
+      #{arriveTime,jdbcType=INTEGER}, #{shipmentTime,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DECIMAL}, #{isPrintPrice,jdbcType=CHAR}, #{isPreContact,jdbcType=CHAR}, 
+      #{isNeedRapid,jdbcType=CHAR}, #{updateTime,jdbcType=INTEGER}, #{attribute,jdbcType=TINYINT}, 
+      #{isPayed,jdbcType=CHAR}, #{activitiesId,jdbcType=SMALLINT}, #{parentOrderCode,jdbcType=BIGINT}, 
+      #{ordersStatus,jdbcType=TINYINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.yoho.service.model.order.response.Orders">
+        insert into orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="orderCode != null">
+                order_code,
+            </if>
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="expressNumber != null">
+                express_number,
+            </if>
+            <if test="orderType != null">
+                order_type,
+            </if>
+            <if test="isInvoice != null">
+                is_invoice,
+            </if>
+            <if test="invoicesType != null">
+                invoices_type,
+            </if>
+            <if test="invoicesPayable != null">
+                invoices_payable,
+            </if>
+            <if test="yohoCoinNum != null">
+                yoho_coin_num,
+            </if>
+            <if test="paymentType != null">
+                payment_type,
+            </if>
+            <if test="payment != null">
+                payment,
+            </if>
+            <if test="bankCode != null">
+                bank_code,
+            </if>
+            <if test="paymentStatus != null">
+                payment_status,
+            </if>
+            <if test="shippingTypeId != null">
+                shipping_type_id,
+            </if>
+            <if test="shippingCost != null">
+                shipping_cost,
+            </if>
+            <if test="expressId != null">
+                express_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="areaCode != null">
+                area_code,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="zipCode != null">
+                zip_code,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="receivingTime != null">
+                receiving_time,
+            </if>
+            <if test="receiptTime != null">
+                receipt_time,
+            </if>
+            <if test="exceptionStatus != null">
+                exception_status,
+            </if>
+            <if test="isLock != null">
+                is_lock,
+            </if>
+            <if test="isArrive != null">
+                is_arrive,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="isCancel != null">
+                is_cancel,
+            </if>
+            <if test="cancelType != null">
+                cancel_type,
+            </if>
+            <if test="exchangeStatus != null">
+                exchange_status,
+            </if>
+            <if test="refundStatus != null">
+                refund_status,
+            </if>
+            <if test="arriveTime != null">
+                arrive_time,
+            </if>
+            <if test="shipmentTime != null">
+                shipment_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="isPrintPrice != null">
+                is_print_price,
+            </if>
+            <if test="isPreContact != null">
+                is_pre_contact,
+            </if>
+            <if test="isNeedRapid != null">
+                is_need_rapid,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="attribute != null">
+                attribute,
+            </if>
+            <if test="isPayed != null">
+                is_payed,
+            </if>
+            <if test="activitiesId != null">
+                activities_id,
+            </if>
+            <if test="parentOrderCode != null">
+                parent_order_code,
+            </if>
+            <if test="ordersStatus != null">
+                orders_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderCode != null">
+                #{orderCode,jdbcType=BIGINT},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="expressNumber != null">
+                #{expressNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="orderType != null">
+                #{orderType,jdbcType=TINYINT},
+            </if>
+            <if test="isInvoice != null">
+                #{isInvoice,jdbcType=CHAR},
+            </if>
+            <if test="invoicesType != null">
+                #{invoicesType,jdbcType=VARCHAR},
+            </if>
+            <if test="invoicesPayable != null">
+                #{invoicesPayable,jdbcType=VARCHAR},
+            </if>
+            <if test="yohoCoinNum != null">
+                #{yohoCoinNum,jdbcType=SMALLINT},
+            </if>
+            <if test="paymentType != null">
+                #{paymentType,jdbcType=TINYINT},
+            </if>
+            <if test="payment != null">
+                #{payment,jdbcType=TINYINT},
+            </if>
+            <if test="bankCode != null">
+                #{bankCode,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentStatus != null">
+                #{paymentStatus,jdbcType=CHAR},
+            </if>
+            <if test="shippingTypeId != null">
+                #{shippingTypeId,jdbcType=TINYINT},
+            </if>
+            <if test="shippingCost != null">
+                #{shippingCost,jdbcType=DECIMAL},
+            </if>
+            <if test="expressId != null">
+                #{expressId,jdbcType=TINYINT},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="areaCode != null">
+                #{areaCode,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="zipCode != null">
+                #{zipCode,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="receivingTime != null">
+                #{receivingTime,jdbcType=INTEGER},
+            </if>
+            <if test="receiptTime != null">
+                #{receiptTime,jdbcType=VARCHAR},
+            </if>
+            <if test="exceptionStatus != null">
+                #{exceptionStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isLock != null">
+                #{isLock,jdbcType=CHAR},
+            </if>
+            <if test="isArrive != null">
+                #{isArrive,jdbcType=CHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="isCancel != null">
+                #{isCancel,jdbcType=CHAR},
+            </if>
+            <if test="cancelType != null">
+                #{cancelType,jdbcType=TINYINT},
+            </if>
+            <if test="exchangeStatus != null">
+                #{exchangeStatus,jdbcType=TINYINT},
+            </if>
+            <if test="refundStatus != null">
+                #{refundStatus,jdbcType=TINYINT},
+            </if>
+            <if test="arriveTime != null">
+                #{arriveTime,jdbcType=INTEGER},
+            </if>
+            <if test="shipmentTime != null">
+                #{shipmentTime,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=INTEGER},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="isPrintPrice != null">
+                #{isPrintPrice,jdbcType=CHAR},
+            </if>
+            <if test="isPreContact != null">
+                #{isPreContact,jdbcType=CHAR},
+            </if>
+            <if test="isNeedRapid != null">
+                #{isNeedRapid,jdbcType=CHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=INTEGER},
+            </if>
+            <if test="attribute != null">
+                #{attribute,jdbcType=TINYINT},
+            </if>
+            <if test="isPayed != null">
+                #{isPayed,jdbcType=CHAR},
+            </if>
+            <if test="activitiesId != null">
+                #{activitiesId,jdbcType=SMALLINT},
+            </if>
+            <if test="parentOrderCode != null">
+                #{parentOrderCode,jdbcType=BIGINT},
+            </if>
+            <if test="ordersStatus != null">
+                #{ordersStatus,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.yoho.service.model.order.response.Orders">
+        update orders
+        <set>
+            <if test="orderCode != null">
+                order_code = #{orderCode,jdbcType=BIGINT},
+            </if>
+            <if test="uid != null">
+                uid = #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="expressNumber != null">
+                express_number = #{expressNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="orderType != null">
+                order_type = #{orderType,jdbcType=TINYINT},
+            </if>
+            <if test="isInvoice != null and isInvoice != ''">
+                is_invoice = #{isInvoice,jdbcType=CHAR},
+            </if>
+            <if test="invoicesType != null">
+                invoices_type = #{invoicesType,jdbcType=VARCHAR},
+            </if>
+            <if test="invoicesPayable != null">
+                invoices_payable = #{invoicesPayable,jdbcType=VARCHAR},
+            </if>
+            <if test="yohoCoinNum != null">
+                yoho_coin_num = #{yohoCoinNum,jdbcType=SMALLINT},
+            </if>
+            <if test="paymentType != null">
+                payment_type = #{paymentType,jdbcType=TINYINT},
+            </if>
+            <if test="payment != null">
+                payment = #{payment,jdbcType=TINYINT},
+            </if>
+            <if test="bankCode != null">
+                bank_code = #{bankCode,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentStatus != null and paymentStatus != ''">
+                payment_status = #{paymentStatus,jdbcType=CHAR},
+            </if>
+            <if test="shippingTypeId != null">
+                shipping_type_id = #{shippingTypeId,jdbcType=TINYINT},
+            </if>
+            <if test="shippingCost != null">
+                shipping_cost = #{shippingCost,jdbcType=DECIMAL},
+            </if>
+            <if test="expressId != null">
+                express_id = #{expressId,jdbcType=TINYINT},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="areaCode != null">
+                area_code = #{areaCode,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="zipCode != null">
+                zip_code = #{zipCode,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="receivingTime != null">
+                receiving_time = #{receivingTime,jdbcType=INTEGER},
+            </if>
+            <if test="receiptTime != null">
+                receipt_time = #{receiptTime,jdbcType=VARCHAR},
+            </if>
+            <if test="exceptionStatus != null">
+                exception_status = #{exceptionStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isLock != null and isLock != ''">
+                is_lock = #{isLock,jdbcType=CHAR},
+            </if>
+            <if test="isArrive != null and isArrive != ''">
+                is_arrive = #{isArrive,jdbcType=CHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="isCancel != null and isCancel != ''">
+                is_cancel = #{isCancel,jdbcType=CHAR},
+            </if>
+            <if test="cancelType != null">
+                cancel_type = #{cancelType,jdbcType=TINYINT},
+            </if>
+            <if test="exchangeStatus != null">
+                exchange_status = #{exchangeStatus,jdbcType=TINYINT},
+            </if>
+            <if test="refundStatus != null">
+                refund_status = #{refundStatus,jdbcType=TINYINT},
+            </if>
+            <if test="arriveTime != null">
+                arrive_time = #{arriveTime,jdbcType=INTEGER},
+            </if>
+            <if test="shipmentTime != null">
+                shipment_time = #{shipmentTime,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=INTEGER},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="isPrintPrice != null and isPrintPrice != ''">
+                is_print_price = #{isPrintPrice,jdbcType=CHAR},
+            </if>
+            <if test="isPreContact != null and isPreContact != ''">
+                is_pre_contact = #{isPreContact,jdbcType=CHAR},
+            </if>
+            <if test="isNeedRapid != null and isNeedRapid != ''">
+                is_need_rapid = #{isNeedRapid,jdbcType=CHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=INTEGER},
+            </if>
+            <if test="attribute != null">
+                attribute = #{attribute,jdbcType=TINYINT},
+            </if>
+            <if test="isPayed != null and isPayed != ''">
+                is_payed = #{isPayed,jdbcType=CHAR},
+            </if>
+            <if test="activitiesId != null">
+                activities_id = #{activitiesId,jdbcType=SMALLINT},
+            </if>
+            <if test="parentOrderCode != null">
+                parent_order_code = #{parentOrderCode,jdbcType=BIGINT},
+            </if>
+            <if test="ordersStatus != null">
+                orders_status = #{ordersStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isJitAlreadySplit != null">
+                is_jit_already_split = #{isJitAlreadySplit,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectCurrentMonthOrderCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    <![CDATA[
+
+      SELECT COUNT(1) FROM orders WHERE uid =#{uid} and create_time > UNIX_TIMESTAMP(CONCAT(DATE_FORMAT(LAST_DAY(NOW()),'%Y-%m-'),'01'))  and create_time < UNIX_TIMESTAMP() and is_cancel = 'N' and order_type = 1
+
+        ]]>
+  </select>
+
+    <select id="selectLastOrderByUid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders where uid = #{uid} order by id desc limit 1
+    </select>
+    <insert id="insertShoppingOrder" parameterType="com.yoho.service.model.order.response.Orders"
+            useGeneratedKeys="true" keyProperty="id">
+    insert into orders (order_code,uid,express_number,order_type,is_invoice,invoices_type,invoices_payable,
+    yoho_coin_num,payment_type,payment_status,shipping_type_id,shipping_cost,express_id,user_name,phone,
+    mobile,area_code,address,zip_code,remark,attribute,activities_id,receiving_time,receipt_time,
+    exception_status,is_lock,is_arrive,status,is_cancel,cancel_type,exchange_status,refund_status,
+    arrive_time,shipment_time,create_time,amount,is_print_price,is_pre_contact,is_need_rapid,
+    bank_code,payment,user_level,is_jit,is_jit_already_split,email,city,district,province,is_advance,parent_order_code,is_multi_package,deliver_yoho_coin)
+    values (#{orderCode},#{uid},#{expressNumber},#{orderType},#{isInvoice},#{invoicesType},#{invoicesPayable},
+    #{yohoCoinNum},#{paymentType},#{paymentStatus},#{shippingTypeId},#{shippingCost},#{expressId},#{userName},
+    #{phone},#{mobile},#{areaCode},#{address},#{zipCode},#{remark},#{attribute},#{activitiesId},
+    #{receivingTime},#{receiptTime},#{exceptionStatus},#{isLock},#{isArrive},#{status},#{isCancel},
+    #{cancelType},#{exchangeStatus},#{refundStatus},#{arriveTime},#{shipmentTime},#{createTime},#{amount},
+    #{isPrintPrice},#{isPreContact},#{isNeedRapid},#{bankCode},#{payment},#{userLevel},#{isJit},#{isJitAlreadySplit},
+    #{email},#{city},#{district},#{province},#{isAdvance},#{parentOrderCode},#{isMultiPackage}, #{deliverYohoCoin})
+  </insert>
+
+
+    <select id="selectCountOrderByUid" resultType="java.lang.Integer">
+    SELECT COUNT(0) FROM orders WHERE uid = #{uid} AND STATUS = 6 AND order_code != #{orderCode}
+  </select>
+
+    <select id="selectUserTypeByOrders" resultType="java.lang.Integer">
+    select count(0) from orders where uid = #{uid} and status >= #{status} and create_time &lt;  #{startTime} and refund_status = 0
+  </select>
+
+    <select id="getBatchByOrdercode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where
+        uid = #{item.uid}
+        and
+        order_code in
+        <foreach collection="paramsList" item="item" open="(" close=")" separator=",">
+            #{item.orderCode}
+        </foreach>
+    </select>
+
+    <select id="selectOrdersNumByStatus" resultType="java.lang.Integer">
+        select count(1) from orders where uid = #{uid} and ((status = 0 and is_cancel = 'N') or status = 4 or status = 6)
+    </select>
+
+    <select id="selectNewUserOrderCountForPromotionCode" resultType="java.lang.Integer">
+        select count(1) from orders where uid = #{uid} and  ( is_cancel ='N' OR (is_cancel = 'Y' AND STATUS > 3))
+    </select>
+
+    <select id="selectCountByCreateTimeBetween" resultType="java.lang.Integer">
+        select count(1)
+        from orders
+        where create_time BETWEEN #{startTime,jdbcType=INTEGER} AND #{endTime,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectOrderCodeByCreateTimeBetween" resultType="java.lang.Long">
+        select order_code
+        from orders
+        where create_time BETWEEN #{startTime,jdbcType=INTEGER} AND #{endTime,jdbcType=INTEGER}
+        limit #{start,jdbcType=INTEGER} ,#{size,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectCountByUid" resultType="java.lang.Integer">
+        select count(1) from orders where uid = #{uid}
+    </select>
+
+
+    <select id="selectByUidsAndStatusGreaterThanAndShipmentTimeBetween" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders where
+        uid in
+        <foreach collection="uids" item="uid" open="(" close=")" separator=",">
+            #{uid}
+        </foreach>
+        <![CDATA[
+          and status > #{status}
+          and shipment_time > #{shipmentTimeStart}
+          and shipment_time < #{shipmentTimeEnd}
+         ]]>
+    </select>
+
+    <!--deliveryaddress-->
+    <update id="updateByOrderCodeSelective" parameterType="com.yoho.yhorder.dal.domain.DeliveryAddress">
+        update orders
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="areaCode != null">
+                area_code = #{areaCode,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                district= #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="zipCode != null">
+                zip_code= #{zipCode,jdbcType=INTEGER},
+            </if>
+            <if test="email != null">
+                email= #{email,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where order_code = #{orderCode,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByParentOrderCodeSelective" parameterType="com.yoho.yhorder.dal.domain.DeliveryAddress">
+        update orders
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="areaCode != null">
+                area_code = #{areaCode,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="district != null">
+                district= #{district,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="zipCode != null">
+                zip_code= #{zipCode,jdbcType=INTEGER},
+            </if>
+            <if test="email != null">
+                email= #{email,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where parent_order_code =#{parentOrderCode,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateBatchByOrderCodeSelective">
+        update orders
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="user_name = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.userName != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.userName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="mobile = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.mobile != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.mobile,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="phone = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.phone != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.phone,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="area_code = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.areaCode != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.areaCode,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="province = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.province != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.province,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="city = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.city != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.city,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="district = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.district != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.district,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.address != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="zip_code = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.zipCode != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.zipCode,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="is_pre_contact = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.isPreContact != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.isPreContact,jdbcType=CHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="is_invoice = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.isInvoice != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.isInvoice,jdbcType=CHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="invoices_type = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.invoicesType != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.invoicesType,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="invoices_payable = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.invoicesPayable != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then
+                        #{item.invoicesPayable,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="payment_type = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.paymentType != null">
+                        when order_code = #{item.orderCode,jdbcType=BIGINT} then #{item.paymentType,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where
+        <foreach collection="list" separator="or" item="item" index="index">
+            order_code = #{item.orderCode,jdbcType=BIGINT}
+        </foreach>
+    </update>
+
+
+    <update id="updateOrderAlreadySplit">
+        update orders set is_jit_already_split ='Y' where order_code = #{orderCode} and uid = #{uid} limit 1
+    </update>
+
+    <update id="updateSubOrderCancelStatusByParentCode">
+        update orders set is_cancel='Y', cancel_type= #{cancelType} where parent_order_code = #{parentOrderCode}
+    </update>
+
+    <select id="selectByParentOrderCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where parent_order_code = #{orderCode}
+    </select>
+
+</mapper>

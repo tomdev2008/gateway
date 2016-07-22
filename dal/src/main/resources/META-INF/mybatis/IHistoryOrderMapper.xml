@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IHistoryOrderDao" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.HistoryOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_code" property="orderCode" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="real_pay" property="realPay" jdbcType="DECIMAL" />
+    <result column="payment" property="payment" jdbcType="VARCHAR" />
+    <result column="shipping_fee" property="shippingFee" jdbcType="DECIMAL" />
+    <result column="order_time" property="orderTime" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yoho.yhorder.dal.model.HistoryOrder" extends="BaseResultMap" >
+    <result column="goods_data" property="goodsData" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, order_id, order_code, amount, real_pay, payment, shipping_fee, order_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    goods_data
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from history_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from history_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.HistoryOrder" >
+    insert into history_order (id, uid, order_id, 
+      order_code, amount, real_pay, 
+      payment, shipping_fee, order_time, 
+      goods_data)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
+      #{orderCode,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{realPay,jdbcType=DECIMAL}, 
+      #{payment,jdbcType=VARCHAR}, #{shippingFee,jdbcType=DECIMAL}, #{orderTime,jdbcType=INTEGER}, 
+      #{goodsData,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.HistoryOrder" >
+    insert into history_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="realPay != null" >
+        real_pay,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="shippingFee != null" >
+        shipping_fee,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="goodsData != null" >
+        goods_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="realPay != null" >
+        #{realPay,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingFee != null" >
+        #{shippingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="goodsData != null" >
+        #{goodsData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.HistoryOrder" >
+    update history_order
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="realPay != null" >
+        real_pay = #{realPay,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingFee != null" >
+        shipping_fee = #{shippingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="goodsData != null" >
+        goods_data = #{goodsData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yoho.yhorder.dal.model.HistoryOrder" >
+    update history_order
+    set uid = #{uid,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_code = #{orderCode,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      real_pay = #{realPay,jdbcType=DECIMAL},
+      payment = #{payment,jdbcType=VARCHAR},
+      shipping_fee = #{shippingFee,jdbcType=DECIMAL},
+      order_time = #{orderTime,jdbcType=INTEGER},
+      goods_data = #{goodsData,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.HistoryOrder" >
+    update history_order
+    set uid = #{uid,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_code = #{orderCode,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      real_pay = #{realPay,jdbcType=DECIMAL},
+      payment = #{payment,jdbcType=VARCHAR},
+      shipping_fee = #{shippingFee,jdbcType=DECIMAL},
+      order_time = #{orderTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectCountByUid" resultType="java.lang.Integer">
+    select
+    count(1)
+    from history_order
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUid" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from history_order
+    where uid = #{uid,jdbcType=INTEGER}
+    order by order_time desc
+    limit #{start} , #{limit}
+  </select>
+</mapper>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IChangeGoodsDao" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.domain.ChangeGoodsMainInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="init_order_code" property="initOrderCode" jdbcType="BIGINT" />
+    <result column="source_order_code" property="sourceOrderCode" jdbcType="BIGINT" />
+    <result column="order_code" property="orderCode" jdbcType="BIGINT" />
+    <result column="exchange_mode" property="exchangeMode" jdbcType="TINYINT" />
+    <result column="exchange_request_type" property="exchangeRequestType" jdbcType="TINYINT" />
+    <result column="reject" property="reject" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="express_company" property="expressCompany" jdbcType="VARCHAR" />
+    <result column="express_number" property="expressNumber" jdbcType="VARCHAR" />
+    <result column="express_id" property="expressId" jdbcType="INTEGER" />
+    <result column="erp_exchange_id" property="erpExchangeId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, init_order_code, source_order_code, order_code, exchange_mode, exchange_request_type, 
+    reject, remark, express_company, express_number, express_id, erp_exchange_id, status, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from change_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.domain.ChangeGoodsMainInfo" >
+    insert into change_goods (id, uid, init_order_code, 
+      source_order_code, order_code, exchange_mode, 
+      exchange_request_type, reject, remark, 
+      express_company, express_number, express_id, 
+      erp_exchange_id, status, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{initOrderCode,jdbcType=BIGINT}, 
+      #{sourceOrderCode,jdbcType=BIGINT}, #{orderCode,jdbcType=BIGINT}, #{exchangeMode,jdbcType=TINYINT}, 
+      #{exchangeRequestType,jdbcType=TINYINT}, #{reject,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, 
+      #{expressCompany,jdbcType=VARCHAR}, #{expressNumber,jdbcType=VARCHAR}, #{expressId,jdbcType=INTEGER}, 
+      #{erpExchangeId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.domain.ChangeGoodsMainInfo" >
+    insert into change_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="initOrderCode != null" >
+        init_order_code,
+      </if>
+      <if test="sourceOrderCode != null" >
+        source_order_code,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="exchangeMode != null" >
+        exchange_mode,
+      </if>
+      <if test="exchangeRequestType != null" >
+        exchange_request_type,
+      </if>
+      <if test="reject != null" >
+        reject,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="expressCompany != null" >
+        express_company,
+      </if>
+      <if test="expressNumber != null" >
+        express_number,
+      </if>
+      <if test="expressId != null" >
+        express_id,
+      </if>
+      <if test="erpExchangeId != null" >
+        erp_exchange_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="initOrderCode != null" >
+        #{initOrderCode,jdbcType=BIGINT},
+      </if>
+      <if test="sourceOrderCode != null" >
+        #{sourceOrderCode,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="exchangeMode != null" >
+        #{exchangeMode,jdbcType=TINYINT},
+      </if>
+      <if test="exchangeRequestType != null" >
+        #{exchangeRequestType,jdbcType=TINYINT},
+      </if>
+      <if test="reject != null" >
+        #{reject,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumber != null" >
+        #{expressNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="expressId != null" >
+        #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="erpExchangeId != null" >
+        #{erpExchangeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.domain.ChangeGoodsMainInfo" >
+    update change_goods
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="initOrderCode != null" >
+        init_order_code = #{initOrderCode,jdbcType=BIGINT},
+      </if>
+      <if test="sourceOrderCode != null" >
+        source_order_code = #{sourceOrderCode,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="exchangeMode != null" >
+        exchange_mode = #{exchangeMode,jdbcType=TINYINT},
+      </if>
+      <if test="exchangeRequestType != null" >
+        exchange_request_type = #{exchangeRequestType,jdbcType=TINYINT},
+      </if>
+      <if test="reject != null" >
+        reject = #{reject,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        express_company = #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumber != null" >
+        express_number = #{expressNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="expressId != null" >
+        express_id = #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="erpExchangeId != null" >
+        erp_exchange_id = #{erpExchangeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.domain.ChangeGoodsMainInfo" >
+    update change_goods
+    set uid = #{uid,jdbcType=INTEGER},
+      init_order_code = #{initOrderCode,jdbcType=BIGINT},
+      source_order_code = #{sourceOrderCode,jdbcType=BIGINT},
+      order_code = #{orderCode,jdbcType=BIGINT},
+      exchange_mode = #{exchangeMode,jdbcType=TINYINT},
+      exchange_request_type = #{exchangeRequestType,jdbcType=TINYINT},
+      reject = #{reject,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      express_company = #{expressCompany,jdbcType=VARCHAR},
+      express_number = #{expressNumber,jdbcType=VARCHAR},
+      express_id = #{expressId,jdbcType=INTEGER},
+      erp_exchange_id = #{erpExchangeId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from change_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

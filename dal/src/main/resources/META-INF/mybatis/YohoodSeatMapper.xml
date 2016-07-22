@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IYohoodSeatDAO" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.YohoodSeat" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ticket_code" property="ticketCode" jdbcType="BIGINT" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="begin_date" property="beginDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="row_no" property="rowNo" jdbcType="INTEGER" />
+    <result column="column_no" property="columnNo" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ticket_code, uid, year, begin_date, end_date, area, row_no, column_no, status, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yohood_seat
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yohood_seat
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.YohoodSeat" >
+    insert into yohood_seat (id, ticket_code, uid, 
+      year, begin_date, end_date, 
+      area, row_no, column_no, 
+      status, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{ticketCode,jdbcType=BIGINT}, #{uid,jdbcType=INTEGER}, 
+      #{year,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP},
+      #{area,jdbcType=VARCHAR}, #{rowNo,jdbcType=INTEGER}, #{columnNo,jdbcType=INTEGER}, 
+      #{status,jdbcType=SMALLINT}, #{createTime,jdbcType=INTEGER}, #{updateTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.YohoodSeat" >
+    insert into yohood_seat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ticketCode != null" >
+        ticket_code,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="beginDate != null" >
+        begin_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="rowNo != null" >
+        row_no,
+      </if>
+      <if test="columnNo != null" >
+        column_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ticketCode != null" >
+        #{ticketCode,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="rowNo != null" >
+        #{rowNo,jdbcType=INTEGER},
+      </if>
+      <if test="columnNo != null" >
+        #{columnNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.YohoodSeat" >
+    update yohood_seat
+    <set >
+      <if test="ticketCode != null" >
+        ticket_code = #{ticketCode,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        begin_date = #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="rowNo != null" >
+        row_no = #{rowNo,jdbcType=INTEGER},
+      </if>
+      <if test="columnNo != null" >
+        column_no = #{columnNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateSeatToUse" parameterType="com.yoho.yhorder.dal.model.YohoodSeat" >
+    update yohood_seat
+    set ticket_code = #{ticketCode,jdbcType=BIGINT},
+      uid = #{uid,jdbcType=INTEGER},
+      status = 1,
+      update_time = unix_timestamp()
+    where  year = '2016'
+      and begin_date = #{beginDate,jdbcType=TIMESTAMP}
+      and end_date = #{endDate,jdbcType=TIMESTAMP}
+      and area = #{area,jdbcType=VARCHAR}
+      and status = 0
+    order by id asc
+    limit 1
+  </update>
+
+  <select id="selectByTicketCodes" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yohood_seat
+    <where>
+      <foreach collection="ticketCodes" item="ticketCode" open="(" close=")" separator="or">
+        ticket_code=#{ticketCode,jdbcType=BIGINT}
+      </foreach>
+    </where>
+  </select>
+</mapper>

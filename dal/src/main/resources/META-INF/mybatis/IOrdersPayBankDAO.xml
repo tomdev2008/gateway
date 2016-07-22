@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrdersPayBankDAO" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.OrdersPayBank" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_code" property="orderCode" jdbcType="BIGINT" />
+    <result column="payment" property="payment" jdbcType="TINYINT" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_code, payment, bank_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders_pay_bank
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByOrderCode" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders_pay_bank
+    where order_code = #{orderCode,jdbcType=BIGINT} limit 1
+  </select>  
+  
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.OrdersPayBank" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into orders_pay_bank (id, order_code, payment, 
+      bank_code)
+    values (#{id,jdbcType=INTEGER}, #{orderCode,jdbcType=BIGINT}, #{payment,jdbcType=TINYINT}, 
+      #{bankCode,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.OrdersPayBank" >
+    update orders_pay_bank
+    <set >
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=TINYINT},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.OrdersPayBank" >
+    update orders_pay_bank
+    set order_code = #{orderCode,jdbcType=BIGINT},
+      payment = #{payment,jdbcType=TINYINT},
+      bank_code = #{bankCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByOrderCodeSelective" parameterType="com.yoho.yhorder.dal.model.OrdersPayBank" >
+    update orders_pay_bank
+    <set >
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=TINYINT},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_code = #{orderCode,jdbcType=BIGINT}
+  </update>  
+</mapper>

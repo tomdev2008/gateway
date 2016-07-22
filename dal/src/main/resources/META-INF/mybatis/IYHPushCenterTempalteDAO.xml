@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IYHPushCenterTempalteDAO">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.YHPushCenterTempalte">
+        <result column="scene_id" property="sceneId" jdbcType="INTEGER"/>
+        <result column="scene_name" property="sceneName" jdbcType="VARCHAR"/>
+        <result column="push_type" property="pushType" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectPushCenterTempalte" resultMap="BaseResultMap">
+        SELECT s.scene_name,t.scene_id,t.push_type,t.title,t.content
+        FROM template t,scene s
+        WHERE t.scene_id = s.id
+        AND s.scene_name = #{sceneName} AND t.push_type = #{pushType}
+    </select>
+</mapper>

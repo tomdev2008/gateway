@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IRefundGoodsListDao">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.RefundGoodsList">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="return_request_id" property="returnRequestId" jdbcType="INTEGER"/>
+        <result column="order_code" property="orderCode" jdbcType="BIGINT"/>
+        <result column="product_skn" property="productSkn" jdbcType="INTEGER"/>
+        <result column="product_skc" property="productSkc" jdbcType="INTEGER"/>
+        <result column="product_sku" property="productSku" jdbcType="INTEGER"/>
+        <result column="goods_type" property="goodsType" jdbcType="TINYINT"/>
+        <result column="last_price" property="lastPrice" jdbcType="DECIMAL"/>
+        <result column="returned_reason" property="returnedReason" jdbcType="TINYINT"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="RefundNumberStatisticsMap" type="com.yoho.yhorder.dal.domain.RefundNumberStatistics">
+        <result column="order_code" property="orderCode" jdbcType="BIGINT"/>
+        <result column="product_sku" property="productSku" jdbcType="INTEGER"/>
+        <result column="last_price" property="lastPrice" jdbcType="DECIMAL"/>
+        <result column="number" property="number" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, return_request_id, order_code, product_skn, product_skc, product_sku, goods_type, 
+    last_price, returned_reason, remark, status, create_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from refund_goods_list
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from refund_goods_list
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.yoho.yhorder.dal.model.RefundGoodsList">
+    insert into refund_goods_list (id, return_request_id, order_code, 
+      product_skn, product_skc, product_sku, 
+      goods_type, last_price, returned_reason, 
+      remark, status, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{returnRequestId,jdbcType=INTEGER}, #{orderCode,jdbcType=BIGINT}, 
+      #{productSkn,jdbcType=INTEGER}, #{productSkc,jdbcType=INTEGER}, #{productSku,jdbcType=INTEGER}, 
+      #{goodsType,jdbcType=TINYINT}, #{lastPrice,jdbcType=DECIMAL}, #{returnedReason,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertRefundGoods" useGeneratedKeys="true" keyProperty="id" parameterType="com.yoho.yhorder.dal.model.RefundGoodsList">
+        insert into refund_goods_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="returnRequestId != null">
+                return_request_id,
+            </if>
+            <if test="orderCode != null">
+                order_code,
+            </if>
+            <if test="productSkn != null">
+                product_skn,
+            </if>
+            <if test="productSkc != null">
+                product_skc,
+            </if>
+            <if test="productSku != null">
+                product_sku,
+            </if>
+            <if test="goodsType != null">
+                goods_type,
+            </if>
+            <if test="lastPrice != null">
+                last_price,
+            </if>
+            <if test="returnedReason != null">
+                returned_reason,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="returnRequestId != null">
+                #{returnRequestId,jdbcType=INTEGER},
+            </if>
+            <if test="orderCode != null">
+                #{orderCode,jdbcType=BIGINT},
+            </if>
+            <if test="productSkn != null">
+                #{productSkn,jdbcType=INTEGER},
+            </if>
+            <if test="productSkc != null">
+                #{productSkc,jdbcType=INTEGER},
+            </if>
+            <if test="productSku != null">
+                #{productSku,jdbcType=INTEGER},
+            </if>
+            <if test="goodsType != null">
+                #{goodsType,jdbcType=TINYINT},
+            </if>
+            <if test="lastPrice != null">
+                #{lastPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="returnedReason != null">
+                #{returnedReason,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.RefundGoodsList">
+        update refund_goods_list
+        <set>
+            <if test="returnRequestId != null">
+                return_request_id = #{returnRequestId,jdbcType=INTEGER},
+            </if>
+            <if test="orderCode != null">
+                order_code = #{orderCode,jdbcType=BIGINT},
+            </if>
+            <if test="productSkn != null">
+                product_skn = #{productSkn,jdbcType=INTEGER},
+            </if>
+            <if test="productSkc != null">
+                product_skc = #{productSkc,jdbcType=INTEGER},
+            </if>
+            <if test="productSku != null">
+                product_sku = #{productSku,jdbcType=INTEGER},
+            </if>
+            <if test="goodsType != null">
+                goods_type = #{goodsType,jdbcType=TINYINT},
+            </if>
+            <if test="lastPrice != null">
+                last_price = #{lastPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="returnedReason != null">
+                returned_reason = #{returnedReason,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.RefundGoodsList">
+    update refund_goods_list
+    set return_request_id = #{returnRequestId,jdbcType=INTEGER},
+      order_code = #{orderCode,jdbcType=BIGINT},
+      product_skn = #{productSkn,jdbcType=INTEGER},
+      product_skc = #{productSkc,jdbcType=INTEGER},
+      product_sku = #{productSku,jdbcType=INTEGER},
+      goods_type = #{goodsType,jdbcType=TINYINT},
+      last_price = #{lastPrice,jdbcType=DECIMAL},
+      returned_reason = #{returnedReason,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectRefundNumberStatistics" parameterType="com.yoho.yhorder.dal.domain.RefundNumber"
+            resultType="com.yoho.yhorder.dal.domain.RefundNumberStatistics">
+        <bind name="size" value="@com.yoho.yhorder.common.utils.SqlUtils@getSize(refundNumberList)"/>
+        select order_code "orderCode",product_sku "productSku",last_price "lastPrice",count(1) "number"
+        from refund_goods_list
+        <where>
+            <if test="refundNumberList !=null and size!=0">
+                order_code = #{orderCode,jdbcType=BIGINT}
+                and <![CDATA[status < 60]]>
+                and product_sku in
+                <foreach collection="refundNumberList" item="refundNumber" open="(" close=")" separator=",">
+                    #{refundNumber.productSku,jdbcType=INTEGER}
+                </foreach>
+                and last_price in
+                <foreach collection="refundNumberList" item="refundNumber" open="(" close=")" separator=",">
+                    #{refundNumber.lastPrice,jdbcType=DECIMAL}
+                </foreach>
+            </if>
+        </where>
+        group by order_code,product_sku,last_price
+    </select>
+    
+    <select id="selectPureRefundNumberStatistics" resultMap="RefundNumberStatisticsMap">
+        select order_code, product_sku, last_price, count(1) "number"
+        from refund_goods_list
+        where return_request_id in
+        <foreach collection="numList" item="number" open="(" close=")" separator=",">
+            #{number}
+        </foreach>    
+        <![CDATA[
+            and status < 60
+        ]]>
+        group by order_code,product_sku,last_price
+    </select>
+
+    <select id="selectRefundNumberStatisticsByOrderCodes" resultMap="RefundNumberStatisticsMap">
+        select order_code, product_sku, last_price, count(1) "number"
+        from refund_goods_list
+        where order_code in
+        <foreach collection="orderCodes" item="orderCode" open="(" close=")" separator=",">
+            #{orderCode}
+        </foreach>
+        <![CDATA[
+            and status < 60
+        ]]>
+        group by order_code, product_sku, last_price
+    </select>
+
+    <select id="selectByRequestId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from refund_goods_list
+        where return_request_id = #{returnRequestId,jdbcType=INTEGER}
+        order by goods_type asc, id desc
+    </select>
+
+	<update id="updateByReturned" parameterType="com.yoho.yhorder.dal.model.RefundGoodsList">
+    update refund_goods_list
+       set 
+      status = #{status,jdbcType=TINYINT}
+    where return_request_id = #{returnRequestId,jdbcType=INTEGER}
+  </update>
+</mapper>

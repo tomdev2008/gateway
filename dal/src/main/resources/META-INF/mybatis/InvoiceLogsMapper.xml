@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.InvoiceLogsMapper" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.InvoiceLogs" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="series_num" property="seriesNum" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="req_param" property="reqParam" jdbcType="VARCHAR" />
+    <result column="invoice_info" property="invoiceInfo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="issue_status" property="issueStatus" jdbcType="INTEGER" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, series_num, order_id, type, req_param, invoice_info, create_time, issue_status
+  </sql>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from invoice_logs
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from invoice_logs
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from invoice_logs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.InvoiceLogs" useGeneratedKeys="true" keyProperty="id" >
+    insert into invoice_logs (series_num, order_id, type, 
+      req_param, invoice_info, create_time, issue_status
+      )
+    values (#{seriesNum,jdbcType=VARCHAR}, #{orderId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
+      #{reqParam,jdbcType=VARCHAR}, #{invoiceInfo,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER},
+      #{issueStatus,jdbcType=INTEGER}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.InvoiceLogs" useGeneratedKeys="true" keyProperty="id" >
+    insert into invoice_logs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seriesNum != null" >
+        series_num,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="reqParam != null" >
+        req_param,
+      </if>
+      <if test="invoiceInfo != null" >
+        invoice_info,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="issueStatus != null">
+        issue_status
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seriesNum != null" >
+        #{seriesNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="reqParam != null" >
+        #{reqParam,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceInfo != null" >
+        #{invoiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="issueStatus != null">
+        #{issueStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+
+</mapper>

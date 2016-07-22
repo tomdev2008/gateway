@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.ISysConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.SysConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="config_name" property="configName" jdbcType="VARCHAR" />
+    <result column="config_key" property="configKey" jdbcType="VARCHAR" />
+    <result column="config_value" property="configValue" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="last_modify_pid" property="lastModifyPid" jdbcType="INTEGER" />
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, config_name, config_key, config_value, type, last_modify_pid, last_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByConfigKey" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_config
+    where config_key = #{configKey,jdbcType=VARCHAR} limit 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.SysConfig" >
+    insert into sys_config (id, config_name, config_key, 
+      config_value, type, last_modify_pid, 
+      last_modify_time)
+    values (#{id,jdbcType=INTEGER}, #{configName,jdbcType=VARCHAR}, #{configKey,jdbcType=VARCHAR}, 
+      #{configValue,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{lastModifyPid,jdbcType=INTEGER}, 
+      #{lastModifyTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.SysConfig" >
+    insert into sys_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="configName != null" >
+        config_name,
+      </if>
+      <if test="configKey != null" >
+        config_key,
+      </if>
+      <if test="configValue != null" >
+        config_value,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="lastModifyPid != null" >
+        last_modify_pid,
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="configName != null" >
+        #{configName,jdbcType=VARCHAR},
+      </if>
+      <if test="configKey != null" >
+        #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configValue != null" >
+        #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="lastModifyPid != null" >
+        #{lastModifyPid,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyTime != null" >
+        #{lastModifyTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.SysConfig" >
+    update sys_config
+    <set >
+      <if test="configName != null" >
+        config_name = #{configName,jdbcType=VARCHAR},
+      </if>
+      <if test="configKey != null" >
+        config_key = #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configValue != null" >
+        config_value = #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="lastModifyPid != null" >
+        last_modify_pid = #{lastModifyPid,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time = #{lastModifyTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.SysConfig" >
+    update sys_config
+    set config_name = #{configName,jdbcType=VARCHAR},
+      config_key = #{configKey,jdbcType=VARCHAR},
+      config_value = #{configValue,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      last_modify_pid = #{lastModifyPid,jdbcType=INTEGER},
+      last_modify_time = #{lastModifyTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

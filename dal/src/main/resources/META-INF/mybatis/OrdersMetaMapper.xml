@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrdersMetaDAO" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.OrdersMeta" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="order_code" property="orderCode" jdbcType="BIGINT" />
+    <result column="orders_id" property="ordersId" jdbcType="INTEGER" />
+    <result column="meta_key" property="metaKey" jdbcType="VARCHAR" />
+    <result column="meta_value" property="metaValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, order_code, orders_id, meta_key, meta_value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders_meta
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.OrdersMeta" >
+    insert into orders_meta (uid, order_code, orders_id, meta_key, meta_value)
+    values (#{uid,jdbcType=INTEGER}, #{orderCode,jdbcType=BIGINT}, #{ordersId,jdbcType=INTEGER}, #{metaKey,jdbcType=VARCHAR}, #{metaValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into orders_meta (uid, order_code, orders_id, meta_key, meta_value)
+    values
+    <foreach collection="records" item="record" separator=",">
+      (#{record.uid,jdbcType=INTEGER}, #{record.orderCode,jdbcType=BIGINT}, #{record.ordersId,jdbcType=INTEGER}, #{record.metaKey,jdbcType=VARCHAR},#{record.metaValue,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <select id="selectByOrdersIdsAndMetaKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from orders_meta
+    where orders_id in
+    <foreach collection="ordersIds" item="ordersId" open="(" close=")" separator=",">
+      #{ordersId}
+    </foreach>
+    and meta_key = #{metaKey,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.OrdersMeta" >
+    update orders_meta
+    set orders_id = #{ordersId,jdbcType=INTEGER},
+      meta_key = #{metaKey,jdbcType=VARCHAR},
+      meta_value = #{metaValue,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByOrdersIdAndMetaKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from orders_meta
+    where orders_id = #{ordersId,jdbcType=INTEGER}
+    and meta_key = #{metaKey,jdbcType=VARCHAR}
+    limit 1
+  </select>
+  <update id="updateMetaValueByOrdersIdsAndMetaKey">
+    update orders_meta
+    set meta_value = #{metaValue,jdbcType=VARCHAR}
+    where
+    orders_id in
+    <foreach collection="ordersIds" item="ordersId" open="(" close=")" separator=",">
+      #{ordersId}
+    </foreach>
+    and meta_key = #{metaKey,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

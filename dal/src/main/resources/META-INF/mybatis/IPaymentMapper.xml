@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IPaymentDAO" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.Payment" >
+    <id column="id" property="id" jdbcType="SMALLINT" />
+    <result column="pay_code" property="payCode" jdbcType="VARCHAR" />
+    <result column="pay_name" property="payName" jdbcType="VARCHAR" />
+    <result column="pay_fee" property="payFee" jdbcType="VARCHAR" />
+    <result column="pay_intro" property="payIntro" jdbcType="VARCHAR" />
+    <result column="pay_params" property="payParams" jdbcType="VARCHAR" />
+    <result column="pay_order" property="payOrder" jdbcType="SMALLINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="pay_icon" property="payIcon" jdbcType="VARCHAR" />
+    <result column="payment_id" property="paymentId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pay_code, pay_name, pay_fee, pay_intro, pay_params, pay_order, status, pay_icon, 
+    payment_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from payment
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <select id="selectByStatus" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from payment
+    WHERE status = 'Y'
+    ORDER BY pay_order DESC
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from payment
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.Payment" >
+    insert into payment (id, pay_code, pay_name, 
+      pay_fee, pay_intro, pay_params, 
+      pay_order, status, pay_icon, 
+      payment_id)
+    values (#{id,jdbcType=SMALLINT}, #{payCode,jdbcType=VARCHAR}, #{payName,jdbcType=VARCHAR}, 
+      #{payFee,jdbcType=VARCHAR}, #{payIntro,jdbcType=VARCHAR}, #{payParams,jdbcType=VARCHAR}, 
+      #{payOrder,jdbcType=SMALLINT}, #{status,jdbcType=CHAR}, #{payIcon,jdbcType=VARCHAR}, 
+      #{paymentId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.Payment" >
+    insert into payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="payCode != null" >
+        pay_code,
+      </if>
+      <if test="payName != null" >
+        pay_name,
+      </if>
+      <if test="payFee != null" >
+        pay_fee,
+      </if>
+      <if test="payIntro != null" >
+        pay_intro,
+      </if>
+      <if test="payParams != null" >
+        pay_params,
+      </if>
+      <if test="payOrder != null" >
+        pay_order,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="payIcon != null" >
+        pay_icon,
+      </if>
+      <if test="paymentId != null" >
+        payment_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=SMALLINT},
+      </if>
+      <if test="payCode != null" >
+        #{payCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payName != null" >
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payFee != null" >
+        #{payFee,jdbcType=VARCHAR},
+      </if>
+      <if test="payIntro != null" >
+        #{payIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="payParams != null" >
+        #{payParams,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrder != null" >
+        #{payOrder,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="payIcon != null" >
+        #{payIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentId != null" >
+        #{paymentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.Payment" >
+    update payment
+    <set >
+      <if test="payCode != null" >
+        pay_code = #{payCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payName != null" >
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payFee != null" >
+        pay_fee = #{payFee,jdbcType=VARCHAR},
+      </if>
+      <if test="payIntro != null" >
+        pay_intro = #{payIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="payParams != null" >
+        pay_params = #{payParams,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrder != null" >
+        pay_order = #{payOrder,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="payIcon != null" >
+        pay_icon = #{payIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentId != null" >
+        payment_id = #{paymentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.Payment" >
+    update payment
+    set pay_code = #{payCode,jdbcType=VARCHAR},
+      pay_name = #{payName,jdbcType=VARCHAR},
+      pay_fee = #{payFee,jdbcType=VARCHAR},
+      pay_intro = #{payIntro,jdbcType=VARCHAR},
+      pay_params = #{payParams,jdbcType=VARCHAR},
+      pay_order = #{payOrder,jdbcType=SMALLINT},
+      status = #{status,jdbcType=CHAR},
+      pay_icon = #{payIcon,jdbcType=VARCHAR},
+      payment_id = #{paymentId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+</mapper>

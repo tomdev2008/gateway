@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IReturnedGoodsListDAO">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.ReturnedGoodsList">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="return_request_id" property="returnRequestId" jdbcType="INTEGER"/>
+        <result column="order_code" property="orderCode" jdbcType="BIGINT"/>
+        <result column="product_skn" property="productSkn" jdbcType="INTEGER"/>
+        <result column="product_skc" property="productSkc" jdbcType="INTEGER"/>
+        <result column="product_sku" property="productSku" jdbcType="INTEGER"/>
+        <result column="order_goods_id" property="orderGoodsId" jdbcType="INTEGER"/>
+        <result column="init_order_goods_id" property="initOrderGoodsId" jdbcType="INTEGER"/>
+        <result column="last_price" property="lastPrice" jdbcType="DECIMAL"/>
+        <result column="goods_type" property="goodsType" jdbcType="TINYINT"/>
+        <result column="returned_reason" property="returnedReason" jdbcType="TINYINT"/>
+        <result column="requisition_form_id" property="requisitionFormId" jdbcType="INTEGER"/>
+        <result column="batch_id" property="batchId" jdbcType="INTEGER"/>
+        <result column="seat_code_string" property="seatCodeString" jdbcType="VARCHAR"/>
+        <result column="imperfect" property="imperfect" jdbcType="CHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="INTEGER"/>
+        <result column="return_yoho_coin" property="returnYohoCoin" jdbcType="INTEGER"/>
+        <result column="real_returned_amount" property="realReturnedAmount" jdbcType="DECIMAL"/>
+    </resultMap>
+    <select id="selectReturnedList" resultMap="BaseResultMap">
+    select rgl.id,rgl.return_request_id,rgl.init_order_goods_id,rgl.last_price,rgl.product_sku,rg.return_yoho_coin,rg.real_returned_amount
+    from returned_goods as rg left join returned_goods_list as rgl
+    on rgl.return_request_id=rg.id
+    where rg.change_purchase_id = #{changePurchaseId}
+    and rg.init_order_code= #{initOrderCode}
+    and rg.status = #{status}
+  </select>
+</mapper>

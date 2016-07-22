@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.YohoodProductMapper" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.YohoodProduct" >
+    <id column="product_sku" property="productSku" jdbcType="INTEGER" />
+    <result column="product_skc" property="productSkc" jdbcType="INTEGER" />
+    <result column="product_skn" property="productSkn" jdbcType="INTEGER" />
+    <result column="gender" property="gender" jdbcType="SMALLINT" />
+    <result column="sort_id" property="sortId" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="is_recommend" property="isRecommend" jdbcType="CHAR" />
+    <result column="buy_number" property="buyNumber" jdbcType="INTEGER" />
+    <result column="preset_number" property="presetNumber" jdbcType="INTEGER" />
+    <result column="is_vote" property="isVote" jdbcType="CHAR" />
+    <result column="founder" property="founder" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="middle_sort_id" property="middleSortId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_sku, product_skc, product_skn, gender, sort_id, brand_id, is_recommend, buy_number, 
+    preset_number, is_vote, founder, status, create_time, middle_sort_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yohood_product
+    where product_sku = #{productSku,jdbcType=INTEGER}
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.YohoodProduct" >
+    update yohood_product
+    <set >
+      <if test="productSkc != null" >
+        product_skc = #{productSkc,jdbcType=INTEGER},
+      </if>
+      <if test="productSkn != null" >
+        product_skn = #{productSkn,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=SMALLINT},
+      </if>
+      <if test="sortId != null" >
+        sort_id = #{sortId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend = #{isRecommend,jdbcType=CHAR},
+      </if>
+      <if test="buyNumber != null" >
+        buy_number = #{buyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="presetNumber != null" >
+        preset_number = #{presetNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isVote != null" >
+        is_vote = #{isVote,jdbcType=CHAR},
+      </if>
+      <if test="founder != null" >
+        founder = #{founder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="middleSortId != null" >
+        middle_sort_id = #{middleSortId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where product_sku = #{productSku,jdbcType=INTEGER}
+  </update>
+</mapper>

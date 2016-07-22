@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IExpressOrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.ExpressOrders" >
+    <id column="express_number" property="expressNumber" jdbcType="VARCHAR" />
+    <id column="order_code" property="orderCode" jdbcType="BIGINT" />
+    <result column="express_id" property="expressId" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="order_create_time" property="orderCreateTime" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="TINYINT" />
+    <result column="flag" property="flag" jdbcType="TINYINT" />
+    <result column="sms_type" property="smsType" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    express_number, order_code, express_id, create_time, order_create_time, num, flag, 
+    sms_type
+  </sql>
+  <select id="selectByExpressOrders" resultMap="BaseResultMap" parameterType="com.yoho.yhorder.dal.model.ExpressOrders" >
+    select 
+    <include refid="Base_Column_List" />
+    from express_orders
+    where order_code = #{orderCode,jdbcType=BIGINT}
+    <if test="expressId != null" >
+      AND express_id = #{expressId,jdbcType=TINYINT}
+    </if>
+    <if test="num != null" >
+      AND num = #{num,jdbcType=TINYINT}
+    </if>
+    <if test="flag != null" >
+      AND flag = #{flag,jdbcType=TINYINT}
+    </if>
+    <if test="smsType != null" >
+      AND sms_type = #{smsType,jdbcType=TINYINT}
+    </if>
+    limit 1
+  </select>
+
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.ExpressOrders" >
+    insert into express_orders (express_number, order_code, express_id, 
+      create_time, order_create_time, num, 
+      flag, sms_type)
+    values (#{expressNumber,jdbcType=VARCHAR}, #{orderCode,jdbcType=BIGINT}, #{expressId,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=INTEGER}, #{orderCreateTime,jdbcType=INTEGER}, #{num,jdbcType=TINYINT}, 
+      #{flag,jdbcType=TINYINT}, #{smsType,jdbcType=TINYINT})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.ExpressOrders" >
+    insert into express_orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="expressNumber != null" >
+        express_number,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="expressId != null" >
+        express_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="smsType != null" >
+        sms_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="expressNumber != null" >
+        #{expressNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="expressId != null" >
+        #{expressId,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreateTime != null" >
+        #{orderCreateTime,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=TINYINT},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="smsType != null" >
+        #{smsType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.ExpressOrders" >
+    update express_orders
+    <set >
+      <if test="expressId != null" >
+        express_id = #{expressId,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time = #{orderCreateTime,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=TINYINT},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="smsType != null" >
+        sms_type = #{smsType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where express_number = #{expressNumber,jdbcType=VARCHAR}
+      and order_code = #{orderCode,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.ExpressOrders" >
+    update express_orders
+    set express_id = #{expressId,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=INTEGER},
+      order_create_time = #{orderCreateTime,jdbcType=INTEGER},
+      num = #{num,jdbcType=TINYINT},
+      flag = #{flag,jdbcType=TINYINT},
+      sms_type = #{smsType,jdbcType=TINYINT}
+    where express_number = #{expressNumber,jdbcType=VARCHAR}
+      and order_code = #{orderCode,jdbcType=BIGINT}
+  </update>
+</mapper>

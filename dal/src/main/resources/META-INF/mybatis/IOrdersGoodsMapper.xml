@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrdersGoodsMapper">
+    <resultMap id="BaseResultMap" type="com.yoho.service.model.order.response.OrdersGoods">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="order_code" property="orderCode" jdbcType="BIGINT" />
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="brand_id" property="brandId" jdbcType="INTEGER"/>
+        <result column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+        <result column="goods_type" property="goodsType" jdbcType="TINYINT"/>
+        <result column="erp_sku_id" property="erpSkuId" jdbcType="INTEGER"/>
+        <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL"/>
+        <result column="goods_amount" property="goodsAmount" jdbcType="DECIMAL"/>
+        <result column="num" property="num" jdbcType="SMALLINT"/>
+        <result column="size_id" property="sizeId" jdbcType="SMALLINT"/>
+        <result column="size_name" property="sizeName" jdbcType="VARCHAR"/>
+        <result column="color_id" property="colorId" jdbcType="TINYINT"/>
+        <result column="color_name" property="colorName" jdbcType="VARCHAR"/>
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="product_skn" property="productSkn" jdbcType="INTEGER"/>
+        <result column="sales_price" property="salesPrice" jdbcType="DECIMAL"/>
+		<result column="get_yoho_coin" property="getYohoCoin" jdbcType="INTEGER"/>
+        <result column="vip_cut_amount" property="vipCutAmount" jdbcType="DECIMAL"/>
+        <result column="promotion_cut_amount" property="promotionCutAmount" jdbcType="DECIMAL"/>
+        <result column="coupons_cut_amount" property="couponsCutAmount" jdbcType="DECIMAL"/>
+        <result column="promo_code_cut_amount" property="promoCodeCutAmount" jdbcType="DECIMAL"/>
+        <result column="red_envelope_cut_amount" property="redenvelopeCutAmount" jdbcType="DECIMAL"/>
+        <result column="yoho_coin_cut_num" property="yohoCoinCutNum" jdbcType="DECIMAL"/>
+        <result column="vip_discount_rate" property="vipDiscountRate" jdbcType="DECIMAL"/>
+        <result column="is_jit" property="isJit" jdbcType="VARCHAR"/>
+        <result column="shop_id" property="shopId" jdbcType="INTEGER"/>
+        <result column="supplier_id" property="supplierId" jdbcType="INTEGER"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="product_skc" property="productSkc" jdbcType="INTEGER"/>
+
+    </resultMap>
+    <resultMap id="UserOrdersGoodsStatMap" type="com.yoho.yhorder.dal.domain.UserOrdersGoodsStat">
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="total" property="total" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="shareOrderGoodsInfoMap" type="com.yoho.yhorder.dal.domain.ShareOrderGoodsInfo">
+        <id column="order_id" property="orderId" jdbcType="INTEGER" />
+        <result column="product_id" property="productId" jdbcType="INTEGER" />
+        <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+        <result column="erp_sku_id" property="erpSkuId" jdbcType="INTEGER" />
+        <result column="product_skn" property="productSkn" jdbcType="INTEGER" />
+        <result column="order_code" property="orderCode" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, uid, order_code, product_id, brand_id, goods_id, goods_type, erp_sku_id, goods_price, goods_amount,
+    num, size_id, size_name, color_id, color_name, order_id, product_skn, sales_price,
+    coupons_cut_amount,promo_code_cut_amount,red_envelope_cut_amount,yoho_coin_cut_num,is_jit,
+    shop_id,supplier_id,promotion_cut_amount,vip_discount_rate,vip_cut_amount,get_yoho_coin,product_name,product_skc
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from orders_goods
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectOrdersPriceByOrderIds" resultType="com.yoho.yhorder.dal.domain.OrdersPrice">
+        select order_id as id, sum(goods_amount) as price
+        from orders_goods
+        where order_id in
+        <foreach collection="orderIds" item="orderId" open="(" close=")" separator=",">
+            #{orderId,jdbcType=INTEGER}
+        </foreach>
+        GROUP BY order_id
+    </select>
+
+
+    <select id="selectOrderGoodsByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        <bind name="size" value="@com.yoho.yhorder.common.utils.SqlUtils@getSize(list)"/>
+
+        select
+        <include refid="Base_Column_List"/>
+        from orders_goods
+        <if test="list != null and size != 0">
+            where
+            <foreach item="item" collection="list" index="index" separator="or" open="(" close=")">
+                order_id = #{item}
+            </foreach>
+        </if>
+    </select>
+    <select id="selectByOrderIdInAndGoodsTypeIn" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from orders_goods
+        where
+        order_id in
+        <foreach collection="orderIds" item="orderId" open="(" close=")" separator=",">
+            #{orderId}
+        </foreach>
+        and goods_type in
+        <foreach collection="goodsTypes" item="goodsType" open="(" close=")" separator=",">
+            #{goodsType}
+        </foreach>
+    </select>
+
+
+
+    <select id="selectOrderGoodsByOrder" resultMap="BaseResultMap" parameterType="com.yoho.service.model.order.response.Orders">
+        select
+        <include refid="Base_Column_List"/>
+        from orders_goods
+        where
+            order_id = #{id} and uid = #{uid}
+    </select>
+
+    <select id="selectOrderGoodsByOrderList" resultMap="BaseResultMap" parameterType="java.util.List">
+        select
+        <include refid="Base_Column_List"/>
+        from orders_goods
+        <if test="list != null and list.size()>0">
+            where
+            <foreach item="item" collection="list" index="index" separator="or" open="(" close=")">
+                (order_id = #{item.orderId}
+                and erp_sku_id= #{item.erpSkuId})
+            </foreach>
+        </if>
+
+    </select>
+
+
+    <select id="selectOrderByGoodsId" resultMap="BaseResultMap"
+            parameterType="com.yoho.service.model.order.request.OrderGoodsUidRequest">
+        <bind name="size" value="@com.yoho.yhorder.common.utils.SqlUtils@getSize(orderGoodsRequestList)"/>
+        select
+        <include refid="Base_Column_List"/>
+        from orders_goods
+
+        <if test="orderGoodsRequestList != null and size != 0">
+            where
+            <foreach item="item" collection="orderGoodsRequestList" separator="or" open="(" close=")">
+                (order_id = #{item.orderId}
+                and goods_id=#{item.goodsId} and erp_sku_id = #{item.erpSkuId})
+            </foreach>
+        </if>
+
+    </select>
+
+
+    <select id="selectNumByUidAndSkn" resultType="java.util.HashMap">
+        SELECT og.product_skn,SUM(og.num) as buy_number FROM orders_goods og,orders o
+        WHERE og.uid=#{uid}
+        AND o.is_cancel='N'
+        AND og.order_id=o.id
+        AND og.product_skn in
+        <foreach item="item" collection="list" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        GROUP BY og.product_skn
+    </select>
+
+
+    <select id="selectGoodsBySku" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders_goods
+        where
+        <foreach collection="paramsList" item="item" open="(" close=")" separator="or">
+            (erp_sku_id = #{item.erpSkuId} and order_id = #{item.orderId})
+        </foreach>
+    </select>
+
+    <insert id="batchInsertOrderGoods"  parameterType="java.util.List">
+        insert into orders_goods (uid,order_code, product_id,
+        brand_id, goods_id, goods_type,
+        erp_sku_id, goods_price, goods_amount,
+        num, size_id, size_name,
+        color_id, color_name, order_id,
+        product_skn,sales_price,product_name,coupons_cut_amount,promo_code_cut_amount,red_envelope_cut_amount,yoho_coin_cut_num,real_vip_price,
+        vip_discount_rate,is_jit,shop_id,supplier_id,get_yoho_coin,promotion_cut_amount,vip_cut_amount,product_skc)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.uid,jdbcType=INTEGER}, #{item.orderCode,jdbcType=BIGINT}, #{item.productId,jdbcType=INTEGER},
+            #{item.brandId,jdbcType=INTEGER}, #{item.goodsId,jdbcType=INTEGER}, #{item.goodsType,jdbcType=TINYINT},
+            #{item.erpSkuId,jdbcType=INTEGER}, #{item.goodsPrice,jdbcType=DECIMAL}, #{item.goodsAmount,jdbcType=DECIMAL},
+            #{item.num,jdbcType=SMALLINT}, #{item.sizeId,jdbcType=SMALLINT}, #{item.sizeName,jdbcType=VARCHAR},
+            #{item.colorId,jdbcType=TINYINT}, #{item.colorName,jdbcType=VARCHAR}, #{item.orderId,jdbcType=INTEGER},
+            #{item.productSkn,jdbcType=INTEGER},#{item.salesPrice,jdbcType=DECIMAL},#{item.productName,jdbcType=VARCHAR},#{item.couponsCutAmount,jdbcType=DECIMAL},
+            #{item.promoCodeCutAmount,jdbcType=DECIMAL},#{item.redenvelopeCutAmount,jdbcType=DECIMAL},#{item.yohoCoinCutNum,jdbcType=INTEGER},
+            #{item.realVipPrice,jdbcType=DECIMAL},#{item.vipDiscountRate,jdbcType=DECIMAL},
+            #{item.isJit,jdbcType=VARCHAR},#{item.shopId,jdbcType=INTEGER},#{item.supplierId,jdbcType=INTEGER},#{item.getYohoCoin,jdbcType=INTEGER},
+            #{item.promotionCutAmount,jdbcType=DECIMAL},#{item.vipCutAmount,jdbcType=DECIMAL},#{item.productSkc,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+
+    <select id="selectByProductId" resultType="java.lang.Integer">
+        select order_id
+        from orders_goods
+        where uid = #{uid} and product_id = #{productId}
+    </select>
+   
+     <select id="selectByUidAndSku" resultMap="BaseResultMap">
+        select 
+          <include refid="Base_Column_List"/>
+        from orders_goods
+        where uid = #{uid} and erp_sku_id = #{productSku}
+    </select>
+
+    <select id="selectUserOrdersGoodsStatByUidsAndStatusGreaterThanAndShipmentTimeLessThan" resultMap="UserOrdersGoodsStatMap">
+        select o.uid uid, count(1) total
+        from orders_goods as og left join orders as o on o.id = og.order_id
+        where o.uid in
+        <foreach collection="uids" item="uid" open="(" close=")" separator=",">
+            #{uid}
+        </foreach>
+        <![CDATA[
+            and o.status >  #{status}
+            and o.shipment_time < #{shipmentTime}
+        ]]>
+        group by uid
+    </select>
+
+
+    <select id="selectSkuBuyNumberByUidAndSku" resultType="java.lang.Integer">
+        SELECT IFNULL(SUM(og.num),0)  FROM orders_goods og,orders o
+        WHERE og.uid = #{uid}
+        AND o.is_cancel = 'N'
+        AND og.order_id = o.id
+        AND og.erp_sku_id = #{productSku}
+    </select>
+    <select id="selectOrderGoodsListByOrderCode" resultMap="shareOrderGoodsInfoMap">
+        select g.order_id,g.goods_id,g.product_id,g.product_skn,g.erp_sku_id
+        from yh_orders.orders_goods g
+        join yh_orders.orders o on o.id = g.order_id
+        where o.uid=#{uid} and o.order_code = #{orderCode} and o.status = 6 and o.orders_status = 1
+        and order_type != 7
+        GROUP BY g.erp_sku_id,g.order_id
+    </select>
+
+    <select id="selectOtherOrderGoodsList" resultMap="shareOrderGoodsInfoMap">
+        select g.order_id,g.goods_id,g.product_id,g.product_skn,g.erp_sku_id
+        from yh_orders.orders_goods g
+        join yh_orders.orders o on o.id = g.order_id
+        where o.uid=#{uid} and o.order_code != #{orderCode}
+        and o.status = 6 and o.orders_status = 1
+        and order_type != 7 and o.is_cancel = 'N'
+        GROUP BY g.erp_sku_id
+        order by o.create_time desc
+    </select>
+
+    <select id="selectAllOrderGoodsList" resultMap="shareOrderGoodsInfoMap">
+        select g.order_id,g.goods_id,g.product_id,g.product_skn,g.erp_sku_id,o.order_code,o.create_time
+        from yh_orders.orders_goods g
+        join yh_orders.orders o on o.id = g.order_id
+        where o.uid=#{uid} and o.status = 6 and o.orders_status = 1
+        and order_type != 7 and o.is_cancel = 'N'
+        GROUP BY g.erp_sku_id
+        order by o.create_time desc
+    </select>
+
+    <select id="selectToShareOrderNumByUid" resultType="Integer">
+        select count(g.id)
+        from yh_orders.orders_goods g
+        join yh_orders.orders o on o.id = g.order_id
+        where o.uid=#{uid} and o.status = 6 and o.orders_status = 1
+        and order_type != 7 and o.is_cancel = 'N'
+    </select>
+
+    <select id="batchSelectOrderGoods" resultMap="shareOrderGoodsInfoMap" parameterType="java.util.List">
+        select g.order_id,g.goods_id,g.product_id,g.product_skn,g.erp_sku_id,o.order_code,o.create_time
+        from yh_orders.orders_goods g
+        join yh_orders.orders o on o.id = g.order_id
+        <if test="list != null and list.size() != 0">
+            where
+            <foreach collection="list" item="item" index="index" separator="OR">
+                (o.uid=#{item.uid,jdbcType=INTEGER} and (g.order_id=#{item.orderCode,jdbcType=INTEGER} or o.order_code=#{item.orderCode,jdbcType=INTEGER}) and g.product_id=#{item.elementId,jdbcType=INTEGER})
+            </foreach>
+        </if>
+    </select>
+
+    <select id="selectAllOrderGoodsListByUid" resultMap="shareOrderGoodsInfoMap">
+        select g.order_id,g.goods_id,g.product_id,g.product_skn,g.erp_sku_id,o.order_code,o.create_time
+        from yh_orders.orders_goods g
+        join yh_orders.orders o on o.id = g.order_id
+        where o.uid=#{uid} and o.status = 6 and o.orders_status = 1
+        and order_type != 7 and o.is_cancel = 'N'
+        order by o.create_time desc
+    </select>
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrderPromotionSnapshotDao">
+
+    <insert id="insertOrderPromotionSnapshot">
+        insert into order_promotion_snapshot(order_code,promotion_id,promotion_type,priority,start_time,
+        end_time,condition_param,action_param,limit_param,reject_param)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.orderCode}, #{item.promotionId},#{item.promotionType},
+             #{item.priority},#{item.startTime},
+             #{item.endTime}, #{item.conditionParam},#{item.actionParam},
+            #{item.limitParam}, #{item.rejectParam})
+        </foreach>
+    </insert>
+
+    <select id="countByPrimaryKey" resultType="java.lang.Integer">
+        select COUNT(1) from order_pay where order_code = #{orderCode}
+    </select>
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrderCodeQueueDAO">
+    <insert id="insertUid" useGeneratedKeys="true" keyProperty="id">
+        insert into order_code_queue(uid, create_time) values (#{uid}, UNIX_TIMESTAMP())
+    </insert>
+
+    <select id="selectUidById" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select uid from order_code_queue where id = #{id}
+    </select>
+</mapper>

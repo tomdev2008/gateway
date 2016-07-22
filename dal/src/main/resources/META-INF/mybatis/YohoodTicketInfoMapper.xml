@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.YohoodTicketInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.YohoodTicketInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ticket_code" property="ticketCode" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="updatetime" property="updatetime" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="employ_code" property="employCode" jdbcType="VARCHAR" />
+    <result column="ticket_url" property="ticketUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ticket_code, status, updatetime, create_time, employ_code, ticket_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ticket_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="selectByStatusAndEmployCode" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ticket_info
+    where status=#{status}
+       and employ_code=#{employCode} limit 1
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ticket_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.YohoodTicketInfo" >
+    insert into ticket_info (id, ticket_code, status, 
+      updatetime, create_time, employ_code
+      )
+    values (#{id,jdbcType=INTEGER}, #{ticketCode,jdbcType=BIGINT}, #{status,jdbcType=SMALLINT}, 
+      #{updatetime,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}, #{employCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.YohoodTicketInfo" >
+    insert into ticket_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ticketCode != null" >
+        ticket_code,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="employCode != null" >
+        employ_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ticketCode != null" >
+        #{ticketCode,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="employCode != null" >
+        #{employCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.YohoodTicketInfo" >
+    update ticket_info
+    <set >
+      <if test="ticketCode != null" >
+        ticket_code = #{ticketCode,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="employCode != null" >
+        employ_code = #{employCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.YohoodTicketInfo" >
+    update ticket_info
+    set ticket_code = #{ticketCode,jdbcType=BIGINT},
+      status = #{status,jdbcType=SMALLINT},
+      updatetime = #{updatetime,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      employ_code = #{employCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByTicketCodes" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ticket_info
+    <where>
+      <foreach collection="ticketCodes" item="ticketCode" open="(" close=")" separator="or">
+        ticket_code=#{ticketCode,jdbcType=BIGINT}
+      </foreach>
+    </where>
+  </select>
+</mapper>

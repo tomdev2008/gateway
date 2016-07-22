@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrderCodeListDAO">
+    <select id="selectOrderCodeById" resultType="java.lang.Long" parameterType="java.lang.Long">
+        select order_code from order_code_list where id = #{id} limit 1
+    </select>
+
+    <select id="selectIdByOrderCode" resultType="java.lang.Integer" parameterType="java.lang.Long">
+        select id from order_code_list where order_code = #{orderCode} limit 1
+    </select>
+</mapper>

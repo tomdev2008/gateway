@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.OrderPromotionMapper">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.OrderPromotion">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="promotion_type" property="promotionType" jdbcType="TINYINT"/>
+        <result column="promotion_id" property="promotionId" jdbcType="INTEGER"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.yoho.yhorder.dal.model.OrderPromotion">
+    insert into order_promotion (id, order_id, promotion_type, 
+      promotion_id, promotion_data)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{promotionType,jdbcType=TINYINT}, 
+      #{promotionId,jdbcType=INTEGER}, #{promotionData,jdbcType=LONGVARCHAR})
+  </insert>
+</mapper>

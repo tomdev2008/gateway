@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.OrdersCouponsMapper">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.OrdersCoupons">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="order_code" property="orderCode" jdbcType="BIGINT" />
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="coupons_id" property="couponsId" jdbcType="INTEGER"/>
+        <result column="coupons_code" property="couponsCode" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, uid, order_code, order_id, coupons_id, coupons_code, create_time
+    </sql>
+    <insert id="insert" parameterType="com.yoho.yhorder.dal.model.OrdersCoupons">
+    insert into orders_coupons (id, uid, order_code, order_id, coupons_id,coupons_code, create_time)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{orderCode,jdbcType=BIGINT}, #{orderId,jdbcType=INTEGER}, #{couponsId,jdbcType=INTEGER},
+      #{couponsCode,jdbcType=VARCHAR}, UNIX_TIMESTAMP())
+    </insert>
+
+    <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from orders_coupons
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByUidAndCouponsCodes" resultMap="BaseResultMap">
+        select
+        a.id, a.order_id, a.coupons_id, a.coupons_code, a.create_time
+        from orders_coupons as a left join orders as b on b.id = a.order_id
+        where b.uid = #{uid,jdbcType=INTEGER}
+        and
+        a.coupons_code in
+        <foreach collection="couponsCodes" item="couponsCode" open="(" close=")" separator=",">
+            #{couponsCode,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+
+
+</mapper>

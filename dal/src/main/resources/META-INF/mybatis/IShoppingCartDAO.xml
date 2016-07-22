@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IShoppingCartDAO">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.ShoppingCart">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="shopping_key" property="shoppingKey" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, uid, shopping_key
+    </sql>
+    <select id="selectShoppingCartByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from shopping_cart
+        where uid = #{uid} limit 1
+    </select>
+
+    <select id="selectShoppingCartByShoppingKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shopping_cart
+        where uid=#{uid} and shopping_key = #{shoppingKey} limit 1
+    </select>
+
+    <insert id="insertShoppingCart" parameterType="com.yoho.yhorder.dal.model.ShoppingCart" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into shopping_cart(uid,shopping_key,create_time) values (#{uid},#{shoppingKey},UNIX_TIMESTAMP())
+    </insert>
+
+    <!-- 不再使用-->
+    <update id="setUidByShoppingKey" parameterType="com.yoho.yhorder.dal.model.ShoppingCart">
+    	update shopping_cart set uid=#{uid} where shopping_key=#{shoppingKey}
+    </update>
+
+    <update id="setShoppingKeyById" parameterType="com.yoho.yhorder.dal.model.ShoppingCart">
+    	update shopping_cart set shopping_key=#{shoppingKey} where uid=#{uid} and id=#{id}
+    </update>
+
+    <delete id="delShoppingCartById">
+    	delete from shopping_cart where uid=#{uid} and id=#{id}
+    </delete>
+
+    <select id="selectShoppingCartById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shopping_cart
+        where uid=#{uid} and id = #{id} limit 1
+    </select>
+</mapper>

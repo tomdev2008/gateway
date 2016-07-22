@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.ILogisticsInfoDao" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.LogisticsInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_code" property="orderCode" jdbcType="BIGINT" />
+    <result column="waybill_code" property="waybillCode" jdbcType="VARCHAR" />
+    <result column="accept_address" property="acceptAddress" jdbcType="VARCHAR" />
+    <result column="accept_remark" property="acceptRemark" jdbcType="VARCHAR" />
+    <result column="logistics_type" property="logisticsType" jdbcType="TINYINT" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="deal_with_cost" property="dealWithCost" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_code, waybill_code, accept_address, accept_remark, logistics_type, state, 
+    create_time, deal_with_cost
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from logistics_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from logistics_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.LogisticsInfo" >
+    insert into logistics_info (id, order_code, waybill_code,
+      accept_address, accept_remark, logistics_type,
+      state, create_time, deal_with_cost
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderCode,jdbcType=BIGINT}, #{waybillCode,jdbcType=VARCHAR},
+      #{acceptAddress,jdbcType=VARCHAR}, #{acceptRemark,jdbcType=VARCHAR}, #{logisticsType,jdbcType=TINYINT},
+      #{state,jdbcType=TINYINT}, #{createTime,jdbcType=INTEGER}, #{dealWithCost,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.LogisticsInfo" >
+    insert into logistics_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="waybillCode != null" >
+        waybill_code,
+      </if>
+      <if test="acceptAddress != null" >
+        accept_address,
+      </if>
+      <if test="acceptRemark != null" >
+        accept_remark,
+      </if>
+      <if test="logisticsType != null" >
+        logistics_type,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="dealWithCost != null" >
+        deal_with_cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="waybillCode != null" >
+        #{waybillCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptAddress != null" >
+        #{acceptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptRemark != null" >
+        #{acceptRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsType != null" >
+        #{logisticsType,jdbcType=TINYINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="dealWithCost != null" >
+        #{dealWithCost,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.LogisticsInfo" >
+    update logistics_info
+    <set >
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="waybillCode != null" >
+        waybill_code = #{waybillCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptAddress != null" >
+        accept_address = #{acceptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptRemark != null" >
+        accept_remark = #{acceptRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsType != null" >
+        logistics_type = #{logisticsType,jdbcType=TINYINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="dealWithCost != null" >
+        deal_with_cost = #{dealWithCost,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.LogisticsInfo" >
+    update logistics_info
+    set order_code = #{orderCode,jdbcType=BIGINT},
+      waybill_code = #{waybillCode,jdbcType=VARCHAR},
+      accept_address = #{acceptAddress,jdbcType=VARCHAR},
+      accept_remark = #{acceptRemark,jdbcType=VARCHAR},
+      logistics_type = #{logisticsType,jdbcType=TINYINT},
+      state = #{state,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=INTEGER},
+      deal_with_cost = #{dealWithCost,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByOrderCodeAndState" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from logistics_info
+    where order_code = #{orderCode,jdbcType=BIGINT}
+    and state = #{state,jdbcType=TINYINT}
+    order by create_time DESC
+  </select>
+
+  <select id="selectByOrderCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from logistics_info
+    where order_code = #{orderCode,jdbcType=BIGINT}
+    order by create_time ASC
+  </select>
+
+  <select id="selectByOrderCodeAndWaybillCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from logistics_info
+    where order_code = #{orderCode,jdbcType=BIGINT}
+    and waybill_code = #{waybillCode,jdbcType=VARCHAR}
+    order by create_time ASC
+  </select>
+
+  <select id="selectCountByOrdercodeAddressTime" resultType="int">
+    select count(1)
+    from logistics_info
+    where order_code = #{orderCode,jdbcType=BIGINT}
+    and accept_address = #{acceptAddress,jdbcType=VARCHAR}
+    and create_time = #{createTime,jdbcType=INTEGER}
+  </select>
+</mapper>

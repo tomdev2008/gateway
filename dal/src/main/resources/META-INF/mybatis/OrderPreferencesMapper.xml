@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IOrderPreferencesDAO" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.OrderPreferences" >
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="addr_info" property="addrInfo" jdbcType="VARCHAR" />
+    <result column="pay_info" property="payInfo" jdbcType="VARCHAR" />
+    <result column="invoice_info" property="invoiceInfo" jdbcType="VARCHAR" />
+    <result column="delivery_info" property="deliveryInfo" jdbcType="VARCHAR" />
+    <result column="is_pre_contact" property="isPreContact" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="need_print_price" property="needPrintPrice" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, addr_info, pay_info, invoice_info, delivery_info, is_pre_contact, remark, need_print_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_preferences
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_preferences
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.OrderPreferences" >
+    insert into order_preferences (uid, addr_info, pay_info, 
+      invoice_info, delivery_info, is_pre_contact, 
+      remark, need_print_price)
+    values (#{uid,jdbcType=INTEGER}, #{addrInfo,jdbcType=VARCHAR}, #{payInfo,jdbcType=VARCHAR}, 
+      #{invoiceInfo,jdbcType=VARCHAR}, #{deliveryInfo,jdbcType=VARCHAR}, #{isPreContact,jdbcType=CHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{needPrintPrice,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.OrderPreferences" >
+    insert into order_preferences
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="addrInfo != null" >
+        addr_info,
+      </if>
+      <if test="payInfo != null" >
+        pay_info,
+      </if>
+      <if test="invoiceInfo != null" >
+        invoice_info,
+      </if>
+      <if test="deliveryInfo != null" >
+        delivery_info,
+      </if>
+      <if test="isPreContact != null" >
+        is_pre_contact,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="needPrintPrice != null" >
+        need_print_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="addrInfo != null" >
+        #{addrInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="payInfo != null" >
+        #{payInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceInfo != null" >
+        #{invoiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryInfo != null" >
+        #{deliveryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isPreContact != null" >
+        #{isPreContact,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="needPrintPrice != null" >
+        #{needPrintPrice,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.OrderPreferences" >
+    update order_preferences
+    <set >
+      <if test="addrInfo != null" >
+        addr_info = #{addrInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="payInfo != null" >
+        pay_info = #{payInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceInfo != null" >
+        invoice_info = #{invoiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryInfo != null" >
+        delivery_info = #{deliveryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isPreContact != null" >
+        is_pre_contact = #{isPreContact,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="needPrintPrice != null" >
+        need_print_price = #{needPrintPrice,jdbcType=CHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.OrderPreferences" >
+    update order_preferences
+    set addr_info = #{addrInfo,jdbcType=VARCHAR},
+      pay_info = #{payInfo,jdbcType=VARCHAR},
+      invoice_info = #{invoiceInfo,jdbcType=VARCHAR},
+      delivery_info = #{deliveryInfo,jdbcType=VARCHAR},
+      is_pre_contact = #{isPreContact,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      need_print_price = #{needPrintPrice,jdbcType=CHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

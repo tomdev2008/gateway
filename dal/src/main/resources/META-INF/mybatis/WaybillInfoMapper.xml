@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IWaybillInfoDao" >
+  <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.WaybillInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_code" property="orderCode" jdbcType="BIGINT" />
+    <result column="waybill_code" property="waybillCode" jdbcType="VARCHAR" />
+    <result column="address_info" property="addressInfo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="logistics_type" property="logisticsType" jdbcType="TINYINT" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="sms_type" property="smsType" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yoho.yhorder.dal.model.WaybillInfo" extends="BaseResultMap" >
+    <result column="datas" property="datas" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_code, waybill_code, address_info, create_time, logistics_type, state, sms_type
+  </sql>
+  <sql id="Blob_Column_List" >
+    datas
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from waybill_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from waybill_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yoho.yhorder.dal.model.WaybillInfo" >
+    insert into waybill_info (id, order_code, waybill_code, 
+      address_info, create_time, logistics_type, 
+      state, sms_type, datas
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderCode,jdbcType=BIGINT}, #{waybillCode,jdbcType=VARCHAR}, 
+      #{addressInfo,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, #{logisticsType,jdbcType=TINYINT}, 
+      #{state,jdbcType=TINYINT}, #{smsType,jdbcType=TINYINT}, #{datas,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yoho.yhorder.dal.model.WaybillInfo" >
+    insert into waybill_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="waybillCode != null" >
+        waybill_code,
+      </if>
+      <if test="addressInfo != null" >
+        address_info,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="logisticsType != null" >
+        logistics_type,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="smsType != null" >
+        sms_type,
+      </if>
+      <if test="datas != null" >
+        datas,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="waybillCode != null" >
+        #{waybillCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addressInfo != null" >
+        #{addressInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsType != null" >
+        #{logisticsType,jdbcType=TINYINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="smsType != null" >
+        #{smsType,jdbcType=TINYINT},
+      </if>
+      <if test="datas != null" >
+        #{datas,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yoho.yhorder.dal.model.WaybillInfo" >
+    update waybill_info
+    <set >
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="waybillCode != null" >
+        waybill_code = #{waybillCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addressInfo != null" >
+        address_info = #{addressInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsType != null" >
+        logistics_type = #{logisticsType,jdbcType=TINYINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="smsType != null" >
+        sms_type = #{smsType,jdbcType=TINYINT},
+      </if>
+      <if test="datas != null" >
+        datas = #{datas,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yoho.yhorder.dal.model.WaybillInfo" >
+    update waybill_info
+    set order_code = #{orderCode,jdbcType=BIGINT},
+      waybill_code = #{waybillCode,jdbcType=VARCHAR},
+      address_info = #{addressInfo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      logistics_type = #{logisticsType,jdbcType=TINYINT},
+      state = #{state,jdbcType=TINYINT},
+      sms_type = #{smsType,jdbcType=TINYINT},
+      datas = #{datas,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yoho.yhorder.dal.model.WaybillInfo" >
+    update waybill_info
+    set order_code = #{orderCode,jdbcType=BIGINT},
+      waybill_code = #{waybillCode,jdbcType=VARCHAR},
+      address_info = #{addressInfo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      logistics_type = #{logisticsType,jdbcType=TINYINT},
+      state = #{state,jdbcType=TINYINT},
+      sms_type = #{smsType,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByLogisticsTypeAndWaybillCode" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from waybill_info
+    where logistics_type= #{logisticsType,jdbcType=TINYINT}
+    and waybill_code =#{waybillCode,jdbcType=VARCHAR} order by create_time desc;
+  </select>
+
+
+  <select id="selectByOrderCodeAndLogisticsType" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from waybill_info
+    where order_code =  #{orderCode,jdbcType=BIGINT}
+    and logistics_type =#{logisticsType,jdbcType=TINYINT}
+    order by create_time desc
+  </select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IShoppingTagDAO">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.model.ShoppingTag">
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="shopping_key" property="shoppingTagKey" jdbcType="VARCHAR"/>
+        <result column="is_use" property="isUse" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="insertShoppingTag" parameterType="com.yoho.yhorder.dal.model.ShoppingTag">
+        insert into shopping_tag(uid,shopping_key,is_use,create_time) values (#{uid,jdbcType=INTEGER},#{shoppingTagKey,jdbcType=VARCHAR},#{isUse,jdbcType=VARCHAR},UNIX_TIMESTAMP()) ON DUPLICATE KEY UPDATE shopping_key = #{shoppingTagKey,jdbcType=VARCHAR},is_use = #{isUse,jdbcType=INTEGER},update_time = UNIX_TIMESTAMP()
+    </insert>
+
+    <select id="selectShoppingTag" resultMap="BaseResultMap">
+        select uid,shopping_key,is_use from shopping_tag where uid = #{uid} and shopping_key =#{shoppingTagKey}
+    </select>
+
+    <update id="updateShoppingTagToUse">
+        update shopping_tag set  is_use = 'Y' where uid = #{uid}
+    </update>
+</mapper>

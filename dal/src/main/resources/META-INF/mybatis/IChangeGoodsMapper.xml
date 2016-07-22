@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yoho.yhorder.dal.IChangeGoodsMapper">
+    <resultMap id="BaseResultMap" type="com.yoho.yhorder.dal.domain.ChangeGoods">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="init_order_code" property="initOrderCode" jdbcType="BIGINT"/>
+        <result column="source_order_code" property="sourceOrderCode" jdbcType="BIGINT"/>
+        <result column="order_code" property="orderCode" jdbcType="BIGINT"/>
+        <result column="change_purchase_id" property="changePurchaseId" jdbcType="INTEGER"/>
+        <result column="product_skn" property="productSkn" jdbcType="INTEGER"/>
+        <result column="product_skc" property="productSkc" jdbcType="INTEGER"/>
+        <result column="product_sku" property="productSku" jdbcType="INTEGER"/>
+        <result column="source_product_skc" property="sourceProductSkc" jdbcType="INTEGER"/>
+        <result column="source_product_sku" property="sourceProductSku" jdbcType="INTEGER"/>
+        <result column="goods_type" property="goodsType" jdbcType="TINYINT"/>
+        <result column="exchange_reason" property="exchangeReason" jdbcType="TINYINT"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id,
+  init_order_code,
+  source_order_code,
+  order_code,
+  change_purchase_id,
+  product_skn,
+  product_skc,
+  product_sku,
+  source_product_skc,
+  source_product_sku,
+  goods_type,
+  exchange_reason,
+  remark,
+  STATUS,
+  create_time
+    </sql>
+
+    <insert id="insert" parameterType="java.util.List">
+        insert into change_goods_list ( init_order_code, source_order_code,
+        order_code, change_purchase_id, product_skn,
+        product_skc, product_sku, source_product_skc,
+        source_product_sku, goods_type, exchange_reason,
+        remark, status, create_time
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            ( #{item.initOrderCode,jdbcType=BIGINT}, #{item.sourceOrderCode,jdbcType=BIGINT},
+            #{item.orderCode,jdbcType=BIGINT}, #{item.changePurchaseId,jdbcType=INTEGER},
+            #{item.productSkn,jdbcType=INTEGER},
+            #{item.productSkc,jdbcType=INTEGER}, #{item.productSku,jdbcType=INTEGER},
+            #{item.sourceProductSkc,jdbcType=INTEGER},
+            #{item.sourceProductSku,jdbcType=INTEGER}, #{item.goodsType,jdbcType=TINYINT},
+            #{item.exchangeReason,jdbcType=TINYINT},
+            #{item.remark,jdbcType=VARCHAR}, #{item.status,jdbcType=TINYINT}, #{item.createTime,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectChangeGoodsNum" resultType="java.lang.Integer">
+        SELECT count(0)
+        FROM change_goods_list
+        WHERE source_order_code = #{sourceOrderCode}
+              AND source_product_sku = #{productSku}
+              AND goods_type = #{goodsType}
+        <![CDATA[
+              AND status < 60
+
+
+
+
+        ]]>
+    </select>
+
+    <select id="selectChangeGoodsList" resultMap="BaseResultMap"
+            parameterType="com.yoho.yhorder.dal.domain.ChangeGoods">
+        select
+        <include refid="Base_Column_List"/>
+        from change_goods_list
+        where 1=1
+        <if test="changePurchaseId!=null ">
+            and change_purchase_id=#{changePurchaseId}
+        </if>
+        order by goods_type ASC, id DESC
+
+    </select>
+
+
+    <select id="selectChangeGoodsNumBatch" resultType="java.util.Map">
+        <bind name="size" value="@com.yoho.yhorder.common.utils.SqlUtils@getSize(paramsList)"/>
+        select source_order_code "sourceOrderCode",source_product_sku "productSku",goods_type "goodsType",count(0) "num"
+        from change_goods_list
+        <where>
+            <if test="paramsList!=null and size!=0"></if>
+            <foreach collection="paramsList" item="item" open="(" close=")" separator="or">
+                source_order_code = #{item.sourceOrderCode} and source_product_sku = #{item.productSku} and goods_type =
+                #{item.goodsType}
+            </foreach>
+            <![CDATA[
+              and status < 60
+        ]]>
+        </where>
+        group by source_order_code,source_product_sku,goods_type
+    </select>
+
+    <update id="updateDelFlagByChangeGoods" parameterType="java.lang.Integer" >
+        update change_goods_list
+        set   del_flag = 1
+        where change_purchase_id = #{changePurchaseId}
+    </update>
+
+    <update id="updateStatusByChangePurchaseId">
+        update change_goods_list
+        set   STATUS = #{status}
+        where change_purchase_id = #{changePurchaseId}
+    </update>
+
+</mapper>
