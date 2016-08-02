@@ -24,6 +24,8 @@ import com.yoho.core.message.YhProducerTemplate;
 import com.yoho.error.ServiceError;
 import com.yoho.error.exception.ServiceException;
 import com.yoho.service.model.order.request.PaymentConfirmReq;
+import com.yoho.service.model.order.response.OrderCancelReasonBO;
+import com.yoho.service.model.order.response.OrderPaymentStatusBO;
 import com.yoho.service.model.order.response.Orders;
 import com.yoho.service.model.order.response.PaymentConfirmResponse;
 import com.yoho.service.model.order.response.PaymentOrderQueryBO;
@@ -41,6 +43,7 @@ import com.yoho.yhorder.order.payment.alipay.AliPayRefunder;
 import com.yoho.yhorder.order.payment.qqwallet.QQWallet;
 import com.yoho.yhorder.order.payment.unionpay.UnionPayQuerier;
 import com.yoho.yhorder.order.payment.wechat.NewWechatQuerier;
+import com.yoho.yhorder.order.service.IOrderCancelService;
 import com.yoho.yhorder.order.service.IYohoOrderService;
 
 /**
@@ -69,6 +72,9 @@ public class PaymentService {
     
     @Resource
     AliPayQuerier aliPayQuerier;
+    
+    @Autowired
+    private IOrderCancelService orderCancelService;
 
     @Resource
     UnionPayQuerier unionPayQuerier;
@@ -663,5 +669,24 @@ public class PaymentService {
         }
         return refundBo;
     }
-    	
+    public OrderPaymentStatusBO getOrderPayStatusInfo(Long orderCode, Integer uid) {
+		logger.info("payment orderquery for order: {}", orderCode);
+		Orders orders = ordersMapper.selectByUidAndOrderCode(uid,orderCode);
+		OrderPaymentStatusBO orderPaymentStatusBO = new OrderPaymentStatusBO();
+		orderPaymentStatusBO.setUid(uid);
+		orderPaymentStatusBO.setOrderCode(orderCode);
+		if(Orders.PAYMENT_TYPE_ONLINE.equals(orders.getPaymentType())){
+			String payment_status = orderCancelService.getOrdersOnlinePaymentStatus(orders);
+			orders.setPaymentStatus(payment_status);
+		}
+		orderPaymentStatusBO.setPayment_status(orders.getPaymentStatus());
+        logger.info("payment getOrderPayInfo result: {}", orderPaymentStatusBO);
+        return orderPaymentStatusBO;
+	}
+
+	public List<OrderPaymentStatusBO> findOrderCancelReason(
+			List<OrderCancelReasonBO> orderCancelReasons) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
 }

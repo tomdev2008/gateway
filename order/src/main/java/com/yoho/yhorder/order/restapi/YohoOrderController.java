@@ -621,4 +621,27 @@ public class YohoOrderController {
         returnBo.setResultMsg(payRefundBo.getRefundMsg());
         return returnBo;
     }
+    /**
+     * 支付订单信息
+     *
+     * @return
+     */
+    @RequestMapping("/getOrderPayStatusInfo")
+    @ResponseBody
+    @Database(ForceMaster = true)
+    public OrderPaymentStatusBO getOrderPayStatusInfo(@RequestBody PrePaymentRequest request) {
+        logger.info("paymentstatus get for order: {}", request.getOrderCode());
+        return paymentService.getOrderPayStatusInfo(request.getOrderCode(),request.getUid());
+    }
+    
+    /**
+     * erp取消接口
+     */
+    @RequestMapping("/findOrderCancelReason")
+    @ResponseBody
+    @Database(ForceMaster = true)
+    public List<OrderPaymentStatusBO> findOrderCancelReason(@RequestBody OrderCancelRequest request) {
+        logger.info("paymentstatus get for orderCancel: {}", request.getOrderCancelReasons());
+        return paymentService.findOrderCancelReason(request.getOrderCancelReasons());
+    }
 }

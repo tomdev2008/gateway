@@ -994,5 +994,28 @@ public class OrderCancelServiceImpl implements IOrderCancelService {
         // 7天后赠送有货币
         ordersYohoCoinDAO.insert(record);
     }
+    
+    /**
+     * 验证订单取消前的支付结果确认,没有支付payment_status=N,已经支付没有支付payment_status=Y
+     */
+    public String getOrdersOnlinePaymentStatus(Orders orders) {
+    	if(!Orders.PAYMENT_TYPE_ONLINE.equals(orders.getPaymentType())){
+    		throw new ServiceException(ServiceError.ACTIVITY_NOT_CONTAIN_PRODUCT); 
+    	}
+        //验证订单支付情况，已支付订单不能取消。
+        if (Constants.YES.equals(orders.getPaymentStatus())) {
+            return  Constants.YES;
+        }
+        
+        boolean isPaid = queryPayStatusResult(orders);
+        if (isPaid) {
+        	return  Constants.YES;
+        }
+        //取消訂單时进行时间间隔判断
+        if (!checkPrePayTime(orders.getOrderCode())) {
+        	logger.info("its difficult to enter this branch orderCode:{}", orders.getOrderCode());
+        }
+        return orders.getPaymentStatus();
+    }
 
 }

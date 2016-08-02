@@ -11,6 +11,7 @@
 package com.yoho.yhorder.order.service;
 
 import com.yoho.service.model.order.request.OrderCancelRequest;
+import com.yoho.service.model.order.response.Orders;
 
 /**
  * 取消订单---专用Service接口
@@ -51,5 +52,13 @@ public interface IOrderCancelService {
      * @return
      */
     String validateCancelStatus(Long orderCode);
+    
+    /**
+     *新版本 验证订单取消前的支付结果确认,返回:是否能取消   默认:Y 否则N
+     * @param uid
+     * @param orderCode
+     * @return
+     */
+    String getOrdersOnlinePaymentStatus(Orders order);
 
 }
